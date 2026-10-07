@@ -1,0 +1,25 @@
+# Normalize every text file to LF in the repository and in the worktree.
+#
+# The index is already uniformly LF, but core.autocrlf=true was rewriting
+# checked-out files to CRLF. That left package.json, tsconfig.json,
+# .eslintrc.json, vitest.config.ts and others permanently flagged as modified
+# with an empty `git diff` — status compares raw bytes, diff normalizes them —
+# and made every git command on Windows print a wall of "LF will be replaced
+# by CRLF" warnings. Pinning eol=lf matches what the index already holds, so
+# this changes no file contents.
+* text=auto eol=lf
+
+# Binary — never normalize or diff these as text.
+*.png binary
+*.ico binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.webp binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.db binary
+*.db-shm binary
+*.db-wal binary

@@ -1,0 +1,17 @@
+{
+  "extends": "next/core-web-vitals",
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "react/no-unescaped-entities": 0,
+    "@next/next/no-img-element": 0,
+    "react-hooks/exhaustive-deps": 0,
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      {
+        "args": "none",
+        "varsIgnorePattern": "^_",
+        "ignoreRestSiblings": true
+      }
+    ]
+  }
+}

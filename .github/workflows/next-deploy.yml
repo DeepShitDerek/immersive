@@ -1,0 +1,250 @@
+name: Deploy Next.js site to Pages
+
+# This file has to live in .github/workflows at the repository root: GitHub
+# reads workflows from nowhere else. The app itself is in, so every run
+# step below works there (`defaults.run.working-directory`), and the steps
+# that are actions rather than commands are given paths explicitly.
+
+on:
+  push:
+    branches: ["main"]
+
+  # Pull requests get the same build and checks, and are never deployed.
+  pull_request:
+
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deploy at a time, never cancelled half-way. Only runs that can deploy
+# (main, not a pull request) share that queue: GitHub keeps a single pending
+# run per group, so a manual run from another branch waiting there would push
+# out a newer deploy of main. Everything else gets a group of its own, and a
+# newer run on the same pull request replaces the older one.
+concurrency:
+  group: ${{ (github.ref == 'refs/heads/main' && github.event_name != 'pull_request') && 'pages' || format('checks-{0}', github.ref) }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+defaults:
+  run:
+    working-directory: .
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      # Reads the Pages settings and writes the site's base path into the Next
+      # config (empty for a custom domain or a user site, "/<repo>" for a
+      # project site). Only on the runs that deploy.
+      - name: Setup Pages
+        id: pages
+        if: github.event_name != 'pull_request'
+        uses: actions/configure-pages@v6
+        with:
+          static_site_generator: next
+          generator_config_file: next.config.js
+
+      - name: Restore cache
+        uses: actions/cache@v5
+        with:
+          path: |
+            .next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('package-lock.json') }}-${{ hashFiles('src/**/*.ts', 'src/**/*.tsx') }}
+          restore-keys: |
+            ${{ runner.os }}-nextjs-${{ hashFiles('package-lock.json') }}-
+
+      - name: Install dependencies
+        run: npm ci
+
+      # One copy of Radix's focus/layer internals across the app's Radix
+      # packages; two copies broke keyboard focus in popovers inside sheets.
+      - name: Check Radix packages share their internals
+        run: node scripts/check-radix-dedupe.mjs
+
+      # Nothing ships that does not typecheck or lint clean.
+      - name: Typecheck
+        run: npx --no-install tsc --noEmit
+
+      - name: Lint
+        run: npx --no-install eslint src --max-warnings 0
+
+      - name: Formatting
+        run: npm run format:check
+
+      # Runtime dependency advisories: anything not already known and
+      # explained in scripts/check-audit.mjs fails the build.
+      - name: Audit dependencies
+        run: node scripts/check-audit.mjs
+
+      - name: Run tests
+        run: npx --no-install vitest run
+
+      # Every theme preset's text pairs at 4.5:1 (WCAG 1.4.3) — a
+      # preset edit that makes text unreadable fails here, not in the owner's eyes.
+      - name: Check theme contrast
+        run: node scripts/theme-contrast.mjs
+
+      # Every access rule lives in Postgres, so the schema is run, not just
+      # read: a throwaway supabase/postgres container, schema applied twice,
+      # then role-by-role policy checks (db/test/10-policies.sql).
+      - name: Run database policy tests
+        run: node scripts/test-db.mjs
+
+      # The sample person's data must load into a fresh database: a schema
+      # change that breaks it fails here and not on someone's first day.
+      - name: Run the sample seed
+        run: node scripts/test-sample-seed.mjs
+
+      # The public site names its columns, so code that expects a column the
+      # live database lacks breaks every page that reads it. Refuse to deploy
+      # until db/schema.sql has been re-run on the project. Read-only probes
+      # with the public anon key; a no-op in static mode.
+      - name: Check live database schema
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+        run: node scripts/check-live-schema.mjs
+
+      - name: Build with Next.js
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+          NEXT_PUBLIC_BUCKET_NAME: ${{ secrets.NEXT_PUBLIC_BUCKET_NAME }}
+          NEXT_PUBLIC_SITE_URL: ${{ secrets.NEXT_PUBLIC_SITE_URL }}
+        # `npm run build`, not `next build`: the prebuild hook copies
+        # Excalidraw's fonts into public/ (gitignored), and calling Next
+        # directly skipped it, so deployed whiteboards had no fonts.
+        # The hook also clears Next's cache of database responses, which is
+        # restored with .next/cache above: without that, a deploy would be
+        # built from the content as it was when the cache was first filled.
+        # The script builds with webpack: ~7 KB lighter per public page
+        # than Turbopack on Next 16.
+        run: npm run build
+
+      # Public pages are prerendered with their content. Fail the
+      # deploy if a page ships as an empty shell, or if its first client
+      # render disagrees with the HTML (checked in three timezones).
+      - name: Check prerendered content
+        run: node scripts/check-prerender.mjs
+
+      # BASE_PATH: a project site (https://<user>.github.io/<repo>/) is built
+      # with that prefix on every asset; these checks take it off again to
+      # find the files. Empty for a custom domain or a user site.
+      - name: Check hydration
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+        run: node scripts/check-hydration.mjs
+
+      # Gzipped JS per public page against bundle-budget.json (a ratchet).
+      - name: Check bundle budget
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+        run: node scripts/check-bundle-budget.mjs
+
+      # Lighthouse, mobile, 3 runs per page, against lighthouse-budget.json
+      #. Not blocking yet: the budgets come from a local machine, and
+      # simulated throttling still depends on the host CPU. Once a few CI runs
+      # have been read (the report is uploaded), set the budgets from them and
+      # remove continue-on-error.
+      - name: Check Lighthouse budget
+        continue-on-error: true
+        env:
+          REPORT: lighthouse-report.json
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+        run: node scripts/check-lighthouse.mjs
+
+      - name: Keep the Lighthouse report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: lighthouse-report
+          path: lighthouse-report.json
+          if-no-files-found: ignore
+
+      - name: Upload artifact
+        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: out
+
+  # The browser checks that need the dev harness: accessibility on
+  # every screen, the money module end to end, the Maps
+  # editor and the immersive layouts. The harness exposes /dev/* test
+  # routes, so this is its own build, in static mode (no secrets, no live
+  # data), and it is never deployed.
+  browser-checks:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node
+        uses: actions/setup-node@v6
+        with:
+          node-version: "24"
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build with the dev harness
+        env:
+          NEXT_PUBLIC_DEV_HARNESS: "1"
+          TZ: UTC
+        run: npm run build
+
+      - name: Check accessibility (WCAG 2.2 AA, keyboard, reflow)
+        run: node scripts/check-a11y.mjs
+
+      - name: Check the money module
+        run: node scripts/check-money.mjs
+
+      # Step 6 of this check (double-click, type a name) has a known timing
+      # race: a new node's title sometimes takes focus late, so one run can
+      # fail on a healthy build. Up to three tries; a real break fails all
+      # three. Remove the loop when the race is fixed
+      # (docs/redesign-results.md, "Open, by module", Maps).
+      - name: Check the Maps editor
+        run: |
+          for attempt in 1 2 3; do
+            if node scripts/check-maps.mjs; then exit 0; fi
+            echo "::warning::Maps check failed on attempt $attempt"
+          done
+          exit 1
+
+      - name: Check the immersive layouts
+        run: node scripts/check-immersive.mjs
+
+  deploy:
+    # Only what is on main goes live.
+    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    needs: [build, browser-checks]
+
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

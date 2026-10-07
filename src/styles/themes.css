@@ -1,0 +1,1951 @@
+/* =============================================================================
+   THEME & TYPOGRAPHY PRESETS
+   -----------------------------------------------------------------------------
+   Every preset is a named CSS-variable layer over the same token contract
+   (see tailwind.config.js). Classes are applied to <html> at runtime from
+   src/lib/themes.ts, so nothing here may live inside a Tailwind @layer or use
+   @apply — Tailwind would tree-shake or reject it. Raw CSS only.
+
+   Registry: THEME_PRESETS / TYPOGRAPHY_PRESETS in src/lib/constants.ts.
+   Contrast gate: scripts/theme-contrast.mjs (`npm run check:themes`).
+   ============================================================================= */
+
+/* --- Ink (v2 default) — warm paper, near-black ink, electric indigo --- */
+:root,
+.theme-ink-light {
+  --background: 45 25% 97%;
+  --foreground: 240 12% 9%;
+  --card: 45 30% 99%;
+  --card-foreground: 240 12% 9%;
+  --popover: 45 30% 99%;
+  --popover-foreground: 240 12% 9%;
+  --primary: 251 65% 48%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 45 15% 92%;
+  --secondary-foreground: 240 12% 9%;
+  --muted: 45 15% 92%;
+  --muted-foreground: 240 6% 38%;
+  --accent: 250 45% 93%;
+  --accent-foreground: 251 65% 35%;
+  --destructive: 0 70% 42%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 45 12% 75%;
+  --input: 45 12% 52%;
+  --ring: 251 65% 48%;
+  --radius: 0.5rem;
+
+  --chart-1: 251 65% 52%;
+  --chart-2: 172 60% 35%;
+  --chart-3: 35 90% 41%;
+  --chart-4: 340 65% 50%;
+  --chart-5: 210 60% 45%;
+}
+
+/* --- Ink Noir (v2 dark) — deep neutral charcoal, soft indigo --- */
+.theme-ink-dark {
+  --background: 240 6% 9%;
+  --foreground: 40 12% 92%;
+  --card: 240 6% 12%;
+  --card-foreground: 40 12% 92%;
+  --popover: 240 6% 12%;
+  --popover-foreground: 40 12% 92%;
+  --primary: 252 90% 74%;
+  --primary-foreground: 240 6% 9%;
+  --secondary: 240 5% 16%;
+  --secondary-foreground: 40 12% 92%;
+  --muted: 240 5% 16%;
+  --muted-foreground: 240 5% 64%;
+  --accent: 250 25% 20%;
+  --accent-foreground: 252 90% 80%;
+  --destructive: 0 75% 65%;
+  --destructive-foreground: 240 6% 9%;
+  --border: 240 5% 27%;
+  --input: 240 5% 44%;
+  --ring: 252 90% 74%;
+  --radius: 0.5rem;
+
+  --chart-1: 252 85% 72%;
+  --chart-2: 172 55% 55%;
+  --chart-3: 35 85% 60%;
+  --chart-4: 340 70% 65%;
+  --chart-5: 210 70% 62%;
+}
+
+/* --- Field Notes (core) — an engineering notebook: warm paper, ink-blue
+   actions, rules instead of frames. The core pair
+   (docs/design-research/design-north-star.md §6); every value
+   there was checked with the WCAG formula and `check:themes` re-checks it.
+
+   A core theme is more than colour: it also sets the shape tiers (control
+   6px, surface 10px) and an elevation whose first step is a hairline, so a
+   clickable card is drawn, not floated. Unlayered, so these win over the
+   `:root` / `:root.dark` defaults in globals.css. --- */
+.theme-field-notes-light {
+  --background: 42.9 33.3% 95.9%;
+  --foreground: 255 8.3% 9.4%;
+  --card: 0 0% 100%;
+  --card-foreground: 255 8.3% 9.4%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 255 8.3% 9.4%;
+  --primary: 235 58.2% 44.1%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 42 25% 92.2%;
+  --secondary-foreground: 257.1 5% 27.6%;
+  --muted: 42 25% 92.2%;
+  --muted-foreground: 262.5 3.9% 40.4%;
+  --accent: 236 48.4% 93.9%;
+  --accent-foreground: 235 58.2% 38%;
+  --destructive: 4.2 76.5% 40%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 41.5 18.8% 86.5%;
+  --input: 40 6.1% 52%;
+  --ring: 235 58.2% 44.1%;
+  --radius: 0.375rem;
+
+  --success: 142.4 71.8% 29.2%;
+  --success-foreground: 0 0% 100%;
+  --warning: 33.1 91.7% 32.9%;
+  --warning-foreground: 0 0% 100%;
+  --info: 208.5 66.3% 36.1%;
+  --info-foreground: 0 0% 100%;
+
+  --chart-1: 235 58% 50%;
+  --chart-2: 172 60% 33%;
+  --chart-3: 33 90% 40%;
+  --chart-4: 340 65% 48%;
+  --chart-5: 208 66% 45%;
+
+  --r-control: 0.375rem;
+  --r-surface: 0.625rem;
+  --e-shadow: 35 25% 12%;
+  --e-1: 0 0 0 1px hsl(var(--border)), 0 1px 2px hsl(var(--e-shadow) / 0.06);
+  --e-2:
+    0 0 0 1px hsl(var(--input) / 0.6),
+    0 6px 16px -6px hsl(var(--e-shadow) / 0.16);
+}
+
+.theme-field-notes-dark {
+  --background: 30 5% 7.8%;
+  --foreground: 42 27.8% 92.9%;
+  --card: 40 5.5% 10.8%;
+  --card-foreground: 42 27.8% 92.9%;
+  --popover: 40 5.5% 10.8%;
+  --popover-foreground: 42 27.8% 92.9%;
+  --primary: 235.4 100% 82.2%;
+  --primary-foreground: 30 5% 7.8%;
+  --secondary: 37.5 6% 14%;
+  --secondary-foreground: 40 13% 77.5%;
+  --muted: 30 6.7% 5.9%;
+  --muted-foreground: 40 7.5% 61%;
+  --accent: 233.3 19.1% 18.4%;
+  --accent-foreground: 235.4 100% 82.2%;
+  --destructive: 0 90.6% 70.8%;
+  --destructive-foreground: 30 5% 7.8%;
+  --border: 37.5 8.3% 18.8%;
+  --input: 32.3 5.8% 44.1%;
+  --ring: 235.4 100% 82.2%;
+  --radius: 0.375rem;
+
+  --success: 141.9 69.2% 58%;
+  --success-foreground: 30 5% 7.8%;
+  --warning: 43.3 96.4% 56.3%;
+  --warning-foreground: 30 5% 7.8%;
+  --info: 212.2 85.8% 72.4%;
+  --info-foreground: 30 5% 7.8%;
+
+  --chart-1: 235 90% 78%;
+  --chart-2: 172 55% 55%;
+  --chart-3: 38 85% 60%;
+  --chart-4: 340 70% 68%;
+  --chart-5: 208 75% 65%;
+
+  --r-control: 0.375rem;
+  --r-surface: 0.625rem;
+  --e-shadow: 30 10% 2%;
+  --e-1: 0 0 0 1px hsl(var(--border)), inset 0 1px 0 0 hsl(0 0% 100% / 0.04);
+  --e-2:
+    0 0 0 1px hsl(var(--input) / 0.7),
+    0 8px 20px -8px hsl(var(--e-shadow) / 0.7),
+    inset 0 1px 0 0 hsl(0 0% 100% / 0.06);
+}
+
+/* =========================================
+   THEME TOKENS (deliberately OUTSIDE @layer)
+   Tailwind tree-shakes custom layered styles whose class names it can't
+   find in scanned content, and .theme-* classes are applied at runtime
+   from JS (src/lib/themes.ts). Unlayered rules always ship.
+   ========================================= */
+.theme-blueprint {
+  --background: 220 20% 5%;
+  --foreground: 210 20% 90%;
+  --card: 220 18% 8%;
+  --card-foreground: 210 20% 90%;
+  --popover: 220 18% 8%;
+  --popover-foreground: 210 20% 90%;
+  --primary: 200 100% 50%;
+  --primary-foreground: 220 20% 5%;
+  --secondary: 220 15% 13%;
+  --secondary-foreground: 210 20% 90%;
+  --muted: 220 15% 13%;
+  --muted-foreground: 215 12% 55%;
+  --accent: 200 80% 55%;
+  --accent-foreground: 220 20% 5%;
+  --destructive: 0 73% 62%;
+  --destructive-foreground: 210 20% 4%;
+  --border: 220 12% 25%;
+  --input: 220 15% 42%;
+  --ring: 200 100% 50%;
+  --radius: 0.5rem;
+
+  --chart-1: 200 80% 60%;
+  --chart-2: 160 60% 55%;
+  --chart-3: 30 80% 65%;
+  --chart-4: 280 65% 70%;
+  --chart-5: 340 75% 65%;
+}
+
+.theme-github-light {
+  --background: 0 0% 100%;
+  --foreground: 212 12% 15%;
+  --card: 210 17% 98%;
+  --card-foreground: 212 12% 15%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 212 12% 15%;
+  --primary: 212 92% 45%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 17% 95%;
+  --secondary-foreground: 212 12% 15%;
+  --muted: 210 17% 95%;
+  --muted-foreground: 213 10% 40%;
+  --accent: 137 55% 33%;
+  --accent-foreground: 0 0% 99%;
+  --destructive: 0 73% 48%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 210 17% 77%;
+  --input: 210 17% 56%;
+  --ring: 212 92% 45%;
+  --radius: 0.375rem;
+  --chart-1: 212 92% 45%;
+  --chart-2: 137 66% 28%;
+  --chart-3: 24 100% 37%;
+  --chart-4: 356 72% 47%;
+  --chart-5: 262 68% 59%;
+}
+
+.theme-github-dark {
+  --background: 216 27.8% 7.1%;
+  --foreground: 207.7 35.1% 92.7%;
+  --card: 215 21.4% 11%;
+  --card-foreground: 207.7 35.1% 92.7%;
+  --popover: 216 27.8% 7.1%;
+  --popover-foreground: 207.7 35.1% 92.7%;
+  --primary: 215.4 92.6% 57.6%;
+  --primary-foreground: 216 27.8% 7.1%;
+  --secondary: 210 10% 15%;
+  --secondary-foreground: 207.7 35.1% 92.7%;
+  --muted: 210 10% 15%;
+  --muted-foreground: 211.6 8.4% 55.5%;
+  --accent: 137 55% 55%;
+  --accent-foreground: 216 27.8% 7.1%;
+  --destructive: 0 73% 65%;
+  --destructive-foreground: 216 27.8% 7.1%;
+  --border: 210 10% 26%;
+  --input: 210 10% 42%;
+  --ring: 215.4 92.6% 57.6%;
+  --radius: 0.375rem;
+  --chart-1: 215 100% 67%;
+  --chart-2: 137 55% 49%;
+  --chart-3: 44 75% 48%;
+  --chart-4: 4 92% 64%;
+  --chart-5: 266 85% 70%;
+}
+
+/* --- Dracula --- */
+.theme-dracula {
+  --background: 231 15% 18%;
+  --foreground: 60 30% 96%;
+  --card: 232 14% 21%;
+  --card-foreground: 60 30% 96%;
+  --popover: 232 14% 21%;
+  --popover-foreground: 60 30% 96%;
+  --primary: 265 89% 78%;
+  --primary-foreground: 231 15% 18%;
+  --secondary: 230 14% 25%;
+  --secondary-foreground: 60 30% 96%;
+  --muted: 230 14% 25%;
+  --muted-foreground: 228 8% 67%;
+  --accent: 135 94% 65%;
+  --accent-foreground: 231 15% 18%;
+  --destructive: 0 100% 75%;
+  --destructive-foreground: 0 0% 9%;
+  --border: 230 12% 35%;
+  --input: 230 14% 53%;
+  --ring: 265 89% 78%;
+  --radius: 0.5rem;
+
+  --chart-1: 265 89% 78%;
+  --chart-2: 135 94% 65%;
+  --chart-3: 191 97% 77%;
+  --chart-4: 326 100% 74%;
+  --chart-5: 65 92% 76%;
+}
+
+/* --- Nord --- */
+.theme-nord {
+  --background: 220 16% 22%;
+  --foreground: 219 28% 88%;
+  --card: 220 17% 25%;
+  --card-foreground: 219 28% 88%;
+  --popover: 220 17% 25%;
+  --popover-foreground: 219 28% 88%;
+  --primary: 193.3 43.4% 67.5%;
+  --primary-foreground: 220 16% 8.5%;
+  --secondary: 220 16% 28%;
+  --secondary-foreground: 219 28% 88%;
+  --muted: 220 16% 28%;
+  --muted-foreground: 219 15% 71.5%;
+  --accent: 179 25% 65%;
+  --accent-foreground: 220 16% 22%;
+  --destructive: 354 42% 75%;
+  --destructive-foreground: 219 28% 7.5%;
+  --border: 220 16% 39%;
+  --input: 220 16% 56%;
+  --ring: 193.3 43.4% 67.5%;
+  --radius: 0.5rem;
+
+  --chart-1: 213 32% 56%;
+  --chart-2: 179 25% 65%;
+  --chart-3: 92 28% 65%;
+  --chart-4: 311 20% 63%;
+  --chart-5: 354 42% 61%;
+}
+
+/* --- Tokyo Night --- */
+.theme-tokyo-night {
+  --background: 235 21% 13%;
+  --foreground: 228.7 72.6% 85.7%;
+  --card: 235 18% 16%;
+  --card-foreground: 228.7 72.6% 85.7%;
+  --popover: 235 18% 16%;
+  --popover-foreground: 228.7 72.6% 85.7%;
+  --primary: 220.8 88.7% 72.4%;
+  --primary-foreground: 235 21% 13%;
+  --secondary: 234 17% 19%;
+  --secondary-foreground: 228.7 72.6% 85.7%;
+  --muted: 234 17% 19%;
+  --muted-foreground: 227 12% 60.5%;
+  --accent: 266 60% 68%;
+  --accent-foreground: 235 21% 13%;
+  --destructive: 348 70% 66%;
+  --destructive-foreground: 0 0% 9%;
+  --border: 234 15% 31%;
+  --input: 234 17% 50%;
+  --ring: 220.8 88.7% 72.4%;
+  --radius: 0.5rem;
+
+  --chart-1: 220.8 88.7% 72.4%;
+  --chart-2: 266 60% 68%;
+  --chart-3: 143 60% 60%;
+  --chart-4: 348 70% 60%;
+  --chart-5: 38 90% 70%;
+}
+
+/* --- Catppuccin Mocha --- */
+.theme-catppuccin-mocha {
+  --background: 240 21% 12%;
+  --foreground: 227 68% 88%;
+  --card: 240 21% 15%;
+  --card-foreground: 227 68% 88%;
+  --popover: 240 21% 15%;
+  --popover-foreground: 227 68% 88%;
+  --primary: 267 84% 81%;
+  --primary-foreground: 240 21% 12%;
+  --secondary: 240 18% 19%;
+  --secondary-foreground: 227 68% 88%;
+  --muted: 240 18% 19%;
+  --muted-foreground: 228 24% 62.5%;
+  --accent: 189 71% 73%;
+  --accent-foreground: 240 21% 12%;
+  --destructive: 343 81% 75%;
+  --destructive-foreground: 240 21% 12%;
+  --border: 240 17% 31%;
+  --input: 240 18% 50%;
+  --ring: 267 84% 81%;
+  --radius: 0.5rem;
+
+  --chart-1: 267 84% 81%;
+  --chart-2: 189 71% 73%;
+  --chart-3: 343 81% 75%;
+  --chart-4: 115 54% 76%;
+  --chart-5: 23 92% 75%;
+}
+
+/* --- One Dark Pro --- */
+.theme-onedark-pro {
+  --background: 220 13% 18%;
+  --foreground: 219 13.5% 71%;
+  --card: 220 13% 21%;
+  --card-foreground: 219 13.5% 71%;
+  --popover: 220 13% 21%;
+  --popover-foreground: 219 13.5% 71%;
+  --primary: 207 82% 66%;
+  --primary-foreground: 220 13% 18%;
+  --secondary: 220 13% 24%;
+  --secondary-foreground: 219 13.5% 71%;
+  --muted: 220 13% 24%;
+  --muted-foreground: 219 10% 66.5%;
+  --accent: 95 38% 62%;
+  --accent-foreground: 220 13% 18%;
+  --destructive: 355 65% 72%;
+  --destructive-foreground: 0 0% 9%;
+  --border: 220 13% 35%;
+  --input: 220 13% 52%;
+  --ring: 207 82% 66%;
+  --radius: 0.5rem;
+
+  --chart-1: 207 82% 66%;
+  --chart-2: 95 38% 62%;
+  --chart-3: 355 65% 65%;
+  --chart-4: 29 54% 61%;
+  --chart-5: 286 60% 67%;
+}
+
+/* --- Rosé Pine --- */
+.theme-rose-pine {
+  --background: 249 22% 12%;
+  --foreground: 245 50% 91%;
+  --card: 248 21% 15%;
+  --card-foreground: 245 50% 91%;
+  --popover: 248 21% 15%;
+  --popover-foreground: 245 50% 91%;
+  --primary: 2 55% 83%;
+  --primary-foreground: 249 22% 12%;
+  --secondary: 248 18% 19%;
+  --secondary-foreground: 245 50% 91%;
+  --muted: 248 18% 19%;
+  --muted-foreground: 249 12% 61.5%;
+  --accent: 190 30% 70%;
+  --accent-foreground: 249 22% 12%;
+  --destructive: 343 76% 68%;
+  --destructive-foreground: 0 0% 9%;
+  --border: 248 16% 31%;
+  --input: 248 18% 50%;
+  --ring: 2 55% 83%;
+  --radius: 0.5rem;
+
+  --chart-1: 2 55% 83%;
+  --chart-2: 190 30% 70%;
+  --chart-3: 343 76% 68%;
+  --chart-4: 35 60% 72%;
+  --chart-5: 267 57% 78%;
+}
+
+/* --- Monokai --- */
+.theme-monokai {
+  --background: 70 8% 15%;
+  --foreground: 60 30% 96.1%;
+  --card: 70 8% 18%;
+  --card-foreground: 60 30% 96.1%;
+  --popover: 70 8% 18%;
+  --popover-foreground: 60 30% 96.1%;
+  --primary: 80 76% 53%;
+  --primary-foreground: 70 8% 15%;
+  --secondary: 70 8% 22%;
+  --secondary-foreground: 60 30% 96.1%;
+  --muted: 70 8% 22%;
+  --muted-foreground: 60 5% 64.5%;
+  --accent: 190 81% 67%;
+  --accent-foreground: 70 8% 15%;
+  --destructive: 338 95% 74%;
+  --destructive-foreground: 0 0% 9%;
+  --border: 70 6% 31%;
+  --input: 70 8% 46%;
+  --ring: 80 76% 53%;
+  --radius: 0.5rem;
+
+  --chart-1: 80 76% 53%;
+  --chart-2: 190 81% 67%;
+  --chart-3: 338 95% 56%;
+  --chart-4: 52 95% 63%;
+  --chart-5: 265 60% 68%;
+}
+
+/* --- Ayu Dark --- */
+.theme-ayu-dark {
+  --background: 220 29% 6.1%;
+  --foreground: 46.7 6.6% 73.1%;
+  --card: 218.2 26.8% 8%;
+  --card-foreground: 46.7 6.6% 73.1%;
+  --popover: 218.2 26.8% 8%;
+  --popover-foreground: 46.7 6.6% 73.1%;
+  --primary: 40 75% 60.8%;
+  --primary-foreground: 220 29% 6.1%;
+  --secondary: 220 18% 18%;
+  --secondary-foreground: 46.7 6.6% 73.1%;
+  --muted: 220 18% 18%;
+  --muted-foreground: 220 10% 59.5%;
+  --accent: 200 60% 55%;
+  --accent-foreground: 220 29% 6.1%;
+  --destructive: 356 70% 66%;
+  --destructive-foreground: 40 14% 8%;
+  --border: 220 16% 29%;
+  --input: 220 18% 46%;
+  --ring: 40 75% 60.8%;
+  --radius: 0.5rem;
+
+  --chart-1: 40 75% 60.8%;
+  --chart-2: 200 60% 55%;
+  --chart-3: 356 70% 58%;
+  --chart-4: 145 55% 50%;
+  --chart-5: 265 70% 62%;
+}
+
+/* --- Solarized Light --- */
+.theme-solarized-light {
+  --background: 44 87% 94%;
+  --foreground: 194 14% 39%;
+  --card: 44 87% 91%;
+  --card-foreground: 194 14% 40%;
+  --popover: 44 87% 94%;
+  --popover-foreground: 194 14% 40%;
+  --primary: 205 69% 40%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 46 42% 88%;
+  --secondary-foreground: 194 14% 38%;
+  --muted: 46 42% 88%;
+  --muted-foreground: 195 10% 38.5%;
+  --accent: 175 59% 40%;
+  --accent-foreground: 44 87% 10.5%;
+  --destructive: 1 71% 46%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 44 30% 70%;
+  --input: 46 42% 43%;
+  --ring: 205 69% 40%;
+  --radius: 0.5rem;
+
+  --chart-1: 205 69% 49%;
+  --chart-2: 175 59% 37%;
+  --chart-3: 1 71% 52%;
+  --chart-4: 45 100% 34%;
+  --chart-5: 265 60% 55%;
+}
+
+/* --- Catppuccin Latte --- */
+.theme-catppuccin-latte {
+  --background: 220 23% 95%;
+  --foreground: 234 16% 35%;
+  --card: 220 22% 92%;
+  --card-foreground: 234 16% 35%;
+  --popover: 220 23% 95%;
+  --popover-foreground: 234 16% 35%;
+  --primary: 266 85% 57%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 20% 88%;
+  --secondary-foreground: 234 16% 35%;
+  --muted: 220 20% 88%;
+  --muted-foreground: 233 10% 40%;
+  --accent: 197 57% 48%;
+  --accent-foreground: 220 23% 16%;
+  --destructive: 347 87% 41%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 220 18% 73%;
+  --input: 220 20% 54%;
+  --ring: 266 85% 57%;
+  --radius: 0.5rem;
+
+  --chart-1: 266 85% 58%;
+  --chart-2: 197 57% 44%;
+  --chart-3: 347 87% 44%;
+  --chart-4: 109 58% 37%;
+  --chart-5: 25 78% 45%;
+}
+
+/* --- Arctic (Frost) --- */
+.theme-arctic {
+  --background: 210 40% 96%;
+  --foreground: 214 22% 22%;
+  --card: 210 35% 93%;
+  --card-foreground: 214 22% 22%;
+  --popover: 210 40% 96%;
+  --popover-foreground: 214 22% 22%;
+  --primary: 210 100% 40%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 28% 88%;
+  --secondary-foreground: 214 22% 22%;
+  --muted: 210 28% 88%;
+  --muted-foreground: 215 14% 39%;
+  --accent: 190 70% 33.5%;
+  --accent-foreground: 0 0% 99%;
+  --destructive: 0 72% 44%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 210 24% 73%;
+  --input: 210 28% 53%;
+  --ring: 210 100% 50%;
+  --radius: 0.5rem;
+
+  --chart-1: 210 100% 50%;
+  --chart-2: 190 70% 39%;
+  --chart-3: 0 72% 51%;
+  --chart-4: 145 65% 36%;
+  --chart-5: 280 60% 55%;
+}
+
+/* --- Paper White --- */
+.theme-paper {
+  --background: 40 33% 97%;
+  --foreground: 20 10% 20%;
+  --card: 40 30% 94%;
+  --card-foreground: 20 10% 20%;
+  --popover: 40 33% 97%;
+  --popover-foreground: 20 10% 20%;
+  --primary: 20 10% 20%;
+  --primary-foreground: 40 33% 97%;
+  --secondary: 40 20% 90%;
+  --secondary-foreground: 20 10% 20%;
+  --muted: 40 20% 90%;
+  --muted-foreground: 20 6% 40%;
+  --accent: 24 60% 50%;
+  --accent-foreground: 40 33% 10.5%;
+  --destructive: 0 65% 47%;
+  --destructive-foreground: 40 33% 97%;
+  --border: 40 16% 72%;
+  --input: 40 20% 49%;
+  --ring: 20 10% 20%;
+  --radius: 0.375rem;
+
+  --chart-1: 20 10% 20%;
+  --chart-2: 24 60% 50%;
+  --chart-3: 0 65% 48%;
+  --chart-4: 150 40% 42%;
+  --chart-5: 210 30% 45%;
+}
+
+/* --- Cyberpunk --- */
+.theme-cyberpunk {
+  --background: 270 20% 6%;
+  --foreground: 180 100% 70%;
+  --card: 270 18% 9%;
+  --card-foreground: 180 100% 70%;
+  --popover: 270 18% 9%;
+  --popover-foreground: 180 100% 70%;
+  --primary: 320 100% 60%;
+  --primary-foreground: 270 20% 6%;
+  --secondary: 270 15% 14%;
+  --secondary-foreground: 180 100% 70%;
+  --muted: 270 15% 14%;
+  --muted-foreground: 270 10% 57%;
+  --accent: 180 100% 50%;
+  --accent-foreground: 270 20% 6%;
+  --destructive: 0 90% 62%;
+  --destructive-foreground: 270 20% 6%;
+  --border: 270 12% 26%;
+  --input: 270 15% 44%;
+  --ring: 320 100% 60%;
+  --radius: 0.25rem;
+
+  --chart-1: 320 100% 60%;
+  --chart-2: 180 100% 50%;
+  --chart-3: 50 100% 55%;
+  --chart-4: 260 80% 65%;
+  --chart-5: 0 90% 55%;
+}
+
+/* --- Ocean Deep --- */
+.theme-ocean {
+  --background: 210 50% 7%;
+  --foreground: 200 25% 82%;
+  --card: 210 45% 10%;
+  --card-foreground: 200 25% 82%;
+  --popover: 210 45% 10%;
+  --popover-foreground: 200 25% 82%;
+  --primary: 190 80% 50%;
+  --primary-foreground: 210 50% 7%;
+  --secondary: 210 35% 15%;
+  --secondary-foreground: 200 25% 82%;
+  --muted: 210 35% 15%;
+  --muted-foreground: 210 15% 56.5%;
+  --accent: 165 60% 50%;
+  --accent-foreground: 210 50% 7%;
+  --destructive: 5 72% 62%;
+  --destructive-foreground: 210 50% 7%;
+  --border: 210 30% 25%;
+  --input: 210 35% 42%;
+  --ring: 190 80% 50%;
+  --radius: 0.5rem;
+
+  --chart-1: 190 80% 50%;
+  --chart-2: 165 60% 50%;
+  --chart-3: 5 72% 56%;
+  --chart-4: 220 65% 58%;
+  --chart-5: 40 75% 55%;
+}
+
+/* --- Matrix --- */
+.theme-matrix {
+  --background: 120 10% 4%;
+  --foreground: 120 80% 60%;
+  --card: 120 10% 7%;
+  --card-foreground: 120 80% 60%;
+  --popover: 120 10% 7%;
+  --popover-foreground: 120 80% 60%;
+  --primary: 120 100% 45%;
+  --primary-foreground: 120 10% 4%;
+  --secondary: 120 8% 11%;
+  --secondary-foreground: 120 80% 60%;
+  --muted: 120 8% 11%;
+  --muted-foreground: 120 20% 48%;
+  --accent: 120 60% 35%;
+  --accent-foreground: 120 100% 3%;
+  --destructive: 0 80% 61%;
+  --destructive-foreground: 120 10% 4%;
+  --border: 120 10% 22%;
+  --input: 120 8% 38%;
+  --ring: 120 100% 45%;
+  --radius: 0.25rem;
+
+  --chart-1: 120 100% 45%;
+  --chart-2: 120 60% 32%;
+  --chart-3: 120 85% 58%;
+  --chart-4: 120 45% 71%;
+  --chart-5: 120 100% 84%;
+}
+
+/* --- High Contrast Dark --- */
+.theme-hc-dark {
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
+  --card: 0 0% 5%;
+  --card-foreground: 0 0% 100%;
+  --popover: 0 0% 5%;
+  --popover-foreground: 0 0% 100%;
+  --primary: 50 100% 50%;
+  --primary-foreground: 0 0% 0%;
+  --secondary: 0 0% 12%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 0 0% 12%;
+  --muted-foreground: 0 0% 65%;
+  --accent: 200 100% 55%;
+  --accent-foreground: 0 0% 0%;
+  --destructive: 0 100% 59.5%;
+  --destructive-foreground: 0 0% 0%;
+  --border: 0 0% 30%;
+  --input: 0 0% 38%;
+  --ring: 50 100% 50%;
+  --radius: 0.375rem;
+
+  --chart-1: 50 100% 50%;
+  --chart-2: 200 100% 55%;
+  --chart-3: 0 100% 50%;
+  --chart-4: 120 80% 40%;
+  --chart-5: 280 85% 60%;
+}
+
+/* --- High Contrast Light --- */
+.theme-hc-light {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 0%;
+  --card: 0 0% 96%;
+  --card-foreground: 0 0% 0%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 0%;
+  --primary: 220 90% 40%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 92%;
+  --secondary-foreground: 0 0% 0%;
+  --muted: 0 0% 92%;
+  --muted-foreground: 0 0% 35%;
+  --accent: 160 80% 28.5%;
+  --accent-foreground: 0 0% 99%;
+  --destructive: 0 90% 40%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 70%;
+  --input: 0 0% 54%;
+  --ring: 220 90% 40%;
+  --radius: 0.375rem;
+
+  --chart-1: 220 90% 40%;
+  --chart-2: 160 80% 30%;
+  --chart-3: 0 90% 40%;
+  --chart-4: 45 95% 35%;
+  --chart-5: 280 75% 50%;
+}
+
+/* ===== NEO-BRUTALISM THEMES ===== */
+
+/* --- Neo-Brutalism Light --- */
+.theme-neobrutalism-light {
+  --background: 60 50% 97%;
+  --foreground: 0 0% 8%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 8%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 8%;
+  --primary: 262 83% 58%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 48 96% 53%;
+  --secondary-foreground: 0 0% 8%;
+  --muted: 60 20% 92%;
+  --muted-foreground: 0 0% 34%;
+  --accent: 150 80% 28.5%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 84% 38.5%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 8%;
+  --input: 60 20% 47%;
+  --ring: 262 83% 58%;
+  --radius: 0.75rem;
+
+  --chart-1: 262 83% 58%;
+  --chart-2: 48 96% 34%;
+  --chart-3: 150 80% 35%;
+  --chart-4: 0 84% 60%;
+  --chart-5: 200 85% 46%;
+}
+
+/* --- Neo-Brutalism Dark --- */
+.theme-neobrutalism-dark {
+  --background: 240 6% 10%;
+  --foreground: 60 50% 97%;
+  --card: 240 5% 14%;
+  --card-foreground: 60 50% 97%;
+  --popover: 240 5% 14%;
+  --popover-foreground: 60 50% 97%;
+  --primary: 48 96% 53%;
+  --primary-foreground: 0 0% 8%;
+  --secondary: 262 45% 20%;
+  --secondary-foreground: 0 0% 100%;
+  --muted: 240 4% 20%;
+  --muted-foreground: 240 5% 91.5%;
+  --accent: 150 80% 44%;
+  --accent-foreground: 0 0% 8%;
+  --destructive: 0 84% 64.5%;
+  --destructive-foreground: 0 0% 9%;
+  --border: 60 50% 97%;
+  --input: 240 4% 45%;
+  --ring: 48 96% 53%;
+  --radius: 0.75rem;
+
+  --chart-1: 48 96% 53%;
+  --chart-2: 262 83% 61%;
+  --chart-3: 150 80% 44%;
+  --chart-4: 0 84% 60%;
+  --chart-5: 200 85% 52%;
+}
+
+/* --- Neo-Brutalism Punk --- */
+.theme-neobrutalism-punk {
+  --background: 330 10% 7%;
+  --foreground: 60 100% 70%;
+  --card: 330 8% 11%;
+  --card-foreground: 60 100% 70%;
+  --popover: 330 8% 11%;
+  --popover-foreground: 60 100% 70%;
+  --primary: 340 100% 56%;
+  --primary-foreground: 330 10% 7%;
+  --secondary: 60 25% 15%;
+  --secondary-foreground: 60 100% 70%;
+  --muted: 330 6% 16%;
+  --muted-foreground: 330 5% 59.5%;
+  --accent: 280 100% 54.5%;
+  --accent-foreground: 0 0% 99%;
+  --destructive: 25 100% 49%;
+  --destructive-foreground: 330 10% 7%;
+  --border: 60 100% 70%;
+  --input: 330 6% 43%;
+  --ring: 340 100% 55%;
+  --radius: 0.75rem;
+
+  --chart-1: 340 100% 55%;
+  --chart-2: 60 100% 50%;
+  --chart-3: 280 100% 65%;
+  --chart-4: 25 100% 55%;
+  --chart-5: 180 100% 50%;
+}
+
+/* ===== GLASS / LIQUID GLASS THEMES ===== */
+
+/* --- Glass Dark --- */
+.theme-glass-dark {
+  --background: 230 20% 8%;
+  --foreground: 220 15% 88%;
+  --card: 230 18% 14%;
+  --card-foreground: 220 15% 88%;
+  --popover: 230 18% 12%;
+  --popover-foreground: 220 15% 88%;
+  --primary: 220 90% 66%;
+  --primary-foreground: 230 20% 8%;
+  --secondary: 230 15% 18%;
+  --secondary-foreground: 220 15% 88%;
+  --muted: 230 15% 18%;
+  --muted-foreground: 225 10% 59.5%;
+  --accent: 260 75% 61.5%;
+  --accent-foreground: 0 0% 99%;
+  --destructive: 0 72% 66%;
+  --destructive-foreground: 220 15% 4%;
+  --border: 230 12% 27%;
+  --input: 230 15% 50%;
+  --ring: 220 90% 66%;
+  --radius: 1rem;
+
+  --chart-1: 220 90% 62%;
+  --chart-2: 260 75% 65%;
+  --chart-3: 170 65% 50%;
+  --chart-4: 340 70% 60%;
+  --chart-5: 45 80% 58%;
+}
+
+/* --- Glass Frost (Light) --- */
+.theme-glass-frost {
+  --background: 220 25% 96%;
+  --foreground: 225 20% 18%;
+  --card: 220 30% 98%;
+  --card-foreground: 225 20% 18%;
+  --popover: 220 30% 98%;
+  --popover-foreground: 225 20% 18%;
+  --primary: 220 85% 52%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 20% 90%;
+  --secondary-foreground: 225 20% 18%;
+  --muted: 220 20% 90%;
+  --muted-foreground: 225 12% 41%;
+  --accent: 190 70% 33.5%;
+  --accent-foreground: 0 0% 99%;
+  --destructive: 0 72% 45%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 220 18% 76%;
+  --input: 220 20% 57%;
+  --ring: 220 85% 52%;
+  --radius: 1rem;
+
+  --chart-1: 220 85% 55%;
+  --chart-2: 190 70% 40%;
+  --chart-3: 0 72% 50%;
+  --chart-4: 145 60% 38%;
+  --chart-5: 275 65% 55%;
+}
+
+/* --- Glass Aurora --- */
+.theme-glass-aurora {
+  --background: 250 25% 8%;
+  --foreground: 240 15% 88%;
+  --card: 250 22% 12%;
+  --card-foreground: 240 15% 88%;
+  --popover: 250 22% 12%;
+  --popover-foreground: 240 15% 88%;
+  --primary: 160 80% 55%;
+  --primary-foreground: 250 25% 8%;
+  --secondary: 250 18% 17%;
+  --secondary-foreground: 240 15% 88%;
+  --muted: 250 18% 17%;
+  --muted-foreground: 245 10% 59.5%;
+  --accent: 280 75% 65%;
+  --accent-foreground: 250 25% 8%;
+  --destructive: 350 80% 64%;
+  --destructive-foreground: 250 25% 8%;
+  --border: 250 14% 27%;
+  --input: 250 18% 46%;
+  --ring: 160 80% 55%;
+  --radius: 1rem;
+
+  --chart-1: 160 80% 55%;
+  --chart-2: 280 75% 65%;
+  --chart-3: 200 80% 60%;
+  --chart-4: 350 80% 58%;
+  --chart-5: 45 85% 60%;
+}
+
+/* --- Glass Ocean --- */
+.theme-glass-ocean {
+  --background: 205 45% 8%;
+  --foreground: 200 20% 85%;
+  --card: 205 40% 12%;
+  --card-foreground: 200 20% 85%;
+  --popover: 205 40% 12%;
+  --popover-foreground: 200 20% 85%;
+  --primary: 185 75% 50%;
+  --primary-foreground: 205 45% 8%;
+  --secondary: 205 30% 16%;
+  --secondary-foreground: 200 20% 85%;
+  --muted: 205 30% 16%;
+  --muted-foreground: 205 15% 57.5%;
+  --accent: 155 65% 50%;
+  --accent-foreground: 205 45% 8%;
+  --destructive: 5 75% 64%;
+  --destructive-foreground: 200 20% 7.5%;
+  --border: 205 25% 25%;
+  --input: 205 30% 41%;
+  --ring: 185 75% 50%;
+  --radius: 1rem;
+
+  --chart-1: 185 75% 50%;
+  --chart-2: 155 65% 50%;
+  --chart-3: 220 70% 60%;
+  --chart-4: 5 75% 55%;
+  --chart-5: 45 80% 55%;
+}
+
+/* ===== RETROFUTURISM / SYNTHWAVE THEMES ===== */
+
+/* --- Synthwave --- */
+.theme-synthwave {
+  --background: 270 30% 6%;
+  --foreground: 300 20% 88%;
+  --card: 270 25% 10%;
+  --card-foreground: 300 20% 88%;
+  --popover: 270 25% 10%;
+  --popover-foreground: 300 20% 88%;
+  --primary: 320 100% 65%;
+  --primary-foreground: 270 30% 6%;
+  --secondary: 270 20% 15%;
+  --secondary-foreground: 300 20% 88%;
+  --muted: 270 20% 15%;
+  --muted-foreground: 270 12% 58%;
+  --accent: 190 100% 55%;
+  --accent-foreground: 270 30% 6%;
+  --destructive: 0 85% 63%;
+  --destructive-foreground: 270 30% 6%;
+  --border: 270 18% 27%;
+  --input: 270 20% 45%;
+  --ring: 320 100% 65%;
+  --radius: 0.5rem;
+
+  --chart-1: 320 100% 65%;
+  --chart-2: 190 100% 55%;
+  --chart-3: 270 80% 70%;
+  --chart-4: 50 100% 58%;
+  --chart-5: 0 85% 55%;
+}
+
+/* --- Retrowave (Warm Amber CRT) --- */
+.theme-retrowave {
+  --background: 30 15% 6%;
+  --foreground: 38 90% 75%;
+  --card: 30 12% 10%;
+  --card-foreground: 38 90% 75%;
+  --popover: 30 12% 10%;
+  --popover-foreground: 38 90% 75%;
+  --primary: 38 100% 55%;
+  --primary-foreground: 30 15% 6%;
+  --secondary: 30 10% 14%;
+  --secondary-foreground: 38 90% 75%;
+  --muted: 30 10% 14%;
+  --muted-foreground: 30 15% 54.5%;
+  --accent: 16 85% 55%;
+  --accent-foreground: 30 15% 6%;
+  --destructive: 0 80% 64%;
+  --destructive-foreground: 30 15% 6%;
+  --border: 30 10% 25%;
+  --input: 30 10% 40%;
+  --ring: 38 100% 55%;
+  --radius: 0.25rem;
+
+  --chart-1: 38 100% 55%;
+  --chart-2: 16 85% 55%;
+  --chart-3: 55 90% 72%;
+  --chart-4: 0 80% 45%;
+  --chart-5: 30 60% 45%;
+}
+
+/* --- Terminal Green (CLI) --- */
+.theme-terminal {
+  --background: 160 15% 4%;
+  --foreground: 120 60% 70%;
+  --card: 160 12% 7%;
+  --card-foreground: 120 60% 70%;
+  --popover: 160 12% 7%;
+  --popover-foreground: 120 60% 70%;
+  --primary: 120 80% 55%;
+  --primary-foreground: 160 15% 4%;
+  --secondary: 160 10% 11%;
+  --secondary-foreground: 120 60% 70%;
+  --muted: 160 10% 11%;
+  --muted-foreground: 150 15% 49%;
+  --accent: 80 70% 55%;
+  --accent-foreground: 160 15% 4%;
+  --destructive: 0 75% 61%;
+  --destructive-foreground: 160 15% 4%;
+  --border: 150 10% 22%;
+  --input: 160 10% 37%;
+  --ring: 120 80% 55%;
+  --radius: 0.125rem;
+
+  --chart-1: 120 80% 55%;
+  --chart-2: 80 70% 55%;
+  --chart-3: 160 60% 45%;
+  --chart-4: 45 80% 55%;
+  --chart-5: 0 75% 50%;
+}
+
+/* =============================================================================
+   ADDED THEMES — see THEME-AUDIT.md for the palette sources and the
+   contrast figures every one of these was solved against.
+   ============================================================================= */
+
+/* ===== GAP-FILLERS — completing pairs the set already half-had ===== */
+/* --- Solarized Dark — Ethan Schoonover's base03 canvas --- */
+.theme-solarized-dark {
+  --background: 192 100% 11%;
+  --foreground: 180 6.9% 64.9%;
+  --card: 192 81% 14%;
+  --card-foreground: 180 6.9% 60.4%;
+  --popover: 192 81% 14%;
+  --popover-foreground: 180 7% 72%;
+  --primary: 205 69% 58%;
+  --primary-foreground: 0 0% 9%;
+  --secondary: 192 81% 17%;
+  --secondary-foreground: 180 7% 72%;
+  --muted: 192.2 80.8% 14.3%;
+  /* Between base0 and base1, on a base02 muted ground: base0 itself is
+     4.2:1 on base02, and base1 is the body text, so muted sits between. */
+  --muted-foreground: 183 7.5% 62.8%;
+  --accent: 192 70% 20%;
+  --accent-foreground: 205 69% 68%;
+  --destructive: 1 71% 73%;
+  --destructive-foreground: 0 0% 9%;
+  --border: 192 60% 26%;
+  --input: 192 50% 41%;
+  --ring: 205 69% 58%;
+  --radius: 0.5rem;
+
+  --chart-1: 205 69% 55%;
+  --chart-2: 68 100% 40%;
+  --chart-3: 45 100% 45%;
+  --chart-4: 331 64% 62%;
+  --chart-5: 175 59% 45%;
+}
+/* --- Gruvbox Dark — retro groove, warm and low-glare --- */
+.theme-gruvbox-dark {
+  --background: 0 0% 16%;
+  --foreground: 44 51% 81%;
+  --card: 20 6% 20%;
+  --card-foreground: 44 51% 81%;
+  --popover: 20 6% 20%;
+  --popover-foreground: 44 51% 81%;
+  --primary: 27 99% 55%;
+  --primary-foreground: 0 0% 16%;
+  --secondary: 20 5% 24%;
+  --secondary-foreground: 44 51% 81%;
+  --muted: 20 5% 24%;
+  --muted-foreground: 40 20% 66%;
+  --accent: 27 40% 24%;
+  --accent-foreground: 27 99% 66%;
+  --destructive: 6 96% 73%;
+  --destructive-foreground: 0 0% 9%;
+  --border: 20 5% 33%;
+  --input: 20 5% 50%;
+  --ring: 27 99% 55%;
+  --radius: 0.375rem;
+
+  --chart-1: 27 99% 55%;
+  --chart-2: 61 66% 44%;
+  --chart-3: 42 95% 70%;
+  --chart-4: 180 24% 61%;
+  --chart-5: 344 46% 68%;
+}
+/* --- Gruvbox Light — the same groove on aged paper --- */
+.theme-gruvbox-light {
+  --background: 48 87% 88%;
+  --foreground: 20 5% 22%;
+  --card: 48 70% 92%;
+  --card-foreground: 20 5% 22%;
+  --popover: 48 70% 92%;
+  --popover-foreground: 20 5% 22%;
+  --primary: 21 96% 35%;
+  --primary-foreground: 48 87% 96%;
+  --secondary: 46 42% 82%;
+  --secondary-foreground: 20 5% 22%;
+  --muted: 46 42% 82%;
+  --muted-foreground: 20 5% 37%;
+  --accent: 27 60% 86%;
+  --accent-foreground: 21 96% 30%;
+  --destructive: 0 68% 38%;
+  --destructive-foreground: 48 87% 96%;
+  --border: 46 30% 69%;
+  --input: 46 25% 46%;
+  --ring: 21 96% 35%;
+  --radius: 0.375rem;
+
+  --chart-1: 21 96% 35%;
+  --chart-2: 156 30% 30%;
+  --chart-3: 57 80% 26%;
+  --chart-4: 189 88% 25%;
+  --chart-5: 317 39% 40%;
+}
+/* --- Tokyo Night Day — the light half of Tokyo Night --- */
+.theme-tokyo-night-day {
+  --background: 228 22% 92%;
+  --foreground: 223 54% 30%;
+  --card: 228 30% 96%;
+  --card-foreground: 223 54% 30%;
+  --popover: 228 30% 96%;
+  --popover-foreground: 223 54% 30%;
+  --primary: 212 82% 42%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 228 18% 86%;
+  --secondary-foreground: 223 54% 30%;
+  --muted: 228 18% 86%;
+  --muted-foreground: 223 20% 39%;
+  --accent: 212 55% 88%;
+  --accent-foreground: 212 82% 32%;
+  --destructive: 350 60% 42%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 228 16% 73%;
+  --input: 228 14% 54%;
+  --ring: 212 82% 42%;
+  --radius: 0.5rem;
+
+  --chart-1: 212 82% 42%;
+  --chart-2: 165 60% 30%;
+  --chart-3: 33 85% 35%;
+  --chart-4: 280 50% 45%;
+  --chart-5: 343 62% 42%;
+}
+
+/* ===== NATURE / LOW-FATIGUE — desaturated, built for long sessions ===== */
+/* --- Everforest Dark — forest greens, deliberately soft --- */
+.theme-everforest-dark {
+  --background: 197 14% 20%;
+  --foreground: 41 31.8% 74.7%;
+  --card: 196 13% 24%;
+  --card-foreground: 41 31.8% 74.7%;
+  --popover: 196 13% 24%;
+  --popover-foreground: 41 31.8% 74.7%;
+  --primary: 88 30% 63%;
+  --primary-foreground: 197 14% 18%;
+  --secondary: 195 12% 28%;
+  --secondary-foreground: 41 31.8% 74.7%;
+  --muted: 195 12% 28%;
+  --muted-foreground: 39 12% 72%;
+  --accent: 88 18% 27%;
+  --accent-foreground: 88 30% 72%;
+  --destructive: 3 60% 78%;
+  --destructive-foreground: 0 0% 9%;
+  --border: 195 10% 37%;
+  --input: 195 10% 54%;
+  --ring: 88 30% 63%;
+  --radius: 0.5rem;
+
+  --chart-1: 88 30% 63%;
+  --chart-2: 172 25% 60%;
+  --chart-3: 40 60% 66%;
+  --chart-4: 18 45% 68%;
+  --chart-5: 300 20% 68%;
+}
+/* --- Kanagawa — Hokusai's wave, muted ink on sumi --- */
+.theme-kanagawa {
+  --background: 240 13% 14%;
+  --foreground: 45 22% 79%;
+  --card: 240 12% 18%;
+  --card-foreground: 45 22% 79%;
+  --popover: 240 12% 18%;
+  --popover-foreground: 45 22% 79%;
+  --primary: 219 45% 66%;
+  --primary-foreground: 240 13% 12%;
+  --secondary: 240 10% 22%;
+  --secondary-foreground: 45 22% 79%;
+  --muted: 240 10% 22%;
+  --muted-foreground: 45 10% 64%;
+  --accent: 219 22% 26%;
+  --accent-foreground: 219 45% 75%;
+  --destructive: 349 60% 69%;
+  --destructive-foreground: 240 13% 12%;
+  --border: 240 8% 32%;
+  --input: 240 8% 49%;
+  --ring: 219 45% 66%;
+  --radius: 0.375rem;
+
+  --chart-1: 219 45% 66%;
+  --chart-2: 96 22% 60%;
+  --chart-3: 36 60% 62%;
+  --chart-4: 349 45% 68%;
+  --chart-5: 186 30% 62%;
+}
+/* --- Sepia — long-form reading, warm and glare-free --- */
+.theme-sepia {
+  --background: 39 55% 90%;
+  --foreground: 27 25% 18%;
+  --card: 39 60% 94%;
+  --card-foreground: 27 25% 18%;
+  --popover: 39 60% 94%;
+  --popover-foreground: 27 25% 18%;
+  --primary: 22 62% 34%;
+  --primary-foreground: 39 60% 96%;
+  --secondary: 38 35% 84%;
+  --secondary-foreground: 27 25% 18%;
+  --muted: 38 35% 84%;
+  --muted-foreground: 27 15% 36%;
+  --accent: 30 45% 86%;
+  --accent-foreground: 22 62% 28%;
+  --destructive: 2 62% 38%;
+  --destructive-foreground: 39 60% 96%;
+  --border: 36 28% 69%;
+  --input: 36 24% 48%;
+  --ring: 22 62% 34%;
+  --radius: 0.25rem;
+
+  --chart-1: 22 62% 34%;
+  --chart-2: 150 30% 28%;
+  --chart-3: 58 55% 28%;
+  --chart-4: 340 35% 38%;
+  --chart-5: 200 40% 32%;
+}
+
+/* ===== MODERN PRODUCT PALETTES ===== */
+/* --- Linear-style — near-black canvas, electric violet --- */
+.theme-linear-dark {
+  --background: 230 12% 6%;
+  --foreground: 220 14% 96%;
+  --card: 230 11% 9%;
+  --card-foreground: 220 14% 96%;
+  --popover: 230 11% 11%;
+  --popover-foreground: 220 14% 96%;
+  --primary: 241 84% 72%;
+  --primary-foreground: 230 12% 6%;
+  --secondary: 230 9% 15%;
+  --secondary-foreground: 220 14% 96%;
+  --muted: 230 9% 15%;
+  --muted-foreground: 228 8% 66%;
+  --accent: 241 30% 20%;
+  --accent-foreground: 241 84% 80%;
+  --destructive: 356 75% 66%;
+  --destructive-foreground: 230 12% 6%;
+  --border: 230 8% 25%;
+  --input: 230 8% 42%;
+  --ring: 241 84% 72%;
+  --radius: 0.5rem;
+
+  --chart-1: 241 84% 72%;
+  --chart-2: 189 70% 55%;
+  --chart-3: 41 90% 62%;
+  --chart-4: 330 70% 68%;
+  --chart-5: 152 55% 55%;
+}
+/* --- Mono Dark — zero hue, pure luminance hierarchy --- */
+.theme-mono-dark {
+  --background: 0 0% 4%;
+  --foreground: 0 0% 98%;
+  --card: 0 0% 7%;
+  --card-foreground: 0 0% 98%;
+  --popover: 0 0% 9%;
+  --popover-foreground: 0 0% 98%;
+  --primary: 0 0% 98%;
+  --primary-foreground: 0 0% 4%;
+  --secondary: 0 0% 14%;
+  --secondary-foreground: 0 0% 98%;
+  --muted: 0 0% 14%;
+  --muted-foreground: 0 0% 65%;
+  --accent: 0 0% 18%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 0% 75%;
+  --destructive-foreground: 0 0% 4%;
+  --border: 0 0% 23%;
+  --input: 0 0% 39%;
+  --ring: 0 0% 98%;
+  --radius: 0.25rem;
+
+  --chart-1: 0 0% 98%;
+  --chart-2: 0 0% 85%;
+  --chart-3: 0 0% 72%;
+  --chart-4: 0 0% 59%;
+  --chart-5: 0 0% 46%;
+}
+/* --- Mono Light — the same discipline, inverted --- */
+.theme-mono-light {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 8%;
+  --card: 0 0% 99%;
+  --card-foreground: 0 0% 8%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 8%;
+  --primary: 0 0% 8%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 0 0% 95%;
+  --secondary-foreground: 0 0% 8%;
+  --muted: 0 0% 95%;
+  --muted-foreground: 0 0% 40%;
+  --accent: 0 0% 92%;
+  --accent-foreground: 0 0% 8%;
+  --destructive: 0 0% 25%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 78%;
+  --input: 0 0% 56%;
+  --ring: 0 0% 8%;
+  --radius: 0.25rem;
+
+  --chart-1: 0 0% 8%;
+  --chart-2: 0 0% 20%;
+  --chart-3: 0 0% 31%;
+  --chart-4: 0 0% 42%;
+  --chart-5: 0 0% 53%;
+}
+/* --- Stripe-style — cool slate ink, indigo accent --- */
+.theme-stripe-light {
+  --background: 210 43% 98%;
+  --foreground: 211 73% 15%;
+  --card: 0 0% 100%;
+  --card-foreground: 211 73% 15%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 211 73% 15%;
+  --primary: 243 60% 52%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 210 38% 94%;
+  --secondary-foreground: 211 73% 15%;
+  --muted: 210 38% 94%;
+  --muted-foreground: 211 25% 40%;
+  --accent: 243 55% 94%;
+  --accent-foreground: 243 60% 40%;
+  --destructive: 356 62% 44%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 210 28% 77%;
+  --input: 210 22% 57%;
+  --ring: 243 60% 52%;
+  --radius: 0.5rem;
+
+  --chart-1: 243 60% 52%;
+  --chart-2: 171 62% 30%;
+  --chart-3: 31 85% 38%;
+  --chart-4: 330 60% 45%;
+  --chart-5: 199 78% 34%;
+}
+
+/* ===== NEO-BRUTALISM PALETTES — light variants of the theme you liked ===== */
+/* --- Neo-Brutalism Gumroad — the canonical neobrutalist SaaS pink --- */
+.theme-neobrutalism-gumroad {
+  --background: 60 12% 96%;
+  --foreground: 0 0% 8%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 8%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 8%;
+  --primary: 313 90% 42%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 313 100% 78%;
+  --secondary-foreground: 0 0% 8%;
+  --muted: 60 10% 91%;
+  --muted-foreground: 0 0% 27%;
+  --accent: 313 100% 90%;
+  --accent-foreground: 313 90% 30%;
+  --destructive: 0 84% 31%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 8%;
+  --input: 0 0% 45%;
+  --ring: 313 90% 42%;
+  --radius: 0.75rem;
+
+  --chart-1: 313 90% 45%;
+  --chart-2: 196 90% 40%;
+  --chart-3: 45 95% 35%;
+  --chart-4: 265 75% 50%;
+  --chart-5: 150 70% 32%;
+}
+/* --- Neo-Brutalism Bauhaus — red, blue, yellow, hard geometry --- */
+.theme-neobrutalism-bauhaus {
+  --background: 45 40% 95%;
+  --foreground: 0 0% 8%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 8%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 8%;
+  --primary: 212 100% 33%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 48 100% 50%;
+  --secondary-foreground: 0 0% 8%;
+  --muted: 45 25% 90%;
+  --muted-foreground: 0 0% 32%;
+  --accent: 48 100% 88%;
+  --accent-foreground: 212 100% 26%;
+  --destructive: 357 85% 38%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 8%;
+  --input: 0 0% 45%;
+  --ring: 212 100% 33%;
+  --radius: 0rem;
+
+  --chart-1: 212 100% 38%;
+  --chart-2: 357 85% 45%;
+  --chart-3: 45 100% 34%;
+  --chart-4: 0 0% 12%;
+  --chart-5: 175 70% 30%;
+}
+/* --- Neo-Brutalism Memphis — 80s Milano pop, cyan and hot pink --- */
+.theme-neobrutalism-memphis {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 8%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 8%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 8%;
+  --primary: 330 95% 42%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 190 100% 50%;
+  --secondary-foreground: 0 0% 8%;
+  --muted: 195 30% 93%;
+  --muted-foreground: 0 0% 31%;
+  --accent: 52 100% 62%;
+  --accent-foreground: 0 0% 8%;
+  --destructive: 12 88% 31%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 8%;
+  --input: 0 0% 45%;
+  --ring: 330 95% 42%;
+  --radius: 0.5rem;
+
+  --chart-1: 330 95% 45%;
+  --chart-2: 190 95% 35%;
+  --chart-3: 52 95% 33%;
+  --chart-4: 265 80% 52%;
+  --chart-5: 140 70% 32%;
+}
+/* --- Neo-Brutalism Electric — the 2026 'polished brutalism' read --- */
+.theme-neobrutalism-electric {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 8%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 8%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 8%;
+  --primary: 202 100% 36%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 186 100% 50%;
+  --secondary-foreground: 0 0% 8%;
+  --muted: 200 25% 93%;
+  --muted-foreground: 0 0% 32%;
+  --accent: 186 100% 88%;
+  --accent-foreground: 202 100% 26%;
+  --destructive: 14 90% 34%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 8%;
+  --input: 0 0% 45%;
+  --ring: 202 100% 36%;
+  --radius: 0.5rem;
+
+  --chart-1: 202 100% 40%;
+  --chart-2: 14 90% 48%;
+  --chart-3: 48 95% 35%;
+  --chart-4: 280 70% 50%;
+  --chart-5: 160 75% 30%;
+}
+/* --- Neo-Brutalism Butter — butter yellow and tangerine, softer edges --- */
+.theme-neobrutalism-butter {
+  --background: 48 75% 93%;
+  --foreground: 24 40% 12%;
+  --card: 48 90% 97%;
+  --card-foreground: 24 40% 12%;
+  --popover: 48 90% 97%;
+  --popover-foreground: 24 40% 12%;
+  --primary: 18 88% 40%;
+  --primary-foreground: 48 90% 97%;
+  --secondary: 45 100% 62%;
+  --secondary-foreground: 24 40% 12%;
+  --muted: 46 45% 88%;
+  --muted-foreground: 24 20% 34%;
+  --accent: 30 90% 86%;
+  --accent-foreground: 18 88% 30%;
+  --destructive: 0 78% 40%;
+  --destructive-foreground: 48 90% 97%;
+  --border: 24 45% 12%;
+  --input: 24 20% 45%;
+  --ring: 18 88% 40%;
+  --radius: 1rem;
+
+  --chart-1: 18 88% 44%;
+  --chart-2: 152 60% 28%;
+  --chart-3: 42 95% 36%;
+  --chart-4: 340 60% 42%;
+  --chart-5: 200 70% 34%;
+}
+/* --- Neo-Brutalism Acid — Y2K lime and violet --- */
+.theme-neobrutalism-acid {
+  --background: 70 35% 96%;
+  --foreground: 0 0% 8%;
+  --card: 0 0% 100%;
+  --card-foreground: 0 0% 8%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 8%;
+  --primary: 272 85% 45%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 75 95% 55%;
+  --secondary-foreground: 0 0% 8%;
+  --muted: 70 22% 91%;
+  --muted-foreground: 0 0% 32%;
+  --accent: 75 90% 85%;
+  --accent-foreground: 272 85% 32%;
+  --destructive: 336 85% 42%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 0 0% 8%;
+  --input: 0 0% 45%;
+  --ring: 272 85% 45%;
+  --radius: 0.75rem;
+
+  --chart-1: 272 85% 50%;
+  --chart-2: 75 85% 32%;
+  --chart-3: 336 85% 48%;
+  --chart-4: 192 90% 38%;
+  --chart-5: 32 95% 42%;
+}
+/* --- Neo-Brutalism Teal — 2026's transformative teal with coral --- */
+.theme-neobrutalism-teal {
+  --background: 0 0% 100%;
+  --foreground: 192 45% 10%;
+  --card: 180 25% 98%;
+  --card-foreground: 192 45% 10%;
+  --popover: 180 25% 98%;
+  --popover-foreground: 192 45% 10%;
+  --primary: 178 100% 25%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 172 75% 58%;
+  --secondary-foreground: 192 45% 10%;
+  --muted: 180 20% 93%;
+  --muted-foreground: 192 15% 32%;
+  --accent: 12 90% 88%;
+  --accent-foreground: 8 85% 32%;
+  --destructive: 8 85% 36%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 192 45% 10%;
+  --input: 192 15% 45%;
+  --ring: 178 100% 25%;
+  --radius: 0.5rem;
+
+  --chart-1: 178 100% 28%;
+  --chart-2: 12 88% 48%;
+  --chart-3: 45 95% 36%;
+  --chart-4: 262 70% 50%;
+  --chart-5: 210 85% 38%;
+}
+
+/* ===== ACCESSIBLE-FIRST — built to AAA body text, AA on every accent ===== */
+/* --- Accessible Light — 7:1 body text, no decorative compromises --- */
+.theme-aaa-light {
+  --background: 0 0% 100%;
+  --foreground: 220 20% 11%;
+  --card: 0 0% 100%;
+  --card-foreground: 220 20% 11%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 220 20% 11%;
+  --primary: 221 83% 33%;
+  --primary-foreground: 0 0% 100%;
+  --secondary: 220 16% 93%;
+  --secondary-foreground: 220 20% 11%;
+  --muted: 220 16% 93%;
+  --muted-foreground: 220 14% 32%;
+  --accent: 221 60% 92%;
+  --accent-foreground: 221 83% 28%;
+  --destructive: 0 72% 36%;
+  --destructive-foreground: 0 0% 100%;
+  --border: 220 14% 78%;
+  --input: 220 12% 52%;
+  --ring: 221 83% 33%;
+  --radius: 0.375rem;
+
+  --chart-1: 221 83% 33%;
+  --chart-2: 165 80% 22%;
+  --chart-3: 28 90% 30%;
+  --chart-4: 318 60% 36%;
+  --chart-5: 258 60% 42%;
+}
+/* --- Accessible Dark — 7:1 body text on a true dark canvas --- */
+.theme-aaa-dark {
+  --background: 220 18% 8%;
+  --foreground: 220 15% 96%;
+  --card: 220 16% 11%;
+  --card-foreground: 220 15% 96%;
+  --popover: 220 16% 13%;
+  --popover-foreground: 220 15% 96%;
+  --primary: 210 100% 78%;
+  --primary-foreground: 220 18% 8%;
+  --secondary: 220 13% 18%;
+  --secondary-foreground: 220 15% 96%;
+  --muted: 220 13% 18%;
+  --muted-foreground: 220 12% 74%;
+  --accent: 210 40% 22%;
+  --accent-foreground: 210 100% 84%;
+  --destructive: 4 90% 76%;
+  --destructive-foreground: 220 18% 8%;
+  --border: 220 11% 28%;
+  --input: 220 11% 43%;
+  --ring: 210 100% 78%;
+  --radius: 0.375rem;
+
+  --chart-1: 210 100% 78%;
+  --chart-2: 158 65% 62%;
+  --chart-3: 40 95% 68%;
+  --chart-4: 320 80% 78%;
+  --chart-5: 265 90% 82%;
+}
+
+/* --- Rosé Pine Dawn — the official light variant; pine as accent (iris is 3.4:1) --- */
+.theme-rose-pine-dawn {
+  --background: 32.3 56.5% 95.5%;
+  --foreground: 247.7 19% 32%;
+  --card: 35 100% 97.6%;
+  --card-foreground: 247.7 19% 32%;
+  --popover: 35 100% 97.6%;
+  --popover-foreground: 247.7 19% 32%;
+  --primary: 197.1 53.2% 33.5%;
+  --primary-foreground: 32.3 56.5% 95.5%;
+  --secondary: 28.2 39.5% 91.6%;
+  --secondary-foreground: 247.7 19% 32%;
+  --muted: 28.2 39.5% 91.6%;
+  --muted-foreground: 248 12.2% 45.3%;
+  --accent: 10 8.6% 86.3%;
+  --accent-foreground: 247.7 19% 32%;
+  --destructive: 343 35.1% 46.7%;
+  --destructive-foreground: 32.3 56.5% 95.5%;
+  --border: 10 8.6% 86.3%;
+  --input: 248 12.2% 51.8%;
+  --ring: 197.1 53.2% 33.5%;
+  --radius: 0.5rem;
+
+  --chart-1: 197.1 53.2% 33.5%;
+  --chart-2: 189 29.8% 48%;
+  --chart-3: 34.6 81.2% 56.1%;
+  --chart-4: 343 35.1% 54.7%;
+  --chart-5: 268.1 21.5% 57.1%;
+}
+
+/* --- Poimandres — minimal and frameless; colour for meaning, mint as accent --- */
+.theme-poimandres {
+  --background: 226.2 19.4% 13.1%;
+  --foreground: 230.8 28.1% 72.7%;
+  --card: 220 19.6% 18%;
+  --card-foreground: 230.8 28.1% 72.7%;
+  --popover: 220 19.6% 18%;
+  --popover-foreground: 230.8 28.1% 72.7%;
+  --primary: 167.1 71.4% 62.9%;
+  --primary-foreground: 226.2 19.4% 13.1%;
+  --secondary: 228.8 14.3% 22%;
+  --secondary-foreground: 208.7 74.2% 93.9%;
+  --muted: 228.8 14.3% 22%;
+  --muted-foreground: 230.8 16.6% 64.9%;
+  --accent: 228.8 14.3% 22%;
+  --accent-foreground: 208.7 74.2% 93.9%;
+  --destructive: 329.1 52.8% 68%;
+  --destructive-foreground: 226.2 19.4% 13.1%;
+  --border: 228.8 14.3% 22%;
+  --input: 209.2 19.6% 46.5%;
+  --ring: 167.1 71.4% 62.9%;
+  --radius: 0.5rem;
+
+  --chart-1: 167.1 71.4% 62.9%;
+  --chart-2: 167.1 35.6% 53.7%;
+  --chart-3: 55.1 100% 88%;
+  --chart-4: 329.1 52.8% 61%;
+  --chart-5: 209.3 100% 83.9%;
+}
+
+/* --- Flexoki Light — Steph Ango's inky palette for prose and code --- */
+.theme-flexoki-light {
+  --background: 48 100% 97.1%;
+  --foreground: 0 3.2% 6.1%;
+  --card: 48 100% 97.1%;
+  --card-foreground: 0 3.2% 6.1%;
+  --popover: 48 100% 97.1%;
+  --popover-foreground: 0 3.2% 6.1%;
+  --primary: 212.2 67.7% 38.8%;
+  --primary-foreground: 48 100% 97.1%;
+  --secondary: 50.8 20.6% 87.6%;
+  --secondary-foreground: 0 3.2% 6.1%;
+  --muted: 50.8 33.3% 92.4%;
+  --muted-foreground: 50 2.8% 38.9%;
+  --accent: 50.8 20.6% 87.6%;
+  --accent-foreground: 0 3.2% 6.1%;
+  --destructive: 3.1 62% 42.4%;
+  --destructive-foreground: 48 100% 97.1%;
+  --border: 50 14% 83.1%;
+  --input: 42.9 2.8% 51.6%;
+  --ring: 212.2 67.7% 38.8%;
+  --radius: 0.5rem;
+
+  --chart-1: 212.2 67.7% 38.8%;
+  --chart-2: 73.3 84.2% 27.3%;
+  --chart-3: 45.3 98.9% 34.1%;
+  --chart-4: 326 54.6% 40.6%;
+  --chart-5: 174.9 56.9% 32.7%;
+}
+
+/* --- Flexoki Dark — Steph Ango's inky palette for prose and code --- */
+.theme-flexoki-dark {
+  --background: 0 3.2% 6.1%;
+  --foreground: 54.5 10.1% 78.6%;
+  /* Cards share the ground, as in Flexoki light: blue-400 is 4.37:1 on
+     base-950, and dark elevation already lifts a surface with its edge. */
+  --card: 0 3.2% 6.1%;
+  --card-foreground: 54.5 10.1% 78.6%;
+  --popover: 0 3.2% 6.1%;
+  --popover-foreground: 54.5 10.1% 78.6%;
+  --primary: 207.8 48.6% 50.4%;
+  --primary-foreground: 0 3.2% 6.1%;
+  --secondary: 30 2.6% 15.3%;
+  --secondary-foreground: 54.5 10.1% 78.6%;
+  --muted: 30 2.6% 15.3%;
+  --muted-foreground: 42.9 2.8% 55.6%;
+  --accent: 30 2.6% 15.3%;
+  --accent-foreground: 54.5 10.1% 78.6%;
+  --destructive: 5 61% 62.2%;
+  --destructive-foreground: 0 3.2% 6.1%;
+  --border: 40 3% 19.8%;
+  --input: 45 2.4% 40.3%;
+  --ring: 207.8 48.6% 50.4%;
+  --radius: 0.5rem;
+
+  --chart-1: 207.8 48.6% 50.4%;
+  --chart-2: 71.8 46% 41.4%;
+  --chart-3: 45.2 81.7% 44.9%;
+  --chart-4: 329.2 53.6% 58.6%;
+  --chart-5: 174.6 48.9% 44.5%;
+}
+
+/* =============================================================================
+   THEME-FAMILY COMPONENT OVERRIDES (glass / neo-brutalism)
+   Raw CSS, unlayered — same tree-shaking constraint as the token sets above.
+   ============================================================================= */
+/* --- Glassmorphism Utils --- */
+
+[class*="theme-glass"] .bg-card,
+[class*="theme-glass"] [class*="card"] {
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  background: hsl(var(--card) / 0.65);
+  /* 0.3 alpha made the card edge imperceptible (under 1.2:1 against the
+     canvas). 0.6 keeps the frosted look and gives the card a real edge. */
+  border: 1px solid hsl(var(--border) / 0.6);
+  box-shadow: 0 8px 32px hsl(var(--primary) / 0.06);
+}
+
+[class*="theme-glass"] .bg-popover {
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  background: hsl(var(--popover) / 0.8);
+}
+
+[class*="theme-glass"] .bg-secondary {
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  background: hsl(var(--secondary) / 0.5);
+}
+
+/* --- Neo-Brutalism Overrides --- */
+
+[class*="theme-neobrutalism"] .bg-card,
+[class*="theme-neobrutalism"] [class*="card"] {
+  border: 2px solid hsl(var(--border));
+  box-shadow: 4px 4px 0px hsl(var(--border));
+}
+
+[class*="theme-neobrutalism"] .bg-card:hover,
+[class*="theme-neobrutalism"] [class*="card"]:hover {
+  box-shadow: 6px 6px 0px hsl(var(--border));
+  transform: translate(-1px, -1px);
+}
+
+[class*="theme-neobrutalism"] button[class*="default"],
+[class*="theme-neobrutalism"] [class*="btn-primary"] {
+  border: 2px solid hsl(var(--border));
+  box-shadow: 3px 3px 0px hsl(var(--border));
+}
+
+[class*="theme-neobrutalism"] button[class*="default"]:hover,
+[class*="theme-neobrutalism"] [class*="btn-primary"]:hover {
+  box-shadow: 1px 1px 0px hsl(var(--border));
+  transform: translate(2px, 2px);
+}
+
+[class*="theme-neobrutalism"] input,
+[class*="theme-neobrutalism"] textarea,
+[class*="theme-neobrutalism"] select {
+  border: 2px solid hsl(var(--border));
+}
+
+[class*="theme-neobrutalism"] .badge,
+[class*="theme-neobrutalism"] [class*="badge"] {
+  border: 2px solid hsl(var(--border));
+  box-shadow: 2px 2px 0px hsl(var(--border));
+}
+
+/* =============================================================================
+   STATUS — success / warning / info for every palette preset
+   -----------------------------------------------------------------------------
+   State, not data: chart-1…5 are series colours and were standing in for
+   status (F11). A core theme sets its own status values in its block; every
+   other preset gets the scheme default here. A preset that needs a different
+   value defines it in its own block and leaves these lists.
+
+   The light defaults are one step darker than design-system.md §3.1
+   (green-800 #166534, amber-800 #92400e): the §3.1 values were checked on
+   white only, and fell under 4.5:1 on tinted grounds such as Sepia and Tokyo
+   Night Day. Dark info is blue-300, for the same reason on Nord's cards.
+
+   `check:themes` fails when a preset resolves no status token, so a new
+   preset must join one of these lists (or define its own).
+   ============================================================================= */
+.theme-ink-light,
+.theme-github-light,
+.theme-solarized-light,
+.theme-catppuccin-latte,
+.theme-arctic,
+.theme-paper,
+.theme-hc-light,
+.theme-neobrutalism-light,
+.theme-glass-frost,
+.theme-gruvbox-light,
+.theme-tokyo-night-day,
+.theme-sepia,
+.theme-mono-light,
+.theme-stripe-light,
+.theme-neobrutalism-gumroad,
+.theme-neobrutalism-bauhaus,
+.theme-neobrutalism-memphis,
+.theme-neobrutalism-electric,
+.theme-neobrutalism-butter,
+.theme-neobrutalism-acid,
+.theme-neobrutalism-teal,
+.theme-aaa-light,
+.theme-rose-pine-dawn,
+.theme-flexoki-light {
+  --success: 142.8 64.2% 24.1%;
+  --success-foreground: 0 0% 100%;
+  --warning: 22.7 82.5% 31.4%;
+  --warning-foreground: 0 0% 100%;
+  --info: 224.3 76.3% 48%;
+  --info-foreground: 0 0% 100%;
+}
+
+.theme-ink-dark,
+.theme-blueprint,
+.theme-github-dark,
+.theme-dracula,
+.theme-nord,
+.theme-tokyo-night,
+.theme-catppuccin-mocha,
+.theme-onedark-pro,
+.theme-rose-pine,
+.theme-monokai,
+.theme-ayu-dark,
+.theme-cyberpunk,
+.theme-ocean,
+.theme-matrix,
+.theme-hc-dark,
+.theme-neobrutalism-dark,
+.theme-neobrutalism-punk,
+.theme-glass-dark,
+.theme-glass-aurora,
+.theme-glass-ocean,
+.theme-synthwave,
+.theme-retrowave,
+.theme-terminal,
+.theme-solarized-dark,
+.theme-gruvbox-dark,
+.theme-everforest-dark,
+.theme-kanagawa,
+.theme-linear-dark,
+.theme-mono-dark,
+.theme-aaa-dark,
+.theme-poimandres,
+.theme-flexoki-dark {
+  --success: 141.9 69.2% 58%;
+  --success-foreground: 216 28% 7%;
+  --warning: 43.3 96.4% 56.3%;
+  --warning-foreground: 216 28% 7%;
+  --info: 211.7 96.4% 78.4%;
+  --info-foreground: 216 28% 7%;
+}

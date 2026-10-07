@@ -1,0 +1,1493 @@
+{
+  "settings": {
+    "base_currency": "CAD",
+    "home_currency": "INR",
+    "province": "ON",
+    "birth_year": 1996,
+    "resident_since": null,
+    "needs_pct": 55,
+    "wants_pct": 25,
+    "save_pct": 20,
+    "emergency_months": 6
+  },
+  "institutions": [
+    {
+      "id": "a7335282-46aa-4cfc-913f-01d09e4111d1",
+      "name": "HDFC Bank",
+      "country": "IN",
+      "notes": null
+    }
+  ],
+  "accounts": [
+    {
+      "institution_id": null,
+      "name": "RBC Chequing",
+      "kind": "chequing",
+      "registration": "none",
+      "country": "CA",
+      "currency": "CAD",
+      "opening_balance_minor": 100000,
+      "opening_date": "2026-01-01",
+      "credit_limit_minor": null,
+      "statement_day": null,
+      "payment_due_day": null,
+      "interest_rate": null,
+      "is_liquid": true,
+      "in_net_worth": true,
+      "import_ref": null,
+      "color": null,
+      "notes": null,
+      "sort_order": 0,
+      "id": "55e611f7-e4aa-4cf5-8260-bc8dc2967062",
+      "archived_at": null
+    },
+    {
+      "institution_id": null,
+      "name": "Visa",
+      "kind": "credit_card",
+      "registration": "none",
+      "country": "CA",
+      "currency": "CAD",
+      "opening_balance_minor": 0,
+      "opening_date": "2026-01-01",
+      "credit_limit_minor": 500000,
+      "statement_day": 15,
+      "payment_due_day": 5,
+      "interest_rate": null,
+      "is_liquid": true,
+      "in_net_worth": true,
+      "import_ref": null,
+      "color": null,
+      "notes": null,
+      "sort_order": 0,
+      "id": "3bf4c620-b42e-45a2-b7a6-1acd7990d1e4",
+      "archived_at": null
+    },
+    {
+      "institution_id": "a7335282-46aa-4cfc-913f-01d09e4111d1",
+      "name": "HDFC NRO",
+      "kind": "savings",
+      "registration": "nro",
+      "country": "IN",
+      "currency": "INR",
+      "opening_balance_minor": 0,
+      "opening_date": "2026-01-01",
+      "credit_limit_minor": null,
+      "statement_day": null,
+      "payment_due_day": null,
+      "interest_rate": null,
+      "is_liquid": true,
+      "in_net_worth": true,
+      "import_ref": null,
+      "color": null,
+      "notes": null,
+      "sort_order": 0,
+      "id": "f329c241-2c15-4314-b05a-7162e50cb162",
+      "archived_at": null
+    },
+    {
+      "institution_id": null,
+      "name": "Car loan",
+      "kind": "loan",
+      "registration": "none",
+      "country": "CA",
+      "currency": "CAD",
+      "opening_balance_minor": -2000000,
+      "opening_date": "2026-01-01",
+      "credit_limit_minor": null,
+      "statement_day": null,
+      "payment_due_day": null,
+      "interest_rate": null,
+      "is_liquid": false,
+      "in_net_worth": true,
+      "import_ref": null,
+      "color": null,
+      "notes": null,
+      "sort_order": 0,
+      "id": "eb2e9f48-0358-4438-8a2e-4c5dfca8eb83",
+      "archived_at": null
+    },
+    {
+      "institution_id": null,
+      "name": "Wealthsimple TFSA",
+      "kind": "investment",
+      "registration": "tfsa",
+      "country": "CA",
+      "currency": "CAD",
+      "opening_balance_minor": 500000,
+      "opening_date": "2026-01-01",
+      "credit_limit_minor": null,
+      "statement_day": null,
+      "payment_due_day": null,
+      "interest_rate": null,
+      "is_liquid": false,
+      "in_net_worth": true,
+      "import_ref": null,
+      "color": null,
+      "notes": null,
+      "sort_order": 0,
+      "id": "7d9a23f0-c6df-4972-a6e7-f8c76ffc96dd",
+      "archived_at": null
+    }
+  ],
+  "categories": [
+    {
+      "parent_id": null,
+      "name": "Salary",
+      "bucket": "income",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 0,
+      "id": "7ae2188f-ca50-4131-97f7-65bd41911c54",
+      "archived_at": null
+    },
+    {
+      "parent_id": "7ae2188f-ca50-4131-97f7-65bd41911c54",
+      "name": "Paycheque",
+      "bucket": "income",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 0,
+      "id": "7dd62493-3f30-491d-9e09-6edd461a9739",
+      "archived_at": null
+    },
+    {
+      "parent_id": "7ae2188f-ca50-4131-97f7-65bd41911c54",
+      "name": "Bonus",
+      "bucket": "income",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 1,
+      "id": "f06f4220-88f4-4da0-bd7d-2ca073d5ef2a",
+      "archived_at": null
+    },
+    {
+      "parent_id": null,
+      "name": "Other income",
+      "bucket": "income",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 1,
+      "id": "3a25055d-bd07-484a-ba05-4a9ed67b1745",
+      "archived_at": null
+    },
+    {
+      "parent_id": "3a25055d-bd07-484a-ba05-4a9ed67b1745",
+      "name": "Interest",
+      "bucket": "income",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 0,
+      "id": "3c6232be-97c8-4a56-b3ff-b20135dc1413",
+      "archived_at": null
+    },
+    {
+      "parent_id": "3a25055d-bd07-484a-ba05-4a9ed67b1745",
+      "name": "Dividends",
+      "bucket": "income",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 1,
+      "id": "3b8cfea5-2896-48b9-b9e6-7b75d04d75d6",
+      "archived_at": null
+    },
+    {
+      "parent_id": "3a25055d-bd07-484a-ba05-4a9ed67b1745",
+      "name": "Tax refund",
+      "bucket": "income",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 2,
+      "id": "276b5ad0-617a-4b3d-b0bd-bcc1ee56eb5a",
+      "archived_at": null
+    },
+    {
+      "parent_id": "3a25055d-bd07-484a-ba05-4a9ed67b1745",
+      "name": "Gifts received",
+      "bucket": "income",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 3,
+      "id": "177a1b1c-094a-47af-b8c6-0f13cb3fbac4",
+      "archived_at": null
+    },
+    {
+      "parent_id": "3a25055d-bd07-484a-ba05-4a9ed67b1745",
+      "name": "Side work",
+      "bucket": "income",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 4,
+      "id": "ac107833-5c4b-4215-8224-fbb646fa29f9",
+      "archived_at": null
+    },
+    {
+      "parent_id": null,
+      "name": "Housing",
+      "bucket": "need",
+      "is_essential": true,
+      "icon": null,
+      "color": null,
+      "sort_order": 2,
+      "id": "791fda3d-089e-46ec-998b-3bcedb42cd3d",
+      "archived_at": null
+    },
+    {
+      "parent_id": "791fda3d-089e-46ec-998b-3bcedb42cd3d",
+      "name": "Rent",
+      "bucket": "need",
+      "is_essential": true,
+      "icon": null,
+      "color": null,
+      "sort_order": 0,
+      "id": "99e89c15-9959-4842-9e00-2717cd8e9f76",
+      "archived_at": null
+    },
+    {
+      "parent_id": "791fda3d-089e-46ec-998b-3bcedb42cd3d",
+      "name": "Tenant insurance",
+      "bucket": "need",
+      "is_essential": true,
+      "icon": null,
+      "color": null,
+      "sort_order": 1,
+      "id": "39bbd629-afdb-4f01-9185-f853f8bd6118",
+      "archived_at": null
+    },
+    {
+      "parent_id": "791fda3d-089e-46ec-998b-3bcedb42cd3d",
+      "name": "Hydro",
+      "bucket": "need",
+      "is_essential": true,
+      "icon": null,
+      "color": null,
+      "sort_order": 2,
+      "id": "6c340041-0715-4804-a8fe-d7672fa8afa0",
+      "archived_at": null
+    },
+    {
+      "parent_id": "791fda3d-089e-46ec-998b-3bcedb42cd3d",
+      "name": "Internet",
+      "bucket": "need",
+      "is_essential": true,
+      "icon": null,
+      "color": null,
+      "sort_order": 3,
+      "id": "556d7736-74ad-4562-8e0f-434821584d18",
+      "archived_at": null
+    },
+    {
+      "parent_id": "791fda3d-089e-46ec-998b-3bcedb42cd3d",
+      "name": "Heat & gas",
+      "bucket": "need",
+      "is_essential": true,
+      "icon": null,
+      "color": null,
+      "sort_order": 4,
+      "id": "84a83c59-c26d-4179-92de-21b5d5cb284e",
+      "archived_at": null
+    },
+    {
+      "parent_id": null,
+      "name": "Groceries",
+      "bucket": "need",
+      "is_essential": true,
+      "icon": null,
+      "color": null,
+      "sort_order": 3,
+      "id": "3d41fafc-f16d-46dd-9aaa-f7a813dce1ac",
+      "archived_at": null
+    },
+    {
+      "parent_id": null,
+      "name": "Transport",
+      "bucket": "need",
+      "is_essential": true,
+      "icon": null,
+      "color": null,
+      "sort_order": 4,
+      "id": "6ce54bed-4011-4a60-b71b-1d0fdf0a991e",
+      "archived_at": null
+    },
+    {
+      "parent_id": "6ce54bed-4011-4a60-b71b-1d0fdf0a991e",
+      "name": "Transit pass",
+      "bucket": "need",
+      "is_essential": true,
+      "icon": null,
+      "color": null,
+      "sort_order": 0,
+      "id": "be51cf41-e8b5-4f00-aeab-66721501b213",
+      "archived_at": null
+    },
+    {
+      "parent_id": "6ce54bed-4011-4a60-b71b-1d0fdf0a991e",
+      "name": "Fuel",
+      "bucket": "need",
+      "is_essential": true,
+      "icon": null,
+      "color": null,
+      "sort_order": 1,
+      "id": "97e5aa81-a0b2-40a7-b9f2-9beebafb0bd7",
+      "archived_at": null
+    },
+    {
+      "parent_id": "6ce54bed-4011-4a60-b71b-1d0fdf0a991e",
+      "name": "Car insurance",
+      "bucket": "need",
+      "is_essential": true,
+      "icon": null,
+      "color": null,
+      "sort_order": 2,
+      "id": "9e3ee3d8-cbbc-4a80-84ab-d3bf72eeb8c3",
+      "archived_at": null
+    },
+    {
+      "parent_id": "6ce54bed-4011-4a60-b71b-1d0fdf0a991e",
+      "name": "Parking",
+      "bucket": "need",
+      "is_essential": true,
+      "icon": null,
+      "color": null,
+      "sort_order": 3,
+      "id": "bfad545c-36d8-43c3-b146-244984fb2078",
+      "archived_at": null
+    },
+    {
+      "parent_id": "6ce54bed-4011-4a60-b71b-1d0fdf0a991e",
+      "name": "Rideshare",
+      "bucket": "need",
+      "is_essential": true,
+      "icon": null,
+      "color": null,
+      "sort_order": 4,
+      "id": "6c61aff4-8b9e-4965-ab6f-4699f86b7529",
+      "archived_at": null
+    },
+    {
+      "parent_id": null,
+      "name": "Phone",
+      "bucket": "need",
+      "is_essential": true,
+      "icon": null,
+      "color": null,
+      "sort_order": 5,
+      "id": "1de52231-03af-4b2b-a6a8-225f9c8ddb1a",
+      "archived_at": null
+    },
+    {
+      "parent_id": null,
+      "name": "Health",
+      "bucket": "need",
+      "is_essential": true,
+      "icon": null,
+      "color": null,
+      "sort_order": 6,
+      "id": "c77819df-67a2-4d23-a08a-269d48ba7d32",
+      "archived_at": null
+    },
+    {
+      "parent_id": "c77819df-67a2-4d23-a08a-269d48ba7d32",
+      "name": "Pharmacy",
+      "bucket": "need",
+      "is_essential": true,
+      "icon": null,
+      "color": null,
+      "sort_order": 0,
+      "id": "c8c6230c-e5f5-41bc-9130-b659e74bc644",
+      "archived_at": null
+    },
+    {
+      "parent_id": "c77819df-67a2-4d23-a08a-269d48ba7d32",
+      "name": "Dental",
+      "bucket": "need",
+      "is_essential": true,
+      "icon": null,
+      "color": null,
+      "sort_order": 1,
+      "id": "1a4c555b-e3a6-4435-884e-60f1e2ed2c78",
+      "archived_at": null
+    },
+    {
+      "parent_id": "c77819df-67a2-4d23-a08a-269d48ba7d32",
+      "name": "Vision",
+      "bucket": "need",
+      "is_essential": true,
+      "icon": null,
+      "color": null,
+      "sort_order": 2,
+      "id": "4962713a-24c7-4d17-999f-a9dc9bdb940b",
+      "archived_at": null
+    },
+    {
+      "parent_id": "c77819df-67a2-4d23-a08a-269d48ba7d32",
+      "name": "Therapy",
+      "bucket": "need",
+      "is_essential": true,
+      "icon": null,
+      "color": null,
+      "sort_order": 3,
+      "id": "3a41d03b-88de-462c-8cc2-512e963fda41",
+      "archived_at": null
+    },
+    {
+      "parent_id": null,
+      "name": "Debt payments",
+      "bucket": "need",
+      "is_essential": true,
+      "icon": null,
+      "color": null,
+      "sort_order": 7,
+      "id": "111b0998-f241-49ca-9a27-df359f5877f0",
+      "archived_at": null
+    },
+    {
+      "parent_id": "111b0998-f241-49ca-9a27-df359f5877f0",
+      "name": "Loan interest",
+      "bucket": "need",
+      "is_essential": true,
+      "icon": null,
+      "color": null,
+      "sort_order": 0,
+      "id": "04b89071-7b0b-4f6b-8644-fedfbbe40213",
+      "archived_at": null
+    },
+    {
+      "parent_id": "111b0998-f241-49ca-9a27-df359f5877f0",
+      "name": "Card interest",
+      "bucket": "need",
+      "is_essential": true,
+      "icon": null,
+      "color": null,
+      "sort_order": 1,
+      "id": "4b2b2760-2343-435d-bd86-5d48f20d05d3",
+      "archived_at": null
+    },
+    {
+      "parent_id": null,
+      "name": "Immigration & documents",
+      "bucket": "need",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 8,
+      "id": "c1f0d67f-5370-4947-8224-305868d4d088",
+      "archived_at": null
+    },
+    {
+      "parent_id": "c1f0d67f-5370-4947-8224-305868d4d088",
+      "name": "Permit & PR fees",
+      "bucket": "need",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 0,
+      "id": "ec7b177e-9af0-4d2c-838b-d2d146470f04",
+      "archived_at": null
+    },
+    {
+      "parent_id": "c1f0d67f-5370-4947-8224-305868d4d088",
+      "name": "Passport & OCI",
+      "bucket": "need",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 1,
+      "id": "12af174a-1d1f-4a30-b26f-7949074d054a",
+      "archived_at": null
+    },
+    {
+      "parent_id": "c1f0d67f-5370-4947-8224-305868d4d088",
+      "name": "Translations",
+      "bucket": "need",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 2,
+      "id": "f2dbbc7d-e8ea-476e-9198-caac23f26845",
+      "archived_at": null
+    },
+    {
+      "parent_id": null,
+      "name": "Bank & transfer fees",
+      "bucket": "need",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 9,
+      "id": "414600fd-9e00-4332-97f8-5bb50f8450a1",
+      "archived_at": null
+    },
+    {
+      "parent_id": null,
+      "name": "Dining out",
+      "bucket": "want",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 10,
+      "id": "7936a4e9-a3ed-49ff-a0a6-f23aff865cd1",
+      "archived_at": null
+    },
+    {
+      "parent_id": "7936a4e9-a3ed-49ff-a0a6-f23aff865cd1",
+      "name": "Restaurants",
+      "bucket": "want",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 0,
+      "id": "661781b5-10aa-410b-8371-8142623f7c53",
+      "archived_at": null
+    },
+    {
+      "parent_id": "7936a4e9-a3ed-49ff-a0a6-f23aff865cd1",
+      "name": "Coffee",
+      "bucket": "want",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 1,
+      "id": "d2700d89-7fb4-41fe-9c73-48a59bbc021f",
+      "archived_at": null
+    },
+    {
+      "parent_id": "7936a4e9-a3ed-49ff-a0a6-f23aff865cd1",
+      "name": "Delivery",
+      "bucket": "want",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 2,
+      "id": "33bc03a1-cd80-4a96-82c4-9442b8ceabd2",
+      "archived_at": null
+    },
+    {
+      "parent_id": null,
+      "name": "Shopping",
+      "bucket": "want",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 11,
+      "id": "5c1e43d1-5ab3-47b4-a1c6-5e0bf861abcf",
+      "archived_at": null
+    },
+    {
+      "parent_id": "5c1e43d1-5ab3-47b4-a1c6-5e0bf861abcf",
+      "name": "Clothes",
+      "bucket": "want",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 0,
+      "id": "a8d39595-dd7d-412f-ba77-fbcc1d80b9b9",
+      "archived_at": null
+    },
+    {
+      "parent_id": "5c1e43d1-5ab3-47b4-a1c6-5e0bf861abcf",
+      "name": "Electronics",
+      "bucket": "want",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 1,
+      "id": "eaa875c4-817b-4a98-9522-77ae17fe0daf",
+      "archived_at": null
+    },
+    {
+      "parent_id": "5c1e43d1-5ab3-47b4-a1c6-5e0bf861abcf",
+      "name": "Household",
+      "bucket": "want",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 2,
+      "id": "0d903ec6-a448-455f-a2a4-0e3b753c7c54",
+      "archived_at": null
+    },
+    {
+      "parent_id": null,
+      "name": "Subscriptions",
+      "bucket": "want",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 12,
+      "id": "eeba9ac7-07c0-4399-8460-db8baf0650ba",
+      "archived_at": null
+    },
+    {
+      "parent_id": null,
+      "name": "Fun & fitness",
+      "bucket": "want",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 13,
+      "id": "20b99880-6433-40e6-bfba-b8a8ac99a99f",
+      "archived_at": null
+    },
+    {
+      "parent_id": "20b99880-6433-40e6-bfba-b8a8ac99a99f",
+      "name": "Gym",
+      "bucket": "want",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 0,
+      "id": "c785fcb2-225c-4972-9d9c-ae23ea23d434",
+      "archived_at": null
+    },
+    {
+      "parent_id": "20b99880-6433-40e6-bfba-b8a8ac99a99f",
+      "name": "Events",
+      "bucket": "want",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 1,
+      "id": "43aec0a0-2a3e-4f3f-902e-eea3e12c5b77",
+      "archived_at": null
+    },
+    {
+      "parent_id": "20b99880-6433-40e6-bfba-b8a8ac99a99f",
+      "name": "Hobbies",
+      "bucket": "want",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 2,
+      "id": "4732011b-3cd5-4430-a175-929b9651799d",
+      "archived_at": null
+    },
+    {
+      "parent_id": null,
+      "name": "Travel",
+      "bucket": "want",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 14,
+      "id": "4eb227c1-b032-4f1a-bae8-98a7f842cd7e",
+      "archived_at": null
+    },
+    {
+      "parent_id": "4eb227c1-b032-4f1a-bae8-98a7f842cd7e",
+      "name": "Flights home",
+      "bucket": "want",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 0,
+      "id": "527a7720-4b40-4294-a119-e84a47b2bf89",
+      "archived_at": null
+    },
+    {
+      "parent_id": "4eb227c1-b032-4f1a-bae8-98a7f842cd7e",
+      "name": "Trips",
+      "bucket": "want",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 1,
+      "id": "67ee33b1-1d0d-4bd7-bb92-3b62abe10e2e",
+      "archived_at": null
+    },
+    {
+      "parent_id": null,
+      "name": "Family in India",
+      "bucket": "want",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 15,
+      "id": "6083546a-18c9-43a5-8cee-22bff45cf63d",
+      "archived_at": null
+    },
+    {
+      "parent_id": "6083546a-18c9-43a5-8cee-22bff45cf63d",
+      "name": "Support for parents",
+      "bucket": "want",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 0,
+      "id": "334c0bdd-e6db-4381-934a-8bad5ef0a679",
+      "archived_at": null
+    },
+    {
+      "parent_id": "6083546a-18c9-43a5-8cee-22bff45cf63d",
+      "name": "Gifts",
+      "bucket": "want",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 1,
+      "id": "c58eedfd-2e8a-4bf6-8adb-9edf72e7aea4",
+      "archived_at": null
+    },
+    {
+      "parent_id": "6083546a-18c9-43a5-8cee-22bff45cf63d",
+      "name": "Festivals",
+      "bucket": "want",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 2,
+      "id": "fe05f07d-7552-463b-a3b4-e9c20b27a61e",
+      "archived_at": null
+    },
+    {
+      "parent_id": null,
+      "name": "Learning",
+      "bucket": "want",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 16,
+      "id": "a691d428-ba8c-4c07-9a06-9b0f1a73dd8b",
+      "archived_at": null
+    },
+    {
+      "parent_id": null,
+      "name": "Savings & investing",
+      "bucket": "save",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 17,
+      "id": "014af2bb-2cc5-4357-b97c-6f854b088488",
+      "archived_at": null
+    },
+    {
+      "parent_id": "014af2bb-2cc5-4357-b97c-6f854b088488",
+      "name": "Emergency fund",
+      "bucket": "save",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 0,
+      "id": "c14a9525-84b4-4e8d-8300-30270ef1a369",
+      "archived_at": null
+    },
+    {
+      "parent_id": "014af2bb-2cc5-4357-b97c-6f854b088488",
+      "name": "Retirement",
+      "bucket": "save",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 1,
+      "id": "e40d103b-3987-4f72-b4ca-2dcb7b9b83a4",
+      "archived_at": null
+    },
+    {
+      "parent_id": "014af2bb-2cc5-4357-b97c-6f854b088488",
+      "name": "Down payment",
+      "bucket": "save",
+      "is_essential": false,
+      "icon": null,
+      "color": null,
+      "sort_order": 2,
+      "id": "7e952c49-2451-44bd-925f-557b2ed50e9c",
+      "archived_at": null
+    }
+  ],
+  "transactions": [
+    {
+      "id": "b33d2b96-0687-47cb-92db-1413f3fc7baf",
+      "date": "2026-02-03",
+      "kind": "expense",
+      "status": "cleared",
+      "description": "Loblaws",
+      "payee": "Loblaws",
+      "notes": null,
+      "provider": null,
+      "market_rate": null,
+      "schedule_id": null,
+      "occurrence_date": null,
+      "import_hash": null,
+      "money_posting": [
+        {
+          "account_id": "55e611f7-e4aa-4cf5-8260-bc8dc2967062",
+          "category_id": "3d41fafc-f16d-46dd-9aaa-f7a813dce1ac",
+          "amount_minor": -5020,
+          "memo": null,
+          "fx_rate": 1,
+          "base_amount_minor": -5020
+        }
+      ],
+      "created": 1
+    },
+    {
+      "id": "fbf32576-afba-4112-a414-26e897ceaefe",
+      "date": "2026-02-15",
+      "kind": "income",
+      "status": "cleared",
+      "description": "Paycheque",
+      "payee": "Acme Corp",
+      "notes": null,
+      "provider": null,
+      "market_rate": null,
+      "schedule_id": null,
+      "occurrence_date": null,
+      "import_hash": null,
+      "money_posting": [
+        {
+          "account_id": "55e611f7-e4aa-4cf5-8260-bc8dc2967062",
+          "category_id": null,
+          "amount_minor": 250000,
+          "memo": null,
+          "fx_rate": 1,
+          "base_amount_minor": 250000
+        }
+      ],
+      "created": 2
+    },
+    {
+      "id": "1ccfea4e-5785-4d4c-a8f3-341473339637",
+      "date": "2026-02-04",
+      "kind": "expense",
+      "status": "cleared",
+      "description": "Costco",
+      "payee": null,
+      "notes": null,
+      "provider": null,
+      "market_rate": null,
+      "schedule_id": null,
+      "occurrence_date": null,
+      "import_hash": null,
+      "money_posting": [
+        {
+          "account_id": "3bf4c620-b42e-45a2-b7a6-1acd7990d1e4",
+          "category_id": null,
+          "amount_minor": -8000,
+          "memo": null,
+          "fx_rate": 1,
+          "base_amount_minor": -8000
+        },
+        {
+          "account_id": "3bf4c620-b42e-45a2-b7a6-1acd7990d1e4",
+          "category_id": null,
+          "amount_minor": -1550,
+          "memo": null,
+          "fx_rate": 1,
+          "base_amount_minor": -1550
+        }
+      ],
+      "created": 3
+    },
+    {
+      "id": "0c0917ea-29e5-4d81-9639-c468ab4ecf7c",
+      "date": "2026-02-16",
+      "kind": "transfer",
+      "status": "cleared",
+      "description": "Pay the Visa",
+      "payee": null,
+      "notes": null,
+      "provider": null,
+      "market_rate": null,
+      "schedule_id": null,
+      "occurrence_date": null,
+      "import_hash": null,
+      "money_posting": [
+        {
+          "account_id": "55e611f7-e4aa-4cf5-8260-bc8dc2967062",
+          "category_id": null,
+          "amount_minor": -9550,
+          "memo": null,
+          "fx_rate": 1,
+          "base_amount_minor": -9550
+        },
+        {
+          "account_id": "3bf4c620-b42e-45a2-b7a6-1acd7990d1e4",
+          "category_id": null,
+          "amount_minor": 9550,
+          "memo": null,
+          "fx_rate": 1,
+          "base_amount_minor": 9550
+        }
+      ],
+      "created": 4
+    },
+    {
+      "id": "35c06e74-45e0-470c-97a2-e0b8fecce37c",
+      "date": "2026-02-20",
+      "kind": "transfer",
+      "status": "cleared",
+      "description": "Money for parents",
+      "payee": null,
+      "notes": null,
+      "provider": "Wise",
+      "market_rate": "61",
+      "schedule_id": null,
+      "occurrence_date": null,
+      "import_hash": null,
+      "money_posting": [
+        {
+          "account_id": "55e611f7-e4aa-4cf5-8260-bc8dc2967062",
+          "category_id": null,
+          "amount_minor": -100000,
+          "memo": null,
+          "fx_rate": 1,
+          "base_amount_minor": -100000
+        },
+        {
+          "account_id": "f329c241-2c15-4314-b05a-7162e50cb162",
+          "category_id": null,
+          "amount_minor": 6000000,
+          "memo": null,
+          "fx_rate": "0.01639344262295082",
+          "base_amount_minor": 98361
+        },
+        {
+          "account_id": "55e611f7-e4aa-4cf5-8260-bc8dc2967062",
+          "category_id": "414600fd-9e00-4332-97f8-5bb50f8450a1",
+          "amount_minor": -499,
+          "memo": null,
+          "fx_rate": 1,
+          "base_amount_minor": -499
+        }
+      ],
+      "created": 5
+    },
+    {
+      "id": "f848e002-3791-4feb-be26-851a353d6b9e",
+      "date": "2026-02-21",
+      "kind": "expense",
+      "status": "cleared",
+      "description": "TIM HORTONS #12 TORONTO",
+      "payee": null,
+      "notes": null,
+      "provider": null,
+      "market_rate": null,
+      "schedule_id": null,
+      "occurrence_date": null,
+      "import_hash": "e4046fac23609607",
+      "money_posting": [
+        {
+          "account_id": "55e611f7-e4aa-4cf5-8260-bc8dc2967062",
+          "category_id": null,
+          "amount_minor": -250,
+          "memo": null,
+          "fx_rate": 1,
+          "base_amount_minor": -250
+        }
+      ],
+      "created": 6
+    },
+    {
+      "id": "105ea32b-8e9a-40aa-8090-39cea8e65f48",
+      "date": "2026-02-22",
+      "kind": "expense",
+      "status": "cleared",
+      "description": "PRESTO FARE",
+      "payee": null,
+      "notes": null,
+      "provider": null,
+      "market_rate": null,
+      "schedule_id": null,
+      "occurrence_date": null,
+      "import_hash": "3eeef79b697459fe",
+      "money_posting": [
+        {
+          "account_id": "55e611f7-e4aa-4cf5-8260-bc8dc2967062",
+          "category_id": "be51cf41-e8b5-4f00-aeab-66721501b213",
+          "amount_minor": -330,
+          "memo": null,
+          "fx_rate": 1,
+          "base_amount_minor": -330
+        }
+      ],
+      "created": 7
+    },
+    {
+      "id": "98a691f4-77c5-499f-8374-aafbbce2360b",
+      "date": "2026-02-22",
+      "kind": "expense",
+      "status": "cleared",
+      "description": "PRESTO FARE",
+      "payee": null,
+      "notes": null,
+      "provider": null,
+      "market_rate": null,
+      "schedule_id": null,
+      "occurrence_date": null,
+      "import_hash": "3eeef89b69745bb1",
+      "money_posting": [
+        {
+          "account_id": "55e611f7-e4aa-4cf5-8260-bc8dc2967062",
+          "category_id": "be51cf41-e8b5-4f00-aeab-66721501b213",
+          "amount_minor": -330,
+          "memo": null,
+          "fx_rate": 1,
+          "base_amount_minor": -330
+        }
+      ],
+      "created": 8
+    },
+    {
+      "id": "5620d830-cdc1-4f52-aa0a-e7be51bfc865",
+      "date": "2026-09-01",
+      "kind": "expense",
+      "status": "cleared",
+      "description": "Rent",
+      "payee": null,
+      "notes": null,
+      "provider": null,
+      "market_rate": null,
+      "schedule_id": "fe258cf1-b525-40cf-8feb-0168327b2c7e",
+      "occurrence_date": "2026-09-01",
+      "import_hash": null,
+      "money_posting": [
+        {
+          "account_id": "55e611f7-e4aa-4cf5-8260-bc8dc2967062",
+          "category_id": "99e89c15-9959-4842-9e00-2717cd8e9f76",
+          "amount_minor": -140000,
+          "memo": null,
+          "fx_rate": 1,
+          "base_amount_minor": -140000
+        }
+      ],
+      "created": 10
+    },
+    {
+      "id": "4166153a-b1d1-46ed-bb3f-82180e95c2c3",
+      "date": "2026-09-01",
+      "kind": "expense",
+      "status": "cleared",
+      "description": "Hydro",
+      "payee": null,
+      "notes": null,
+      "provider": null,
+      "market_rate": null,
+      "schedule_id": "777c80a8-4e09-4ed4-87ce-fbea7e9a01f4",
+      "occurrence_date": "2026-09-01",
+      "import_hash": null,
+      "money_posting": [
+        {
+          "account_id": "55e611f7-e4aa-4cf5-8260-bc8dc2967062",
+          "category_id": null,
+          "amount_minor": -7315,
+          "memo": null,
+          "fx_rate": 1,
+          "base_amount_minor": -7315
+        }
+      ],
+      "created": 11
+    },
+    {
+      "id": "bb826f7f-152d-46c1-9047-e7dd172b0aad",
+      "date": "2026-09-24",
+      "kind": "transfer",
+      "status": "cleared",
+      "description": "Car loan payment",
+      "payee": null,
+      "notes": null,
+      "provider": null,
+      "market_rate": null,
+      "schedule_id": null,
+      "occurrence_date": null,
+      "import_hash": null,
+      "money_posting": [
+        {
+          "account_id": "55e611f7-e4aa-4cf5-8260-bc8dc2967062",
+          "category_id": null,
+          "amount_minor": -28666,
+          "memo": null,
+          "fx_rate": 1,
+          "base_amount_minor": -28666
+        },
+        {
+          "account_id": "eb2e9f48-0358-4438-8a2e-4c5dfca8eb83",
+          "category_id": null,
+          "amount_minor": 28666,
+          "memo": null,
+          "fx_rate": 1,
+          "base_amount_minor": 28666
+        },
+        {
+          "account_id": "55e611f7-e4aa-4cf5-8260-bc8dc2967062",
+          "category_id": "04b89071-7b0b-4f6b-8644-fedfbbe40213",
+          "amount_minor": -10000,
+          "memo": null,
+          "fx_rate": 1,
+          "base_amount_minor": -10000
+        }
+      ],
+      "created": 12
+    },
+    {
+      "id": "12fdbaef-c80c-4b28-973f-306b643d7fe1",
+      "date": "2026-09-24",
+      "kind": "income",
+      "status": "cleared",
+      "description": "Dividend or distribution — XEQT",
+      "payee": null,
+      "notes": null,
+      "provider": null,
+      "market_rate": null,
+      "schedule_id": null,
+      "occurrence_date": null,
+      "import_hash": null,
+      "money_posting": [
+        {
+          "account_id": "7d9a23f0-c6df-4972-a6e7-f8c76ffc96dd",
+          "category_id": "3b8cfea5-2896-48b9-b9e6-7b75d04d75d6",
+          "amount_minor": 1234,
+          "memo": null,
+          "fx_rate": 1,
+          "base_amount_minor": 1234
+        }
+      ],
+      "created": 13
+    }
+  ],
+  "rates": [
+    {
+      "base": "CAD",
+      "quote": "INR",
+      "as_of": "2026-01-01",
+      "rate": "61",
+      "source": "manual"
+    }
+  ],
+  "rules": [
+    {
+      "priority": 100,
+      "match": "contains",
+      "pattern": "presto",
+      "account_id": null,
+      "category_id": "be51cf41-e8b5-4f00-aeab-66721501b213",
+      "payee": null,
+      "is_active": true,
+      "id": "a6737fec-91d8-4363-9130-9e2cb71f238f",
+      "created": 9
+    }
+  ],
+  "reconciliations": [
+    {
+      "account_id": "55e611f7-e4aa-4cf5-8260-bc8dc2967062",
+      "as_of": "2026-02-28",
+      "statement_balance_minor": 234021,
+      "note": null,
+      "id": "ebe5ea56-1ea2-48a6-a551-a0519e6a689d"
+    }
+  ],
+  "schedules": [
+    {
+      "name": "Rent",
+      "kind": "expense",
+      "account_id": "55e611f7-e4aa-4cf5-8260-bc8dc2967062",
+      "to_account_id": null,
+      "category_id": "99e89c15-9959-4842-9e00-2717cd8e9f76",
+      "amount_minor": 140000,
+      "to_amount_minor": null,
+      "is_estimate": false,
+      "frequency": "monthly",
+      "start_date": "2026-09-01",
+      "end_date": null,
+      "day_one": null,
+      "day_two": null,
+      "payee": null,
+      "notes": null,
+      "id": "fe258cf1-b525-40cf-8feb-0168327b2c7e",
+      "archived_at": null
+    },
+    {
+      "name": "Paycheque",
+      "kind": "income",
+      "account_id": "55e611f7-e4aa-4cf5-8260-bc8dc2967062",
+      "to_account_id": null,
+      "category_id": null,
+      "amount_minor": 210000,
+      "to_amount_minor": null,
+      "is_estimate": false,
+      "frequency": "semimonthly",
+      "start_date": "2026-09-01",
+      "end_date": null,
+      "day_one": 15,
+      "day_two": 31,
+      "payee": null,
+      "notes": null,
+      "id": "725a5299-554a-4c0a-bff8-053342aaae29",
+      "archived_at": null
+    },
+    {
+      "name": "Hydro",
+      "kind": "expense",
+      "account_id": "55e611f7-e4aa-4cf5-8260-bc8dc2967062",
+      "to_account_id": null,
+      "category_id": null,
+      "amount_minor": 6000,
+      "to_amount_minor": null,
+      "is_estimate": true,
+      "frequency": "monthly",
+      "start_date": "2026-09-01",
+      "end_date": null,
+      "day_one": null,
+      "day_two": null,
+      "payee": null,
+      "notes": null,
+      "id": "777c80a8-4e09-4ed4-87ce-fbea7e9a01f4",
+      "archived_at": null
+    }
+  ],
+  "skips": [
+    {
+      "schedule_id": "725a5299-554a-4c0a-bff8-053342aaae29",
+      "due_date": "2026-09-15"
+    }
+  ],
+  "budgets": [
+    {
+      "category_id": "791fda3d-089e-46ec-998b-3bcedb42cd3d",
+      "from_month": "2026-09-01",
+      "amount_minor": 150000,
+      "rollover": false,
+      "id": "f00a319b-b157-4d0b-bbd3-2d0e14de74d2"
+    }
+  ],
+  "goals": [
+    {
+      "id": "4f9094e0-81cb-42f4-9d03-5d3831431dcc",
+      "name": "Trip home",
+      "target_minor": 300000,
+      "currency": "CAD",
+      "target_date": null,
+      "notes": null,
+      "sort_order": 0,
+      "achieved_at": null,
+      "archived_at": null,
+      "money_goal_account": [
+        { "account_id": "f329c241-2c15-4314-b05a-7162e50cb162" }
+      ]
+    }
+  ],
+  "loans": [
+    {
+      "account_id": "eb2e9f48-0358-4438-8a2e-4c5dfca8eb83",
+      "lender": null,
+      "principal_minor": 2000000,
+      "annual_rate": 6,
+      "rate_type": "fixed",
+      "compounding": "monthly",
+      "payment_frequency": "monthly",
+      "payment_minor": null,
+      "amortization_months": 60,
+      "term_months": null,
+      "first_payment_date": "2026-02-01",
+      "prepayment_allowance_pct": null,
+      "notes": null,
+      "id": "9e138167-ceff-4200-8c11-efef3c4f3ef6"
+    }
+  ],
+  "incomeSources": [
+    {
+      "name": "Acme Corp",
+      "employment": "full_time",
+      "role": null,
+      "gross_annual_minor": 9000000,
+      "currency": "CAD",
+      "start_date": "2025-06-01",
+      "end_date": null,
+      "country": "CA",
+      "notes": null,
+      "id": "d3f68f8d-12ac-49ce-9066-242f87a107bd"
+    }
+  ],
+  "creditScores": [
+    {
+      "bureau": "equifax",
+      "score": 712,
+      "as_of": "2026-09-24",
+      "source": null,
+      "id": "82ce098c-c0f1-4f79-9a0b-54950725b2c4"
+    }
+  ],
+  "applications": [
+    {
+      "lender": "TD",
+      "product": "mortgage",
+      "status": "planning",
+      "amount_minor": null,
+      "currency": "CAD",
+      "rate": 4.5,
+      "term_months": null,
+      "amortization_months": null,
+      "purchase_price_minor": 50000000,
+      "down_payment_minor": 5000000,
+      "property_tax_monthly_minor": null,
+      "heating_monthly_minor": null,
+      "condo_fees_monthly_minor": null,
+      "submitted_on": null,
+      "decided_on": null,
+      "hard_inquiry_on": null,
+      "notes": null,
+      "id": "0dd07b24-e093-4d30-bc75-a34e2d9bf558",
+      "money_application_doc": [
+        {
+          "id": "68271a82-3638-494b-9dd1-ed6a6cf39d43",
+          "application_id": "0dd07b24-e093-4d30-bc75-a34e2d9bf558",
+          "name": "Passport",
+          "status": "needed",
+          "note": null,
+          "sort_order": 0
+        },
+        {
+          "id": "763732c2-80c6-499b-8ff8-253c208eab38",
+          "application_id": "0dd07b24-e093-4d30-bc75-a34e2d9bf558",
+          "name": "PR card or work/study permit",
+          "status": "needed",
+          "note": null,
+          "sort_order": 1
+        },
+        {
+          "id": "32f7af3b-8d4a-45f8-b3f1-34121a26e774",
+          "application_id": "0dd07b24-e093-4d30-bc75-a34e2d9bf558",
+          "name": "Employment letter (role, salary, start date, permanent or not)",
+          "status": "needed",
+          "note": null,
+          "sort_order": 2
+        },
+        {
+          "id": "6f60e6f7-bfae-498d-bde7-ca18489ea38f",
+          "application_id": "0dd07b24-e093-4d30-bc75-a34e2d9bf558",
+          "name": "Two most recent pay stubs",
+          "status": "needed",
+          "note": null,
+          "sort_order": 3
+        },
+        {
+          "id": "78c80f3b-a2d1-41fc-ac47-6c83703bacc9",
+          "application_id": "0dd07b24-e093-4d30-bc75-a34e2d9bf558",
+          "name": "Notice of Assessment (if you have filed in Canada)",
+          "status": "needed",
+          "note": null,
+          "sort_order": 4
+        },
+        {
+          "id": "bdced6a4-7051-438d-a8d2-a905003ef011",
+          "application_id": "0dd07b24-e093-4d30-bc75-a34e2d9bf558",
+          "name": "T4 slips (if any)",
+          "status": "needed",
+          "note": null,
+          "sort_order": 5
+        },
+        {
+          "id": "80284781-f904-4893-a53b-50125c99a8f4",
+          "application_id": "0dd07b24-e093-4d30-bc75-a34e2d9bf558",
+          "name": "90 days of bank statements for the down payment",
+          "status": "needed",
+          "note": null,
+          "sort_order": 6
+        },
+        {
+          "id": "bf09980a-d479-4ae2-bb75-609f5a1b817e",
+          "application_id": "0dd07b24-e093-4d30-bc75-a34e2d9bf558",
+          "name": "Proof of down payment source (gift letter, or transfer records from India)",
+          "status": "needed",
+          "note": null,
+          "sort_order": 7
+        },
+        {
+          "id": "fce6a05d-8c77-4cd4-9871-c27b4aaa6706",
+          "application_id": "0dd07b24-e093-4d30-bc75-a34e2d9bf558",
+          "name": "Signed purchase agreement",
+          "status": "needed",
+          "note": null,
+          "sort_order": 8
+        },
+        {
+          "id": "5da092bf-928a-431a-879d-05d70ca1d773",
+          "application_id": "0dd07b24-e093-4d30-bc75-a34e2d9bf558",
+          "name": "MLS listing or property details",
+          "status": "needed",
+          "note": null,
+          "sort_order": 9
+        },
+        {
+          "id": "e21a3200-9d5a-4a3d-89e1-5117082dbba0",
+          "application_id": "0dd07b24-e093-4d30-bc75-a34e2d9bf558",
+          "name": "Credit report (Equifax / TransUnion)",
+          "status": "needed",
+          "note": null,
+          "sort_order": 10
+        },
+        {
+          "id": "306fa9ae-03fc-4d72-a43b-06fe8d0c2117",
+          "application_id": "0dd07b24-e093-4d30-bc75-a34e2d9bf558",
+          "name": "Gift letter from parents",
+          "status": "needed",
+          "note": null,
+          "sort_order": 11
+        }
+      ]
+    }
+  ],
+  "securities": [
+    {
+      "symbol": "XEQT",
+      "name": "iShares Core Equity ETF",
+      "currency": "CAD",
+      "asset_class": "equity",
+      "region": "global",
+      "notes": null,
+      "id": "e6e4f894-53ff-480b-bc6b-bd22c2a0f3d0"
+    }
+  ],
+  "prices": [
+    {
+      "security_id": "e6e4f894-53ff-480b-bc6b-bd22c2a0f3d0",
+      "date": "2026-09-24",
+      "price": 32.5
+    }
+  ],
+  "trades": [
+    {
+      "id": "73a18091-cc63-4ab8-af4a-d6154bd75ddb",
+      "account_id": "7d9a23f0-c6df-4972-a6e7-f8c76ffc96dd",
+      "security_id": "e6e4f894-53ff-480b-bc6b-bd22c2a0f3d0",
+      "date": "2026-09-24",
+      "kind": "buy",
+      "quantity": 100,
+      "amount_minor": 300000,
+      "fee_minor": 0,
+      "transaction_id": null,
+      "notes": null,
+      "created_at": "2026-09-25T00:35:19.723Z"
+    },
+    {
+      "id": "2e3a52f7-ea39-4f8c-a20f-66386ff35054",
+      "account_id": "7d9a23f0-c6df-4972-a6e7-f8c76ffc96dd",
+      "security_id": "e6e4f894-53ff-480b-bc6b-bd22c2a0f3d0",
+      "date": "2026-09-24",
+      "kind": "dividend",
+      "quantity": null,
+      "amount_minor": 1234,
+      "fee_minor": 0,
+      "transaction_id": "12fdbaef-c80c-4b28-973f-306b643d7fe1",
+      "notes": null,
+      "created_at": "2026-09-25T00:35:22.163Z"
+    }
+  ],
+  "room": [
+    {
+      "registration": "tfsa",
+      "year": 2026,
+      "room_minor": 700000,
+      "notes": null,
+      "id": "76e2f095-0ed7-4023-9baa-dcd33622d743"
+    }
+  ]
+}

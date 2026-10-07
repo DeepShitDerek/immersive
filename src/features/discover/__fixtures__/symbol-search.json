@@ -1,0 +1,64 @@
+{
+  "data": [
+    {
+      "symbol": "SHOP",
+      "instrument_name": "Shopify Inc.",
+      "exchange": "NASDAQ",
+      "mic_code": "XNGS",
+      "exchange_timezone": "America/New_York",
+      "instrument_type": "Common Stock",
+      "country": "United States",
+      "currency": "USD"
+    },
+    {
+      "symbol": "SHOP",
+      "instrument_name": "Shopify Inc.",
+      "exchange": "TSX",
+      "mic_code": "XTSE",
+      "exchange_timezone": "America/Toronto",
+      "instrument_type": "Common Stock",
+      "country": "Canada",
+      "currency": "CAD"
+    },
+    {
+      "symbol": "SHOPN",
+      "instrument_name": "Shopify Inc.",
+      "exchange": "BMV",
+      "mic_code": "XMEX",
+      "exchange_timezone": "America/Swift_Current",
+      "instrument_type": "Common Stock",
+      "country": "Mexico",
+      "currency": "MXN"
+    },
+    {
+      "symbol": "SHOP",
+      "instrument_name": "Shopify Inc.",
+      "exchange": "NEO",
+      "mic_code": "NEOE",
+      "exchange_timezone": "America/Toronto",
+      "instrument_type": "Common Stock",
+      "country": "Canada",
+      "currency": "CAD"
+    },
+    {
+      "symbol": "0VHA",
+      "instrument_name": "Shopify Inc.",
+      "exchange": "LSE",
+      "mic_code": "XLON",
+      "exchange_timezone": "Europe/London",
+      "instrument_type": "Common Stock",
+      "country": "United Kingdom",
+      "currency": "USD"
+    },
+    {
+      "symbol": "S2HO34",
+      "instrument_name": "Shopify Inc.",
+      "exchange": "Bovespa",
+      "mic_code": "BVMF",
+      "exchange_timezone": "America/Paramaribo",
+      "instrument_type": "Depositary Receipt",
+      "country": "Brazil",
+      "currency": "BRL"
+    }
+  ]
+}

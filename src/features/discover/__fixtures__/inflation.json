@@ -1,0 +1,116 @@
+[
+  {
+    "page": 1,
+    "pages": 9,
+    "per_page": 8,
+    "total": 66,
+    "sourceid": "2",
+    "lastupdated": "2026-07-13"
+  },
+  [
+    {
+      "indicator": {
+        "id": "FP.CPI.TOTL.ZG",
+        "value": "Inflation, consumer prices (annual %)"
+      },
+      "country": { "id": "CA", "value": "Canada" },
+      "countryiso3code": "CAN",
+      "date": "2025",
+      "value": 2.07232411149103,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 1
+    },
+    {
+      "indicator": {
+        "id": "FP.CPI.TOTL.ZG",
+        "value": "Inflation, consumer prices (annual %)"
+      },
+      "country": { "id": "CA", "value": "Canada" },
+      "countryiso3code": "CAN",
+      "date": "2024",
+      "value": 2.38158383281173,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 1
+    },
+    {
+      "indicator": {
+        "id": "FP.CPI.TOTL.ZG",
+        "value": "Inflation, consumer prices (annual %)"
+      },
+      "country": { "id": "CA", "value": "Canada" },
+      "countryiso3code": "CAN",
+      "date": "2023",
+      "value": 3.87900159788426,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 1
+    },
+    {
+      "indicator": {
+        "id": "FP.CPI.TOTL.ZG",
+        "value": "Inflation, consumer prices (annual %)"
+      },
+      "country": { "id": "CA", "value": "Canada" },
+      "countryiso3code": "CAN",
+      "date": "2022",
+      "value": 6.80280115341613,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 1
+    },
+    {
+      "indicator": {
+        "id": "FP.CPI.TOTL.ZG",
+        "value": "Inflation, consumer prices (annual %)"
+      },
+      "country": { "id": "CA", "value": "Canada" },
+      "countryiso3code": "CAN",
+      "date": "2021",
+      "value": 3.39519318527528,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 1
+    },
+    {
+      "indicator": {
+        "id": "FP.CPI.TOTL.ZG",
+        "value": "Inflation, consumer prices (annual %)"
+      },
+      "country": { "id": "CA", "value": "Canada" },
+      "countryiso3code": "CAN",
+      "date": "2020",
+      "value": 0.716999632307827,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 1
+    },
+    {
+      "indicator": {
+        "id": "FP.CPI.TOTL.ZG",
+        "value": "Inflation, consumer prices (annual %)"
+      },
+      "country": { "id": "CA", "value": "Canada" },
+      "countryiso3code": "CAN",
+      "date": "2019",
+      "value": 1.94926902411593,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 1
+    },
+    {
+      "indicator": {
+        "id": "FP.CPI.TOTL.ZG",
+        "value": "Inflation, consumer prices (annual %)"
+      },
+      "country": { "id": "CA", "value": "Canada" },
+      "countryiso3code": "CAN",
+      "date": "2018",
+      "value": 2.26822567248103,
+      "unit": "",
+      "obs_status": "",
+      "decimal": 1
+    }
+  ]
+]

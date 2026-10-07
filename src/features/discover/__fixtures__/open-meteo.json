@@ -1,0 +1,33 @@
+{
+  "latitude": 43.646603,
+  "longitude": -79.38272,
+  "generationtime_ms": 0.1233816146850586,
+  "utc_offset_seconds": -14400,
+  "timezone": "America/Toronto",
+  "timezone_abbreviation": "GMT-4",
+  "elevation": 87.0,
+  "current_units": {
+    "time": "iso8601",
+    "interval": "seconds",
+    "temperature_2m": "°C",
+    "weather_code": "wmo code",
+    "is_day": ""
+  },
+  "current": {
+    "time": "2026-08-19T19:30",
+    "interval": 900,
+    "temperature_2m": 23.1,
+    "weather_code": 2,
+    "is_day": 1
+  },
+  "daily_units": {
+    "time": "iso8601",
+    "temperature_2m_max": "°C",
+    "temperature_2m_min": "°C"
+  },
+  "daily": {
+    "time": ["2026-08-19"],
+    "temperature_2m_max": [27.0],
+    "temperature_2m_min": [16.8]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "coins": [
+    {
+      "id": "solana",
+      "name": "Solana",
+      "api_symbol": "solana",
+      "symbol": "SOL",
+      "market_cap_rank": 7,
+      "thumb": "https://coin-images.coingecko.com/coins/images/4128/thumb/solana.png",
+      "large": "https://coin-images.coingecko.com/coins/images/4128/large/solana.png"
+    },
+    {
+      "id": "solana-name-service",
+      "name": "Solana Name Service",
+      "api_symbol": "solana-name-service",
+      "symbol": "SNS",
+      "market_cap_rank": 2376,
+      "thumb": "https://coin-images.coingecko.com/coins/images/55691/thumb/0cxkA759_400x400.jpg",
+      "large": "https://coin-images.coingecko.com/coins/images/55691/large/0cxkA759_400x400.jpg"
+    },
+    {
+      "id": "green-satoshi-token",
+      "name": "STEPN Green Satoshi Token on Solana",
+      "api_symbol": "green-satoshi-token",
+      "symbol": "GST-SOL",
+      "market_cap_rank": 2571,
+      "thumb": "https://coin-images.coingecko.com/coins/images/21841/thumb/gst.png",
+      "large": "https://coin-images.coingecko.com/coins/images/21841/large/gst.png"
+    },
+    {
+      "id": "play-solana-token",
+      "name": "Play Solana Token",
+      "api_symbol": "play-solana-token",
+      "symbol": "PLAY",
+      "market_cap_rank": 2691,
+      "thumb": "https://coin-images.coingecko.com/coins/images/70610/thumb/_PLAY_200x200.png",
+      "large": "https://coin-images.coingecko.com/coins/images/70610/large/_PLAY_200x200.png"
+    },
+    {
+      "id": "pepecoin-on-solana",
+      "name": "PepeCoin on Solana",
+      "api_symbol": "pepecoin-on-solana",
+      "symbol": "PEPE",
+      "market_cap_rank": 3201,
+      "thumb": "https://coin-images.coingecko.com/coins/images/35507/thumb/pepeonsol200x200.png",
+      "large": "https://coin-images.coingecko.com/coins/images/35507/large/pepeonsol200x200.png"
+    }
+  ]
+}

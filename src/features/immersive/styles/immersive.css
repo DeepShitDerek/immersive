@@ -1,0 +1,165 @@
+/*
+  Texture, display type and pin helpers for the immersive styles.
+  Colours and font families come from styles/css.ts as custom properties on
+  [data-style-scope]; nothing here names a colour except the Dusk field.
+*/
+
+[data-style-scope]:not([data-style-scope="classic"]) {
+  position: relative;
+  isolation: isolate;
+  /* The body's computed family is inherited, not the variable: set it here. */
+  font-family: var(--font-body);
+}
+
+/*
+  ── Display type ──
+  Ordinary class specificity, so these win over the base heading rules when
+  the class is on an h1 or h2. Where one needs sentence case it says so with
+  an important utility.
+*/
+.im-display {
+  font-family: var(--font-heading);
+  font-weight: var(--heading-weight);
+  letter-spacing: var(--im-display-tracking);
+  line-height: var(--im-display-leading);
+  text-transform: var(--im-display-case);
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+}
+.im-display-xl {
+  font-size: clamp(3rem, 13vw, 11rem);
+}
+.im-display-lg {
+  font-size: clamp(2.25rem, 8vw, 6.5rem);
+}
+.im-display-md {
+  font-size: clamp(1.75rem, 4.2vw, 3.5rem);
+}
+
+/* The serif italic accent Dusk uses inside a grotesque line. */
+[data-style-scope="dusk"] .im-display em {
+  font-family: var(--font-instrument-serif), Georgia, serif;
+  font-style: italic;
+  font-weight: 400;
+}
+
+.im-mono {
+  font-family: var(--font-code), ui-monospace, monospace;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  line-height: 1.5;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+/* Colour alone at zero specificity: a colour utility on the same element wins. */
+:where(.im-mono) {
+  color: hsl(var(--muted-foreground));
+}
+
+/*
+  Paper's display face has one weight. A heading or the wordmark that asks
+  for bold must not get a smeared, synthesised one. Slanting is still allowed
+  (the text face has no italic of its own).
+*/
+[data-style-scope="paper"] {
+  font-synthesis: style;
+}
+
+/* ── Surfaces ── */
+.im-panel {
+  border: 1px solid hsl(var(--border));
+  background: hsl(var(--card));
+  border-radius: var(--r-surface);
+}
+[data-style-scope="dusk"] .im-panel {
+  background: hsl(var(--card) / 0.55);
+  backdrop-filter: blur(14px);
+}
+.im-rule {
+  border-top: 1px solid hsl(var(--border));
+}
+[data-style-scope="paper"] .im-rule {
+  border-top-color: hsl(var(--foreground) / 0.85);
+}
+
+/* ── Texture: one fixed layer, never interactive ── */
+.im-texture {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+[data-style-scope="noir"] .im-texture {
+  z-index: 50;
+  opacity: 0.18;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='140' height='140'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/></filter><rect width='140' height='140' filter='url(%23n)' opacity='.9'/></svg>");
+}
+[data-style-scope="paper"] .im-texture {
+  display: none;
+}
+[data-style-scope="dusk"] .im-texture {
+  z-index: -1;
+  inset: -20%;
+  /*
+    0.32 is a contrast limit, not a taste: at the brightest point of the field
+    (the teal, composited over the page) muted text still measures 5.0:1 and
+    body text 9.6:1. At 0.55 muted text fell to 2.6:1 there.
+  */
+  opacity: 0.32;
+  filter: blur(60px);
+  background:
+    radial-gradient(38% 46% at 72% 30%, #5b4bff 0%, transparent 70%),
+    radial-gradient(34% 40% at 24% 78%, #ff5c8a 0%, transparent 70%),
+    radial-gradient(30% 36% at 86% 84%, #18c8c0 0%, transparent 72%);
+}
+
+/* The settings preview is a scaled frame inside the admin: keep the texture in it. */
+[data-testid="preview-frame"] .im-texture {
+  position: absolute;
+}
+
+/* Overscroll shows <html>: give it the style's ground on public pages. */
+html[data-style="noir"]:has([data-style-scope="noir"]) {
+  background: #0b0b0c;
+}
+html[data-style="paper"]:has([data-style-scope="paper"]) {
+  background: #f4f0e6;
+}
+html[data-style="dusk"]:has([data-style-scope="dusk"]) {
+  background: #07071a;
+}
+
+/*
+  Pinning is CSS, not script: it works before any code loads, and both ways of
+  turning it off (a phone, reduced motion) are media queries.
+*/
+@media (min-width: 768px) and (min-height: 700px) and (prefers-reduced-motion: no-preference) {
+  /* Under the sticky header (h-14), so a pinned panel's top line shows. */
+  .im-pin {
+    position: sticky;
+    top: 3.5rem;
+  }
+  .im-pin-track {
+    min-height: var(--im-track, 200vh);
+  }
+  /*
+    The sizes that go with pinning live here too, so a screen that is not
+    pinned (a phone on its side is wide but 390px tall) never gets a
+    screen-high box to clip its content in.
+  */
+  .im-pin-box {
+    /* At least a screen; taller content shows in full as the pin lets go. */
+    min-height: calc(100svh - 3.5rem);
+  }
+  .im-pin-panel {
+    /* Exactly a screen: the next panel covers whatever does not fit. */
+    height: calc(100svh - 3.5rem);
+  }
+  /* So what goes in a panel is cut to fit, with the whole text still there. */
+  .im-pin-panel .im-clamp {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
+  }
+}

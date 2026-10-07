@@ -1,0 +1,959 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700..800&family=Chivo:wght@400;500;700&family=DM+Sans:wght@400;500;700&family=Fira+Code:wght@400;500&family=Fraunces:opsz,wght@9..144,600..900&family=Geist:wght@400..800&family=Geist+Mono:wght@400;500&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wght@400..700&family=Instrument+Serif:ital@0;1&family=Inter:wght@400..700&family=JetBrains+Mono:wght@400;500;700&family=Libre+Baskerville:wght@400;700&family=Lora:ital,wght@0,400..600;1,400..600&family=Manrope:wght@400..700&family=Onest:wght@400..800&family=Playfair+Display:wght@600;700&family=Plus+Jakarta+Sans:wght@400..700&family=Sora:wght@400..600&family=Space+Grotesk:wght@500;700&family=Unbounded:wght@600;700&family=Figtree:wght@400..700&family=Funnel+Display:wght@400..800&family=Funnel+Sans:ital,wght@0,400..700;1,400..700&family=Newsreader:wght@400..700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Theme + typography presets live in themes.css (imported after this file in the
+   root layout / _app so preset variables win at equal specificity). */
+
+/* =============================================================================
+   BASE — element defaults & prose
+   ============================================================================= */
+@layer base {
+  /* ===========================================================================
+     v3 "Surface" foundation
+     ---------------------------------------------------------------------------
+     Colour is deliberately absent here. The 52 theme presets own every colour
+     token and are gated by theme-contrast.test.ts, so the design system layers
+     shape, space, type, elevation and motion on top of them rather than
+     inventing a parallel palette.
+     ========================================================================= */
+  :root {
+    /* Shape — two tiers. Generous surfaces, crisp controls; the contrast
+       between the two is the shape signature. Presets still set `--radius`,
+       which Tailwind maps to `rounded-lg`; these sit alongside it. */
+    --r-surface: 1rem;
+    --r-control: 0.5rem;
+
+    /**
+     * Band rhythm only.
+     *
+     * There is deliberately no general `--s-*` spacing scale. An earlier pass
+     * added one and converted ~5% of the call sites, which left the app using
+     * two spacing vocabularies at once — and since `--s-4` was 1rem, exactly
+     * Tailwind's `p-4`, the second vocabulary bought nothing but the
+     * inconsistency. Component spacing uses Tailwind's scale; these three
+     * values exist because band rhythm is larger than that scale reaches
+     * comfortably and needs to be stated in one place.
+     */
+    --band-y-tight: 3rem;
+    --band-y: 5rem;
+    --band-y-feature: 8rem;
+    --band-x: 1.5rem;
+
+    /* Measure */
+    --w-content: 72rem;
+    --w-wide: 84rem;
+    --w-prose: 44rem;
+    /* The hero's text column: at the display size, a 3-line headline. */
+    --w-hero: 48rem;
+
+    /* Type — fluid, so a display size is stated once rather than re-derived
+       with breakpoint variants at every call site. */
+    /* 36 → 68px. It was 40 → 80px, which set the headline in five lines on a
+       laptop and pushed the hero's call to action below the fold
+       (docs/design-research/redesign-roadmap.md). */
+    --t-display: clamp(2.25rem, 1.5rem + 3.2vw, 4.25rem);
+    --t-title: clamp(1.875rem, 1.4rem + 2.2vw, 3rem);
+    --t-heading: clamp(1.25rem, 1.1rem + 0.8vw, 1.75rem);
+    --t-lead: clamp(1.0625rem, 1rem + 0.35vw, 1.25rem);
+    --t-micro: 0.8125rem;
+
+    /**
+     * Elevation.
+     *
+     * The shadow hue is a near-black keyed to the theme's own hue, NOT the
+     * foreground. Deriving it from `--foreground` meant that on the 26 dark
+     * presets — where the foreground is near-white — every "shadow" rendered
+     * as a white glow.
+     *
+     * A shadow also has to be strong enough to replace the border it stands
+     * in for. The first attempt sat at 5–6% opacity, which gave a card *less*
+     * definition than the bordered version it replaced.
+     */
+    --e-shadow: 240 40% 4%;
+    --e-0: none;
+    --e-1:
+      0 1px 2px -1px hsl(var(--e-shadow) / 0.12),
+      0 4px 10px -2px hsl(var(--e-shadow) / 0.1);
+    --e-2:
+      0 2px 6px -2px hsl(var(--e-shadow) / 0.14),
+      0 12px 24px -6px hsl(var(--e-shadow) / 0.16);
+    --e-3:
+      0 8px 20px -8px hsl(var(--e-shadow) / 0.2),
+      0 32px 64px -16px hsl(var(--e-shadow) / 0.3);
+
+    /* Motion — exits are always faster than entrances. Durations are named
+       by job (animation-motion.md §2.2): instant for press feedback, fast
+       for hover and every small exit, base for menus, slow for dialogs and
+       sheets, page as the ceiling. */
+    --d-instant: 100ms;
+    --d-fast: 150ms;
+    --d-base: 200ms;
+    --d-slow: 300ms;
+    --d-page: 400ms;
+    --m-enter: 220ms cubic-bezier(0.32, 0.72, 0, 1);
+    --m-exit: 140ms cubic-bezier(0.4, 0, 1, 1);
+
+    /* Focus is an outline, not a box-shadow ring, so it survives Windows
+       forced-colors mode (F15). The offset shows the ground between the
+       control and the ring. */
+    --focus-width: 2px;
+
+    /* The workspace's phone tab bar (workspace-tab-bar.tsx), for anything
+       that has to sit above it or keep clear of it. Zero where there is no
+       bar, so a public page's toasts are not lifted over nothing. */
+    --tabbar-h: 0px;
+    --focus-offset: 2px;
+
+    /* Status fallbacks, for a page with no preset class yet and for custom
+       themes before their variables land; every preset sets its own
+       (themes.css, "STATUS"). */
+    --success: 142.8 64.2% 24.1%;
+    --success-foreground: 0 0% 100%;
+    --warning: 22.7 82.5% 31.4%;
+    --warning-foreground: 0 0% 100%;
+    --info: 224.3 76.3% 48%;
+    --info-foreground: 0 0% 100%;
+  }
+
+  :root:has([data-workspace-tabbar]) {
+    --tabbar-h: 3.5rem;
+  }
+
+  /* The high-contrast and AAA presets draw a heavier ring. */
+  :root.theme-hc-light,
+  :root.theme-hc-dark,
+  :root.theme-aaa-light,
+  :root.theme-aaa-dark {
+    --focus-width: 3px;
+  }
+
+  /**
+   * Dark presets need a different mechanism.
+   *
+   * A near-black shadow cannot separate a dark surface from a dark ground —
+   * there is no contrast left to cast. Dark UIs solve this with a light edge
+   * instead, so elevation there is a deeper shadow *plus* a hairline highlight
+   * along the top of the surface.
+   *
+   * `.dark` is set by `applyTheme` from the resolved `--background` lightness,
+   * so this follows any preset and any custom theme without a name list.
+   */
+  :root.dark {
+    --e-1:
+      0 1px 2px -1px hsl(var(--e-shadow) / 0.6),
+      0 4px 10px -2px hsl(var(--e-shadow) / 0.5),
+      inset 0 1px 0 0 hsl(0 0% 100% / 0.06);
+    --e-2:
+      0 2px 6px -2px hsl(var(--e-shadow) / 0.7),
+      0 12px 24px -6px hsl(var(--e-shadow) / 0.6),
+      inset 0 1px 0 0 hsl(0 0% 100% / 0.08);
+    --e-3:
+      0 8px 20px -8px hsl(var(--e-shadow) / 0.8),
+      0 32px 64px -16px hsl(var(--e-shadow) / 0.7),
+      inset 0 1px 0 0 hsl(0 0% 100% / 0.1);
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    /* Smooth only for those who haven't asked for less motion. */
+    @apply motion-safe:scroll-smooth antialiased;
+    /*
+     * WCAG 2.4.11 Focus Not Obscured: when focus moves to something
+     * off-screen, the browser scrolls it clear of the sticky site header /
+     * admin top bar, and of the admin's fixed bottom nav on small screens.
+     */
+    scroll-padding-top: 6rem;
+    scroll-padding-bottom: 1.5rem;
+  }
+
+  @media (max-width: 1023px) {
+    html {
+      scroll-padding-bottom: 5.5rem;
+    }
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.18);
+  }
+
+  :focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+
+  /* --- Prose (blog posts, CMS markdown, notes) --- */
+  .markdown,
+  .prose {
+    @apply text-foreground;
+  }
+
+  /**
+   * Measure belongs to prose, not to every `<article>` element.
+   *
+   * `article` was in this selector, so all five `<article>` wrappers in the app
+   * — the blog post, two showcase layouts, a card layout and the scrapbook
+   * card — were silently capped at 65ch no matter what width their container
+   * gave them. On the post page that meant the body never widened when the
+   * table of contents was absent, because the cap had nothing to do with the
+   * grid at all.
+   */
+  .markdown,
+  .prose {
+    max-width: 65ch;
+  }
+
+  .markdown p,
+  .prose p {
+    @apply leading-relaxed;
+  }
+
+  .markdown a,
+  .prose a {
+    @apply text-primary underline underline-offset-4 decoration-primary/40 transition-colors;
+  }
+
+  .markdown a:hover,
+  .prose a:hover {
+    @apply decoration-primary;
+  }
+
+  .markdown h1,
+  .markdown h2,
+  .markdown h3,
+  .markdown h4,
+  .prose h1,
+  .prose h2,
+  .prose h3,
+  .prose h4 {
+    @apply font-heading font-semibold tracking-tight text-foreground scroll-mt-24;
+  }
+
+  .markdown code,
+  .prose code {
+    @apply bg-muted text-foreground px-1.5 py-0.5 rounded font-mono text-[0.875em];
+  }
+
+  .markdown pre,
+  .prose pre {
+    @apply bg-muted p-4 rounded-surface overflow-x-auto;
+  }
+
+  .markdown pre code,
+  .prose pre code {
+    @apply bg-transparent p-0;
+  }
+
+  /*
+   * Highlighted code keeps One Dark's own ground in every theme.
+   * The rule above painted it with the light `muted` surface, leaving One
+   * Dark's pale text on a pale ground at 1.8:1. And on its own ground One
+   * Dark's comments (2.3:1) and reds (4.4 and 3.0:1) are below AA, so those
+   * are lifted to 5.4 and 5.2:1; everything else in the theme already passes.
+   */
+  .markdown pre[class*="language-"],
+  .prose pre[class*="language-"] {
+    background: hsl(220 13% 18%);
+  }
+
+  /* A fence that was never highlighted (its <pre> has no language class)
+   * stays on the theme's muted ground, so it takes the theme's text colour
+   * rather than One Dark's pale one. */
+  pre:not([class*="language-"]) > code[class*="language-"] {
+    color: inherit;
+  }
+
+  pre[class*="language-"] .token.comment,
+  pre[class*="language-"] .token.prolog,
+  pre[class*="language-"] .token.cdata,
+  pre.language-markdown .token.blockquote.punctuation,
+  pre.language-markdown .token.hr.punctuation {
+    color: #9aa1ad;
+  }
+
+  pre[class*="language-"] .token.property,
+  pre[class*="language-"] .token.tag,
+  pre[class*="language-"] .token.symbol,
+  pre[class*="language-"] .token.deleted,
+  pre[class*="language-"] .token.important,
+  pre.language-css .token.selector,
+  pre.language-markdown .token.strike .token.content,
+  pre.language-markdown .token.strike .token.punctuation,
+  pre.language-markdown .token.list.punctuation,
+  pre.language-markdown .token.title.important > .token.punctuation,
+  pre.language-javascript
+    .token.template-string
+    > .token.interpolation
+    > .token.interpolation-punctuation.punctuation {
+    color: #e57f88;
+  }
+
+  .markdown blockquote,
+  .prose blockquote {
+    @apply border-l-2 border-primary/60 pl-4 italic text-muted-foreground;
+  }
+
+  .markdown ul,
+  .prose ul {
+    @apply list-disc pl-6;
+  }
+
+  .markdown ol,
+  .prose ol {
+    @apply list-decimal pl-6;
+  }
+
+  .markdown hr,
+  .prose hr {
+    /* Solid. A dotted rule is the retired v2 separator. */
+    border: none;
+    border-top: 1px solid hsl(var(--border));
+  }
+
+  .markdown img,
+  .prose img {
+    @apply rounded-surface;
+  }
+
+  .markdown table,
+  .prose table {
+    @apply w-full text-sm;
+    display: block;
+    overflow-x: auto;
+  }
+
+  .markdown th,
+  .prose th {
+    @apply bg-muted font-semibold text-left px-3 py-2 border-b;
+  }
+
+  .markdown td,
+  .prose td {
+    @apply px-3 py-2 border-b border-border;
+  }
+
+  .markdown mark,
+  .prose mark {
+    background: hsl(var(--primary) / 0.2);
+    color: hsl(var(--foreground));
+  }
+
+  .markdown kbd,
+  .prose kbd {
+    @apply bg-muted px-2 py-1 rounded font-mono text-xs border;
+  }
+
+  .markdown small,
+  .prose small {
+    @apply text-muted-foreground;
+  }
+
+  /* Vertical rhythm and a heading scale for `.markdown`.
+
+     Preflight zeroes every margin and collapses headings to `font-size:
+     inherit`. `.prose` gets both back from the typography plugin; `.markdown`
+     never did — so anything rendered through it came out as an unbroken slab
+     with headings at body size. That went unnoticed everywhere the markdown is
+     a single paragraph (hero tagline, life updates, section blurbs) and is
+     glaring on a blog post, which is the difference between the two.
+
+     Scoped to `.markdown` rather than the shared selector list above because
+     `article` also wraps cards (case-study and scrapbook layouts), which do
+     their own spacing. Margins sit on adjacent siblings only, so single-block
+     callers stay flush inside their container. */
+  .markdown > * + * {
+    @apply mt-4;
+  }
+
+  .markdown > * + :is(h1, h2, h3, h4, h5, h6) {
+    @apply mt-8;
+  }
+
+  .markdown h1 {
+    @apply text-2xl;
+  }
+
+  .markdown h2 {
+    @apply text-xl;
+  }
+
+  .markdown h3 {
+    @apply text-lg;
+  }
+
+  /* A blog post reads at 17px (18px with the long-form preset), with its
+     section headings at the heading role rather than the generic 20px
+. Notes and CMS markdown keep the compact sizes above. */
+  .post-prose {
+    font-size: 1.0625rem;
+    line-height: 1.7;
+  }
+
+  .typo-longform .post-prose {
+    font-size: 1.125rem;
+  }
+
+  .post-prose > * + :is(h2, h3) {
+    margin-top: 2.5em;
+  }
+
+  .post-prose h2 {
+    font-size: var(--t-heading);
+    line-height: 1.25;
+  }
+
+  .post-prose h3 {
+    font-size: 1.25rem;
+    line-height: 1.3;
+  }
+
+  .markdown h4,
+  .markdown h5,
+  .markdown h6 {
+    @apply text-base;
+  }
+
+  .markdown h5,
+  .markdown h6 {
+    @apply font-heading font-semibold tracking-tight text-foreground scroll-mt-24;
+  }
+
+  .markdown li + li {
+    @apply mt-1;
+  }
+
+  /* --- Finance: hide the figures --- */
+
+  /*
+   * Applied to the finance container rather than to each amount.
+   *
+   * There are around a hundred money values across a dozen components here,
+   * and a wrapper component would only hide the ones somebody remembered to
+   * migrate — the balance left visible would be the one that mattered. Selecting
+   * on `tabular-nums`, which every figure in this module already carries
+   * because they are all set to align in columns, catches them all including
+   * any added later.
+   *
+   * `select-none` matters as much as the blur: text under a blur filter is
+   * still selectable, and still copies out in the clear.
+   */
+  .figures-hidden :is(.tabular-nums, [data-figure]) {
+    filter: blur(0.35rem);
+    user-select: none;
+    pointer-events: none;
+  }
+
+  /* Reduced motion covers vestibular triggers, not blur — but a reader who has
+     asked for less movement should not get a transition on every toggle. */
+  @media (prefers-reduced-motion: no-preference) {
+    .figures-hidden :is(.tabular-nums, [data-figure]) {
+      transition: filter 150ms var(--m-enter);
+    }
+  }
+
+  /* --- Block editor (TipTap) ------------------------------------------------
+   *
+   * The text is the interface: no frame, no toolbar, no scroll area of its own.
+   * The rhythm is Notion's — blocks sit close together and headings take the
+   * space above them — and every colour is a theme token (the highlight used
+   * to be a literal yellow that ignored the preset).
+   *
+   * `data-measure="prose"` is long-form writing (the blog): a larger size,
+   * because drafting an essay at 14–16px is uncomfortable in a way that only
+   * shows after a few hundred words. The measure itself is set on the editor
+   * root, so the block handle stays beside the text column.
+   */
+  .novel-editor .ProseMirror {
+    @apply text-base leading-7 text-foreground outline-none;
+    overflow-wrap: break-word;
+    caret-color: hsl(var(--primary));
+  }
+
+  .novel-editor[data-measure="prose"] .ProseMirror {
+    @apply text-[1.0625rem] leading-8;
+  }
+
+  .novel-editor .ProseMirror > * {
+    @apply my-0;
+  }
+
+  .novel-editor .ProseMirror > * + * {
+    margin-top: 0.125rem;
+  }
+
+  .novel-editor .ProseMirror p {
+    @apply py-[3px];
+  }
+
+  /* Headings in the heading face, as the public page renders them. */
+  .novel-editor .ProseMirror h1,
+  .novel-editor .ProseMirror h2,
+  .novel-editor .ProseMirror h3,
+  .novel-editor .ProseMirror h4,
+  .novel-editor .ProseMirror h5,
+  .novel-editor .ProseMirror h6 {
+    @apply font-heading font-semibold tracking-tight text-foreground;
+  }
+
+  .novel-editor .ProseMirror h1 {
+    @apply mb-1 mt-8 text-[1.875em] leading-tight;
+  }
+
+  .novel-editor .ProseMirror h2 {
+    @apply mb-0.5 mt-6 text-[1.5em] leading-snug;
+  }
+
+  .novel-editor .ProseMirror h3 {
+    @apply mt-5 text-[1.25em] leading-snug;
+  }
+
+  .novel-editor .ProseMirror :is(h4, h5, h6) {
+    @apply mt-4 text-[1.05em];
+  }
+
+  .novel-editor .ProseMirror > :first-child {
+    @apply mt-0;
+  }
+
+  .novel-editor .ProseMirror strong {
+    @apply font-semibold;
+  }
+
+  .novel-editor .ProseMirror a {
+    @apply cursor-pointer text-foreground underline decoration-muted-foreground/60 underline-offset-2 hover:decoration-foreground;
+  }
+
+  .novel-editor .ProseMirror ul,
+  .novel-editor .ProseMirror ol {
+    @apply my-1 pl-6;
+  }
+
+  .novel-editor .ProseMirror ul {
+    @apply list-disc;
+  }
+
+  .novel-editor .ProseMirror ol {
+    @apply list-decimal;
+  }
+
+  .novel-editor .ProseMirror li {
+    @apply py-px;
+  }
+
+  .novel-editor .ProseMirror li p {
+    @apply py-0.5;
+  }
+
+  .novel-editor .ProseMirror li::marker {
+    color: hsl(var(--muted-foreground));
+  }
+
+  .novel-editor .ProseMirror ul[data-type="taskList"] {
+    @apply list-none pl-0.5;
+  }
+
+  .novel-editor .ProseMirror ul[data-type="taskList"] li {
+    @apply flex items-start gap-2;
+  }
+
+  .novel-editor .ProseMirror ul[data-type="taskList"] li > label {
+    @apply mt-[0.35rem] flex shrink-0 select-none items-center;
+  }
+
+  .novel-editor .ProseMirror ul[data-type="taskList"] input[type="checkbox"] {
+    @apply size-4 cursor-pointer accent-primary;
+  }
+
+  .novel-editor .ProseMirror ul[data-type="taskList"] li > div {
+    @apply min-w-0 flex-1;
+  }
+
+  .novel-editor
+    .ProseMirror
+    ul[data-type="taskList"]
+    li[data-checked="true"]
+    > div {
+    @apply text-muted-foreground line-through;
+  }
+
+  .novel-editor .ProseMirror blockquote {
+    @apply my-1 border-l-[3px] border-foreground/80 py-0.5 pl-4;
+  }
+
+  .novel-editor .ProseMirror code {
+    @apply rounded-[0.3rem] bg-muted px-1.5 py-0.5 font-mono text-[0.875em];
+  }
+
+  .novel-editor .ProseMirror pre {
+    @apply my-2 overflow-x-auto bg-muted p-4 font-mono text-sm leading-6;
+    border-radius: var(--r-control);
+  }
+
+  .novel-editor .ProseMirror pre code {
+    @apply bg-transparent p-0 text-inherit;
+  }
+
+  .novel-editor .ProseMirror hr {
+    @apply my-4 border-border;
+  }
+
+  .novel-editor .ProseMirror img {
+    @apply my-2 h-auto max-w-full;
+    border-radius: var(--r-control);
+  }
+
+  .novel-editor .ProseMirror img.ProseMirror-selectednode {
+    @apply ring-2 ring-primary ring-offset-2 ring-offset-background;
+  }
+
+  /* A block picked up by its handle, or selected whole. */
+  .novel-editor .ProseMirror > .ProseMirror-selectednode:not(img) {
+    background: hsl(var(--primary) / 0.08);
+    border-radius: var(--r-control);
+  }
+
+  .novel-editor .ProseMirror mark {
+    @apply rounded-[0.2rem] bg-chart-3/30 px-0.5 text-inherit;
+  }
+
+  .novel-editor .ProseMirror table {
+    @apply my-2 w-full border-collapse text-sm;
+    table-layout: fixed;
+  }
+
+  .novel-editor .ProseMirror th,
+  .novel-editor .ProseMirror td {
+    @apply relative border border-border px-3 py-2 text-left align-top;
+  }
+
+  .novel-editor .ProseMirror th {
+    @apply bg-muted/60 font-semibold;
+  }
+
+  .novel-editor .ProseMirror .selectedCell::after {
+    @apply pointer-events-none absolute inset-0 bg-primary/10;
+    content: "";
+  }
+
+  .novel-editor .ProseMirror .column-resize-handle {
+    @apply absolute right-0 top-0 h-full w-1 cursor-col-resize bg-primary;
+  }
+
+  .novel-editor .ProseMirror .resize-cursor {
+    @apply cursor-col-resize;
+  }
+
+  /* The prompt on an empty editor always; on an empty line only while typing
+     — a page scattered with "Type '/' for commands" reads as unfinished. */
+  .novel-editor .ProseMirror .is-editor-empty:first-child::before,
+  .novel-editor .ProseMirror.ProseMirror-focused .is-empty::before {
+    @apply pointer-events-none float-left h-0 text-muted-foreground/60;
+    content: attr(data-placeholder);
+  }
+
+  .novel-editor .ProseMirror ::selection {
+    @apply bg-primary/20;
+  }
+
+  .novel-editor .ProseMirror .ProseMirror-gapcursor::after {
+    @apply border-t-2 border-foreground;
+  }
+
+  /* `[[Links]]` between pages, clickable while writing. A link to a page that
+     does not exist yet is quieter, and following it creates the page. */
+  .novel-editor .ProseMirror .wikilink {
+    @apply cursor-pointer rounded-[0.2rem] text-primary underline decoration-primary/40 underline-offset-2 hover:decoration-primary;
+  }
+
+  .novel-editor .ProseMirror .wikilink-missing {
+    @apply text-muted-foreground decoration-muted-foreground/40;
+  }
+}
+
+/* =============================================================================
+   COMPONENTS — v2 motifs + vendor themes (TipTap toolbar-adjacent styles are in
+   the base layer above; react-markdown ported from v1)
+   ============================================================================= */
+@layer components {
+  /* --- v2 motifs --- */
+  /* ===========================================================================
+     v3 "Surface" — bands
+     ---------------------------------------------------------------------------
+     A public page is a sequence of full-bleed bands whose weights alternate, so
+     the page has rhythm instead of one uniform column. The band owns its
+     background; `.band-inner` constrains the content.
+     ========================================================================= */
+
+  .band {
+    width: 100%;
+    padding-block: var(--band-y);
+  }
+
+  .band-feature {
+    padding-block: var(--band-y-feature);
+    background: hsl(var(--background));
+  }
+
+  .band-content {
+    background: hsl(var(--background));
+  }
+
+  /* Used sparingly — to close a section or carry a call to action. */
+  .band-accent {
+    background: hsl(var(--accent) / 0.35);
+  }
+
+  /**
+   * Adjacent bands on the same ground collapse their shared padding.
+   *
+   * Two stacked bands each contribute their own block padding, so a
+   * content → content boundary was opening 10rem of dead space in the middle
+   * of a page. The first fix for that was a `pb-8` / `pt-0` pair hand-applied
+   * at the call site, which is exactly the kind of local patch that makes the
+   * rhythm inconsistent page to page.
+   *
+   * A band whose ground differs from its neighbour keeps its full padding —
+   * an accent band is a distinct surface and needs room to breathe, or the
+   * tint starts hard against the preceding text.
+   */
+  .band-feature + .band-content,
+  .band-content + .band-content,
+  .band-content + .band-feature,
+  .band-feature + .band-feature {
+    padding-block-start: 0;
+  }
+
+  /* Related bands join at the tight step (48px), so a section and its
+     follow-on read as one group rather than two topics. */
+  .band-tight {
+    padding-block: var(--band-y-tight);
+  }
+
+  /* The hero starts close under the header: its call to action has to end
+     above 680px on a 1280×720 screen. Below it, the route links
+     answer it at the tight step, so the two read as one opening. */
+  .hero-band {
+    padding-block: clamp(2.5rem, 1.5rem + 4vw, 5rem) var(--band-y-tight);
+  }
+
+  .band-inner {
+    margin-inline: auto;
+    width: 100%;
+    max-width: var(--w-content);
+    padding-inline: var(--band-x);
+  }
+
+  .band-inner-wide {
+    max-width: var(--w-wide);
+  }
+
+  .band-inner-prose {
+    max-width: var(--w-prose);
+  }
+
+  /* ===========================================================================
+     Surfaces
+     ---------------------------------------------------------------------------
+     A surface is defined by its fill and its shadow. A hairline border appears
+     only where two surfaces of the same fill meet, which is why it is a
+     separate modifier rather than part of `.surface`.
+     ========================================================================= */
+
+  .surface {
+    background: hsl(var(--card));
+    color: hsl(var(--card-foreground));
+    border-radius: var(--r-surface);
+    box-shadow: var(--e-1);
+  }
+
+  .surface-edge {
+    box-shadow:
+      var(--e-1),
+      inset 0 0 0 1px hsl(var(--border) / 0.6);
+  }
+
+  .surface-raised {
+    box-shadow: var(--e-2);
+  }
+
+  .surface-float {
+    box-shadow: var(--e-3);
+  }
+
+  /* Elevation encodes interaction, so lifting on hover is a shared behaviour
+     rather than something each card re-implements. */
+  .surface-interactive {
+    transition:
+      box-shadow var(--m-enter),
+      transform var(--m-enter);
+  }
+
+  .surface-interactive:hover {
+    box-shadow: var(--e-2);
+    transform: translateY(-2px);
+  }
+
+  .surface-interactive:focus-within {
+    box-shadow:
+      var(--e-2),
+      0 0 0 2px hsl(var(--ring));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .surface-interactive:hover {
+      transform: none;
+    }
+  }
+
+  /* ===========================================================================
+     Type roles
+     ---------------------------------------------------------------------------
+     Named roles rather than raw sizes, so a heading's importance is stated once
+     and the fluid scale is not re-derived per page.
+     ========================================================================= */
+
+  /* Tracking follows the typography preset: a fixed -0.03em was right
+     for a grotesk and wrong for a serif, and squeezed wide faces like
+     Unbounded into extra lines. A preset may set --display-letter-spacing
+     for the display size alone. */
+  .t-display {
+    font-family: var(--font-heading);
+    font-size: var(--t-display);
+    font-weight: var(--heading-weight, 700);
+    letter-spacing: var(
+      --display-letter-spacing,
+      var(--heading-letter-spacing, -0.03em)
+    );
+    line-height: 1.05;
+  }
+
+  .t-title {
+    font-family: var(--font-heading);
+    font-size: var(--t-title);
+    font-weight: var(--heading-weight, 700);
+    letter-spacing: var(--heading-letter-spacing, -0.02em);
+    line-height: 1.12;
+  }
+
+  .t-heading {
+    font-family: var(--font-heading);
+    font-size: var(--t-heading);
+    font-weight: var(--heading-weight, 700);
+    letter-spacing: var(--heading-letter-spacing, -0.015em);
+    line-height: 1.25;
+  }
+
+  .t-lead {
+    font-size: var(--t-lead);
+    line-height: 1.55;
+    color: hsl(var(--muted-foreground));
+  }
+
+  .t-micro {
+    font-size: var(--t-micro);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: hsl(var(--muted-foreground));
+  }
+
+  /* An eyebrow is a small label above a heading, in the meta voice: the
+     code face, sentence case, muted. Primary is for things you can act on
+, so a label no longer wears it. */
+  .t-eyebrow {
+    font-family: var(--font-code);
+    font-size: var(--t-micro);
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: hsl(var(--muted-foreground));
+  }
+
+  /* --- React Markdown --- */
+
+  .react-markdown {
+    @apply text-foreground;
+
+    /* Override any inline styles that might conflict */
+    * {
+      color: inherit !important;
+    }
+
+    a {
+      color: hsl(var(--primary)) !important;
+    }
+
+    code {
+      color: hsl(var(--foreground)) !important;
+      background-color: hsl(var(--muted)) !important;
+    }
+
+    blockquote {
+      color: hsl(var(--muted-foreground)) !important;
+    }
+  }
+}
+
+/* =============================================================================
+   UTILITIES
+   ============================================================================= */
+@layer utilities {
+  /* The focus indicator (F15, WCAG 2.4.7 / 2.4.11). Drawn with `outline`, so
+     Windows forced-colors mode keeps it, where a box-shadow ring vanishes;
+     the offset leaves a gap of ground between control and ring, which reads
+     on a filled button as well as on the page. Width and colour are tokens,
+     so the high-contrast presets draw it heavier. */
+  .focus-ring:focus-visible {
+    outline: var(--focus-width) solid hsl(var(--ring));
+    outline-offset: var(--focus-offset);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  /* Scrollbar Customization */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply bg-border/60 hover:bg-border rounded-full transition-colors;
+  }
+}

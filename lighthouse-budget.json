@@ -1,0 +1,15 @@
+{
+  "$comment": "V2-061. Medians of 3 Lighthouse 12.8 mobile runs must stay within these. Set from the V2-004 baselines (PERFORMANCE.md) plus measured noise: score -6, LCP +0.4 s, TBT +500 ms. Tighten in the commit that earns it.",
+  "pages": {
+    "/": { "minScore": 38, "maxLcp": 5.8, "maxTbt": 1650, "maxCls": 0.1 },
+    "/work/": { "minScore": 40, "maxLcp": 6.1, "maxTbt": 1500, "maxCls": 0.1 },
+    "/blog/": { "minScore": 45, "maxLcp": 5.3, "maxTbt": 1350, "maxCls": 0.1 },
+    "post": { "minScore": 46, "maxLcp": 5.4, "maxTbt": 1300, "maxCls": 0.1 },
+    "/contact/": {
+      "minScore": 45,
+      "maxLcp": 5.4,
+      "maxTbt": 1300,
+      "maxCls": 0.1
+    }
+  }
+}

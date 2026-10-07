@@ -1,0 +1,258 @@
+{
+  "exhaustive": { "nbHits": true, "typo": true },
+  "exhaustiveNbHits": true,
+  "exhaustiveTypo": true,
+  "hits": [
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "amatheus"
+        },
+        "title": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "OpenLogi"
+        },
+        "url": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "https://openlogi.org/en"
+        }
+      },
+      "_tags": ["story", "author_amatheus", "story_49355606"],
+      "author": "amatheus",
+      "children": [
+        49356052, 49356174, 49356189, 49356294, 49356516, 49356545, 49356565,
+        49356639, 49356751, 49356834, 49356844, 49357132, 49357198, 49357326,
+        49357408, 49357419, 49357470, 49357499, 49357537, 49357563, 49357665,
+        49357729, 49357786, 49357828, 49357921, 49357933, 49357962, 49357968,
+        49357978, 49358009, 49358053, 49358111, 49358208, 49358225, 49358226,
+        49358341, 49358343, 49358388, 49358507, 49358537, 49358564, 49358756,
+        49358887, 49358888, 49359114, 49359122, 49359157, 49359183, 49359312,
+        49359392, 49359430, 49359576, 49359585, 49359615, 49359627, 49359896,
+        49359923, 49360006, 49360057, 49360116, 49360445, 49360446, 49360536,
+        49360666, 49360728, 49361177, 49361337, 49361345, 49361509, 49361589,
+        49361877, 49361915, 49362159, 49362529, 49362735, 49362892, 49362919,
+        49363042, 49363191, 49363663, 49363915, 49364057, 49364165, 49364240,
+        49364265, 49364403, 49364579, 49365032, 49365483, 49366059, 49366331,
+        49366566, 49367696
+      ],
+      "created_at": "2026-08-19T01:58:28Z",
+      "created_at_i": 1787104708,
+      "num_comments": 399,
+      "objectID": "49355606",
+      "points": 1497,
+      "story_id": 49355606,
+      "title": "OpenLogi",
+      "updated_at": "2026-08-20T00:00:10Z",
+      "url": "https://openlogi.org/en"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "kareiva"
+        },
+        "title": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "A joke domain purchase turned in geopolitical warfare"
+        },
+        "url": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "https://sprocketfox.io/xssfox/2026/08/19/sondehub-and-war/"
+        }
+      },
+      "_tags": ["story", "author_kareiva", "story_49360015", "front_page"],
+      "author": "kareiva",
+      "children": [
+        49361475, 49361731, 49361804, 49361955, 49362133, 49362378, 49362440,
+        49362567, 49362667, 49362670, 49362749, 49362754, 49363058, 49363261,
+        49363367, 49363396, 49363496, 49363540, 49363706, 49364185, 49364238,
+        49364475, 49364668, 49364702, 49364734, 49364844, 49365237, 49365774,
+        49366151, 49366224, 49367017, 49367154, 49367225, 49367969
+      ],
+      "created_at": "2026-08-19T11:21:50Z",
+      "created_at_i": 1787138510,
+      "num_comments": 110,
+      "objectID": "49360015",
+      "points": 717,
+      "story_id": 49360015,
+      "title": "A joke domain purchase turned in geopolitical warfare",
+      "updated_at": "2026-08-20T00:00:56Z",
+      "url": "https://sprocketfox.io/xssfox/2026/08/19/sondehub-and-war/"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "exceptione"
+        },
+        "title": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "Devices with GrapheneOS support should be available in 2027"
+        },
+        "url": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "https://grapheneos.social/@GrapheneOS/117078064184215730"
+        }
+      },
+      "_tags": ["story", "author_exceptione", "story_49360242"],
+      "author": "exceptione",
+      "children": [
+        49360243, 49360267, 49360560, 49360564, 49360570, 49360601, 49360732,
+        49360904, 49360976, 49360979, 49361132, 49361315, 49361380, 49361686,
+        49361724, 49362238, 49362406, 49362407, 49362520, 49362830, 49362841,
+        49363066, 49363218, 49364269, 49364481, 49365501, 49366265, 49367979
+      ],
+      "created_at": "2026-08-19T11:46:58Z",
+      "created_at_i": 1787140018,
+      "num_comments": 360,
+      "objectID": "49360242",
+      "points": 569,
+      "story_id": 49360242,
+      "title": "Devices with GrapheneOS support should be available in 2027",
+      "updated_at": "2026-08-19T23:59:40Z",
+      "url": "https://grapheneos.social/@GrapheneOS/117078064184215730"
+    },
+    {
+      "_highlightResult": {
+        "author": { "matchLevel": "none", "matchedWords": [], "value": "rvz" },
+        "story_text": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "Previously: Stripe will reportedly acquire OpenRouter for $7B+ <a href=\"https://news.ycombinator.com/item?id=49323381\">https://news.ycombinator.com/item?id=49323381</a>"
+        },
+        "title": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "OpenRouter is joining Stripe"
+        },
+        "url": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "https://openrouter.ai/blog/announcements/openrouter-is-joining-stripe/"
+        }
+      },
+      "_tags": ["story", "author_rvz", "story_49364559", "front_page"],
+      "author": "rvz",
+      "children": [
+        49364942, 49364963, 49364978, 49364988, 49364993, 49365008, 49365061,
+        49365064, 49365087, 49365090, 49365106, 49365141, 49365147, 49365154,
+        49365190, 49365193, 49365209, 49365257, 49365263, 49365439, 49365481,
+        49365489, 49365534, 49365592, 49365599, 49365600, 49365701, 49365762,
+        49365794, 49365872, 49365913, 49365942, 49365994, 49366029, 49366070,
+        49366311, 49366381, 49366396, 49366400, 49366422, 49366437, 49366584,
+        49366735, 49366739, 49366755, 49366838, 49366919, 49366943, 49366967,
+        49367041, 49367090, 49367179, 49367421, 49367971, 49368002, 49368013,
+        49368034, 49368199, 49368345, 49368376, 49368440, 49368624, 49368755
+      ],
+      "created_at": "2026-08-19T17:32:38Z",
+      "created_at_i": 1787160758,
+      "num_comments": 306,
+      "objectID": "49364559",
+      "points": 568,
+      "story_id": 49364559,
+      "story_text": "Previously: Stripe will reportedly acquire OpenRouter for $7B+ <a href=\"https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=49323381\">https:&#x2F;&#x2F;news.ycombinator.com&#x2F;item?id=49323381</a>",
+      "title": "OpenRouter is joining Stripe",
+      "updated_at": "2026-08-20T00:00:56Z",
+      "url": "https://openrouter.ai/blog/announcements/openrouter-is-joining-stripe/"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "heydenberk"
+        },
+        "title": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "Moderna reports first positive Phase 3 for mRNA neoantigen therapy in melanoma"
+        },
+        "url": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "https://twitter.com/NoubarAfeyan/status/2090050162441752787"
+        }
+      },
+      "_tags": ["story", "author_heydenberk", "story_49361395"],
+      "author": "heydenberk",
+      "children": [
+        49361672, 49361718, 49361732, 49361867, 49361870, 49362064, 49362444,
+        49362849, 49362852, 49363039, 49363183, 49363187, 49363205, 49363207,
+        49363281, 49363506, 49364150, 49364178, 49364499, 49365499, 49367882,
+        49368629
+      ],
+      "created_at": "2026-08-19T13:33:35Z",
+      "created_at_i": 1787146415,
+      "num_comments": 243,
+      "objectID": "49361395",
+      "points": 510,
+      "story_id": 49361395,
+      "title": "Moderna reports first positive Phase 3 for mRNA neoantigen therapy in melanoma",
+      "updated_at": "2026-08-20T00:00:41Z",
+      "url": "https://twitter.com/NoubarAfeyan/status/2090050162441752787"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "downbad_"
+        },
+        "title": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "Remote workers report the highest well-being in study of 7,700 employees"
+        },
+        "url": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "https://www.colorado.edu/today/2026/08/12/remote-workers-report-highest-well-being-study-7700-employees"
+        }
+      },
+      "_tags": ["story", "author_downbad_", "story_49362934", "front_page"],
+      "author": "downbad_",
+      "children": [
+        49363248, 49363258, 49363283, 49363321, 49363325, 49363352, 49363377,
+        49363411, 49363416, 49363446, 49363537, 49363544, 49363709, 49363740,
+        49363783, 49363791, 49363877, 49363914, 49364041, 49364173, 49364239,
+        49364241, 49364263, 49364356, 49364421, 49364432, 49364487, 49364533,
+        49364585, 49364626, 49364632, 49364669, 49364675, 49364680, 49364742,
+        49364747, 49364817, 49365075, 49365226, 49365246, 49365546, 49365554,
+        49365867, 49366061, 49366090, 49366349, 49366472, 49366957, 49366990,
+        49367068, 49367724, 49367793, 49368113, 49368185, 49368300
+      ],
+      "created_at": "2026-08-19T15:32:08Z",
+      "created_at_i": 1787153528,
+      "num_comments": 233,
+      "objectID": "49362934",
+      "points": 463,
+      "story_id": 49362934,
+      "title": "Remote workers report the highest well-being in study of 7,700 employees",
+      "updated_at": "2026-08-20T00:00:56Z",
+      "url": "https://www.colorado.edu/today/2026/08/12/remote-workers-report-highest-well-being-study-7700-employees"
+    }
+  ],
+  "hitsPerPage": 6,
+  "nbHits": 39,
+  "nbPages": 7,
+  "page": 0,
+  "params": "tags=story&numericFilters=created_at_i%3E1787097651%2Cpoints%3E50&hitsPerPage=6&advancedSyntax=true&analyticsTags=backend",
+  "processingTimeMS": 2,
+  "processingTimingsMS": {
+    "_request": { "queue": 11, "roundTrip": 13 },
+    "fetch": { "total": 1 },
+    "total": 3
+  },
+  "query": "",
+  "serverTimeMS": 16
+}

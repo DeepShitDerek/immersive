@@ -1,0 +1,269 @@
+{
+  "exhaustive": { "nbHits": false, "typo": false },
+  "exhaustiveNbHits": false,
+  "exhaustiveTypo": false,
+  "hits": [
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "philliphaydon"
+        },
+        "title": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": ["postgres"],
+          "value": "Bye Bye Mongo, Hello <em>Postgres</em>"
+        },
+        "url": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": ["postgres"],
+          "value": "https://www.theguardian.com/info/2018/nov/30/bye-bye-mongo-hello-<em>postgres</em>"
+        }
+      },
+      "_tags": ["story", "author_philliphaydon", "story_18717168"],
+      "author": "philliphaydon",
+      "children": [
+        18717600, 18717643, 18717838, 18717922, 18718068, 18718154, 18718192,
+        18718207, 18718210, 18718364, 18718431, 18718447, 18718448, 18718483,
+        18718484, 18718488, 18718567, 18718593, 18718858, 18718869, 18718953,
+        18719035, 18719132, 18719135, 18719160, 18719195, 18719247, 18719259,
+        18719270, 18719336, 18719460, 18719650, 18719659, 18719678, 18720043,
+        18720134, 18720157, 18720194, 18720807, 18720830, 18720855, 18720875,
+        18721230, 18721356, 18721462, 18721544, 18721548, 18721702, 18721866,
+        18722375, 18722884, 18723458, 18723573, 18723633, 18723681, 18723921
+      ],
+      "created_at": "2018-12-19T17:08:53Z",
+      "created_at_i": 1545239333,
+      "num_comments": 417,
+      "objectID": "18717168",
+      "points": 1562,
+      "story_id": 18717168,
+      "title": "Bye Bye Mongo, Hello Postgres",
+      "updated_at": "2026-07-27T19:22:21Z",
+      "url": "https://www.theguardian.com/info/2018/nov/30/bye-bye-mongo-hello-postgres"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "kawera"
+        },
+        "title": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": ["postgres"],
+          "value": "Common mistakes in <em>PostgreS</em>QL"
+        },
+        "url": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": ["postgres"],
+          "value": "https://wiki.<em>postgres</em>ql.org/wiki/Don%27t_Do_This"
+        }
+      },
+      "_tags": ["story", "author_kawera", "story_19817531"],
+      "author": "kawera",
+      "children": [
+        19817614, 19817639, 19817645, 19817649, 19817655, 19817676, 19817695,
+        19817730, 19817736, 19817748, 19817765, 19817768, 19817882, 19817887,
+        19817952, 19818084, 19818128, 19818248, 19818432, 19818456, 19818809,
+        19818822, 19818858, 19819051, 19819289, 19819466, 19819675, 19819931,
+        19820771, 19820802, 19820867, 19820957, 19821013, 19821111, 19821325,
+        19821516, 19821803, 19822941, 19823590, 19823619, 19838075, 19838085
+      ],
+      "created_at": "2019-05-03T11:52:08Z",
+      "created_at_i": 1556884328,
+      "num_comments": 253,
+      "objectID": "19817531",
+      "points": 1084,
+      "story_id": 19817531,
+      "title": "Common mistakes in PostgreSQL",
+      "updated_at": "2025-09-03T09:48:45Z",
+      "url": "https://wiki.postgresql.org/wiki/Don%27t_Do_This"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "Dowwie"
+        },
+        "title": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": ["postgres"],
+          "value": "<em>Postgres</em> IDE in VS Code"
+        },
+        "url": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": ["postgres"],
+          "value": "https://techcommunity.microsoft.com/blog/adforpostgresql/announcing-a-new-ide-for-<em>postgres</em>ql-in-vs-code-from-microsoft/4414648"
+        }
+      },
+      "_tags": ["story", "author_Dowwie", "story_44073588"],
+      "author": "Dowwie",
+      "children": [
+        44073771, 44073784, 44073818, 44073820, 44073832, 44073836, 44073841,
+        44073842, 44073873, 44073898, 44073930, 44073950, 44073960, 44073963,
+        44074015, 44074016, 44074056, 44074099, 44074142, 44074156, 44074176,
+        44074185, 44074217, 44074233, 44074235, 44074253, 44074358, 44074386,
+        44074421, 44074480, 44074656, 44074675, 44074802, 44074851, 44074878,
+        44074959, 44075022, 44075099, 44075243, 44075263, 44075375, 44075471,
+        44075674, 44075739, 44075828, 44076152, 44076301, 44076313, 44076322,
+        44076353, 44076455, 44076518, 44076866, 44076936, 44077180, 44077279,
+        44077385, 44078131, 44078603, 44079049, 44080270, 44080366, 44080922,
+        44081568, 44081583
+      ],
+      "created_at": "2025-05-23T15:12:44Z",
+      "created_at_i": 1748013164,
+      "num_comments": 407,
+      "objectID": "44073588",
+      "points": 1040,
+      "story_id": 44073588,
+      "title": "Postgres IDE in VS Code",
+      "updated_at": "2026-06-12T09:27:46Z",
+      "url": "https://techcommunity.microsoft.com/blog/adforpostgresql/announcing-a-new-ide-for-postgresql-in-vs-code-from-microsoft/4414648"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "Tostino"
+        },
+        "title": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": ["postgres"],
+          "value": "<em>PostgreS</em>QL 10 Released"
+        },
+        "url": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": ["postgres"],
+          "value": "https://www.<em>postgres</em>ql.org/about/news/1786/"
+        }
+      },
+      "_tags": ["story", "author_Tostino", "story_15408800"],
+      "author": "Tostino",
+      "children": [
+        15408838, 15409213, 15409296, 15409298, 15409305, 15409340, 15409363,
+        15409386, 15409426, 15409472, 15409489, 15409661, 15409679, 15409781,
+        15409788, 15409798, 15409799, 15409879, 15410355, 15410427, 15410623,
+        15410918, 15411885, 15412166, 15412592, 15412870, 15415037
+      ],
+      "created_at": "2017-10-05T13:06:45Z",
+      "created_at_i": 1507208805,
+      "num_comments": 296,
+      "objectID": "15408800",
+      "points": 1024,
+      "story_id": 15408800,
+      "title": "PostgreSQL 10 Released",
+      "updated_at": "2025-12-14T20:47:23Z",
+      "url": "https://www.postgresql.org/about/news/1786/"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "anarazel"
+        },
+        "title": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": ["postgres"],
+          "value": "<em>Postgres</em> gets support for upsert"
+        },
+        "url": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": ["postgres"],
+          "value": "http://git.<em>postgres</em>ql.org/gitweb/?p=<em>postgres</em>ql.git;a=commit;h=168d5805e4c08bed7b95d351bf097cff7c07dd65"
+        }
+      },
+      "_tags": ["story", "author_anarazel", "story_9509870"],
+      "author": "anarazel",
+      "children": [
+        9509918, 9509929, 9509932, 9509937, 9509947, 9509960, 9509964, 9509999,
+        9510009, 9510014, 9510015, 9510020, 9510022, 9510165, 9510187, 9510202,
+        9510257, 9510261, 9510361, 9510416, 9510427, 9510844, 9511371, 9511570,
+        9511689, 9512071, 9512139, 9512176, 9512215, 9512266, 9512805, 9512960,
+        9513106, 9515624, 9515860, 9516247, 9516524, 9517006, 9519689
+      ],
+      "created_at": "2015-05-08T03:48:44Z",
+      "created_at_i": 1431056924,
+      "num_comments": 109,
+      "objectID": "9509870",
+      "points": 1003,
+      "story_id": 9509870,
+      "title": "Postgres gets support for upsert",
+      "updated_at": "2026-08-04T01:50:59Z",
+      "url": "http://git.postgresql.org/gitweb/?p=postgresql.git;a=commit;h=168d5805e4c08bed7b95d351bf097cff7c07dd65"
+    },
+    {
+      "_highlightResult": {
+        "author": {
+          "matchLevel": "none",
+          "matchedWords": [],
+          "value": "kiwicopple"
+        },
+        "story_text": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": ["postgres"],
+          "value": "hey HN. this is a Language Server[0] designed specifically for <em>Postgres</em>. A language server adds features to IDEs (VSCode, NeoVim, etc) - features like auto-complete, go-to-definition, or documentation on hover, etc.<p>there have been previous attempts at adding <em>Postgres</em> support to code editors. usually these attempts implement a generic SQL parser and then offer various &quot;flavours&quot; of SQL.<p>This attempt is different because it uses the actual <em>Postgres</em> parser to do the heavy-lifting. This is done via libg_query, an excellent C library for accessing the <em>PostgreS</em>QL parser outside of the server. We feel this is a better approach because it gives developers 100% confidence in the parser, and it allows us to keep up with the rapid development of <em>Postgres</em>.<p>this is still in early development, and mostly useful for testers/collaborators. the majority of work is still ahead, but we've verified that the approach works. we're making it public now so that we can develop it in the open with input from the community.<p>a lot of the credit belongs to pganalyze[1] for their work on libpg_query, and to psteinroe (<a href=\"https://github.com/psteinroe\">https://github.com/psteinroe</a>) who the creator and maintainer.<p>[0] LSP: <a href=\"https://microsoft.github.io/language-server-protocol/\" rel=\"nofollow noreferrer\">https://microsoft.github.io/language-server-protocol/</a><p>[1] pganalyze: <a href=\"https://pganalyze.com/\" rel=\"nofollow noreferrer\">https://pganalyze.com/</a>"
+        },
+        "title": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": ["postgres"],
+          "value": "<em>Postgres</em> Language Server"
+        },
+        "url": {
+          "fullyHighlighted": false,
+          "matchLevel": "full",
+          "matchedWords": ["postgres"],
+          "value": "https://github.com/supabase/<em>postgres</em>_lsp"
+        }
+      },
+      "_tags": ["story", "author_kiwicopple", "story_37020610"],
+      "author": "kiwicopple",
+      "children": [
+        37020612, 37020734, 37020804, 37020940, 37021091, 37021248, 37021366,
+        37021528, 37021691, 37021703, 37021734, 37021914, 37022043, 37022173,
+        37022277, 37022816, 37022914, 37023150, 37023345, 37023959, 37024209,
+        37024333, 37024620, 37025482, 37025540, 37027216, 37028597, 37030092,
+        37030182, 37030196, 37031988
+      ],
+      "created_at": "2023-08-06T10:26:54Z",
+      "created_at_i": 1691317614,
+      "num_comments": 119,
+      "objectID": "37020610",
+      "points": 963,
+      "story_id": 37020610,
+      "story_text": "hey HN. this is a Language Server[0] designed specifically for Postgres. A language server adds features to IDEs (VSCode, NeoVim, etc) - features like auto-complete, go-to-definition, or documentation on hover, etc.<p>there have been previous attempts at adding Postgres support to code editors. usually these attempts implement a generic SQL parser and then offer various &quot;flavours&quot; of SQL.<p>This attempt is different because it uses the actual Postgres parser to do the heavy-lifting. This is done via libg_query, an excellent C library for accessing the PostgreSQL parser outside of the server. We feel this is a better approach because it gives developers 100% confidence in the parser, and it allows us to keep up with the rapid development of Postgres.<p>this is still in early development, and mostly useful for testers&#x2F;collaborators. the majority of work is still ahead, but we&#x27;ve verified that the approach works. we&#x27;re making it public now so that we can develop it in the open with input from the community.<p>a lot of the credit belongs to pganalyze[1] for their work on libpg_query, and to psteinroe (<a href=\"https:&#x2F;&#x2F;github.com&#x2F;psteinroe\">https:&#x2F;&#x2F;github.com&#x2F;psteinroe</a>) who the creator and maintainer.<p>[0] LSP: <a href=\"https:&#x2F;&#x2F;microsoft.github.io&#x2F;language-server-protocol&#x2F;\" rel=\"nofollow noreferrer\">https:&#x2F;&#x2F;microsoft.github.io&#x2F;language-server-protocol&#x2F;</a><p>[1] pganalyze: <a href=\"https:&#x2F;&#x2F;pganalyze.com&#x2F;\" rel=\"nofollow noreferrer\">https:&#x2F;&#x2F;pganalyze.com&#x2F;</a>",
+      "title": "Postgres Language Server",
+      "updated_at": "2025-10-06T20:39:30Z",
+      "url": "https://github.com/supabase/postgres_lsp"
+    }
+  ],
+  "hitsPerPage": 6,
+  "nbHits": 14917,
+  "nbPages": 167,
+  "page": 0,
+  "params": "query=postgres&tags=story&hitsPerPage=6&advancedSyntax=true&analyticsTags=backend",
+  "processingTimeMS": 14,
+  "processingTimingsMS": {
+    "_request": { "queue": 93, "roundTrip": 20 },
+    "fetch": { "query": 6, "scanning": 6, "total": 13 },
+    "total": 14
+  },
+  "query": "postgres",
+  "serverTimeMS": 108
+}

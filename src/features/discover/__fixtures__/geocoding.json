@@ -1,0 +1,30 @@
+{
+  "results": [
+    {
+      "id": 1275339,
+      "name": "Mumbai",
+      "latitude": 19.07283,
+      "longitude": 72.88261,
+      "elevation": 8.0,
+      "feature_code": "PPLA",
+      "country_code": "IN",
+      "admin1_id": 1264418,
+      "timezone": "Asia/Kolkata",
+      "population": 12691836,
+      "country_id": 1269750,
+      "country": "India",
+      "admin1": "Maharashtra"
+    },
+    { "id": 999, "name": "No coordinates" },
+    {
+      "id": 6058560,
+      "name": "London",
+      "latitude": 42.98339,
+      "longitude": -81.23304,
+      "country": "Canada",
+      "admin1": "Ontario",
+      "timezone": "America/Toronto"
+    }
+  ],
+  "generationtime_ms": 0.5
+}

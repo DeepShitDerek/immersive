@@ -1,0 +1,10 @@
+{
+  "/": 351,
+  "/about": 344,
+  "/work": 343,
+  "/blog": 346,
+  "/blog/[slug]": 348,
+  "/work/[slug]": 344,
+  "/contact": 378,
+  "/updates": 347
+}

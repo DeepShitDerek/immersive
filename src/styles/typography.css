@@ -1,0 +1,420 @@
+/* =============================================================================
+   TYPOGRAPHY PRESETS
+   -----------------------------------------------------------------------------
+   Replaces the TYPOGRAPHY PRESETS block in themes.css. Same constraints as the
+   theme layer: raw CSS, no @layer, no @apply — classes are applied to <html>
+   at runtime so Tailwind must not tree-shake them.
+
+   Registry: TYPOGRAPHY_PRESETS in src/lib/constants.ts.
+
+   WHAT'S NEW IN THIS VERSION
+   1. Two tokens added per preset: --body-line-height and --heading-line-height.
+      Leading is not a global constant — Lora needs ~1.75 to breathe while Geist
+      is comfortable at 1.6. Every preset previously inherited one line-height
+      from the base layer, which is why the serif presets read cramped.
+   2. Real fallback stacks. Every preset had a bare `sans-serif` / `serif`
+      fallback, so a slow font load flashed Times New Roman. The stacks below
+      fall through system faces with similar metrics first.
+   3. font-optical-sizing: auto — Fraunces, Bricolage Grotesque and Instrument
+      Serif all carry an `opsz` axis that was going unused.
+   4. Tabular numerals on data surfaces. Proportional digits make a column of
+      figures jitter; the finance and analytics screens in this app are full of
+      them.
+   5. Ligature control. Fira Code and JetBrains Mono ship `=>` and `!=`
+      ligatures on by default, which is right in a code block and wrong in an
+      input where the caret then sits between glyphs that render as one.
+   ============================================================================= */
+
+/* --- Shared fallback stacks -------------------------------------------------
+   Declared once as tokens so a preset can compose rather than repeat them.
+   Note CSS custom properties are substituted as raw text, so these compose
+   correctly inside a font-family list. */
+:root {
+  --stack-sans:
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+    "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
+  --stack-serif: Iowan Old Style, Palatino, Georgia, "Times New Roman", serif;
+  --stack-mono:
+    ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono",
+    monospace;
+}
+
+/* =========================================
+   0. Developer Default — Space Grotesk + Inter + JetBrains Mono
+   The house default. Neutral enough to disappear, distinctive enough to be a
+   choice. Unchanged pairing; tracking and leading tuned.
+   ========================================= */
+:root,
+.typo-default {
+  --font-heading: "Space Grotesk", var(--stack-sans);
+  --font-body: "Inter", var(--stack-sans);
+  --font-code: "JetBrains Mono", var(--stack-mono);
+  --heading-weight: 700;
+  --heading-letter-spacing: -0.02em;
+  --heading-line-height: 1.15;
+  --body-letter-spacing: 0em;
+  --body-line-height: 1.65;
+}
+
+/* =========================================
+   1. Product UI — Geist + Geist Mono
+   WAS: Space Grotesk + Inter + Fira Code, which was byte-identical to the
+   default apart from the code face — two slots, one pairing.
+   Now a single-family system (weight and size carry the hierarchy, not a
+   second typeface), which is what Vercel, Linear and Stripe actually ship and
+   what this preset's description always claimed.
+   ========================================= */
+.typo-modern-tech {
+  --font-heading: "Geist", var(--stack-sans);
+  --font-body: "Geist", var(--stack-sans);
+  --font-code: "Geist Mono", var(--stack-mono);
+  --heading-weight: 700;
+  --heading-letter-spacing: -0.025em;
+  --heading-line-height: 1.12;
+  --body-letter-spacing: -0.005em;
+  --body-line-height: 1.6;
+}
+
+/* =========================================
+   2. Quiet Geometric — Onest
+   WAS: Outfit + DM Sans. Both are geometric sans of near-identical width and
+   x-height, so the pairing had almost no heading/body contrast — it read as
+   one font rendered at two sizes, without the deliberateness of actually
+   being one font. Now it is one font, on purpose.
+   ========================================= */
+.typo-geometric {
+  --font-heading: "Onest", var(--stack-sans);
+  --font-body: "Onest", var(--stack-sans);
+  --font-code: "JetBrains Mono", var(--stack-mono);
+  --heading-weight: 700;
+  --heading-letter-spacing: -0.022em;
+  --heading-line-height: 1.15;
+  --body-letter-spacing: 0em;
+  --body-line-height: 1.65;
+}
+
+/* =========================================
+   3. Editorial Serif — Playfair Display + DM Sans + Fira Code
+   Pairing kept — it is still the reference high-contrast editorial combination.
+   FIX: heading tracking was -0.03em. Playfair is a didone; its hairlines and
+   tight counters close up under negative tracking and the caps start to touch
+   at display sizes. Relaxed to -0.012em.
+   ========================================= */
+.typo-editorial {
+  --font-heading: "Playfair Display", var(--stack-serif);
+  --font-body: "DM Sans", var(--stack-sans);
+  --font-code: "Fira Code", var(--stack-mono);
+  --heading-weight: 700;
+  --heading-letter-spacing: -0.012em;
+  --heading-line-height: 1.14;
+  --body-letter-spacing: 0.005em;
+  --body-line-height: 1.68;
+}
+
+/* =========================================
+   4. Elegant Minimal — Instrument Serif + Manrope + IBM Plex Mono
+   Kept as-is. Instrument Serif only ships a 400, so --heading-weight: 400 is
+   correct rather than a compromise; a 700 request would synthesise a fake bold.
+   ========================================= */
+.typo-elegant {
+  --font-heading: "Instrument Serif", var(--stack-serif);
+  --font-body: "Manrope", var(--stack-sans);
+  --font-code: "IBM Plex Mono", var(--stack-mono);
+  --heading-weight: 400;
+  --heading-letter-spacing: -0.005em;
+  --heading-line-height: 1.1;
+  --body-letter-spacing: 0.01em;
+  --body-line-height: 1.7;
+}
+
+/* =========================================
+   5. Bold & Expressive — Bricolage Grotesque + Inter
+   WAS: Bricolage Grotesque + Outfit. Bricolage is a loud, high-contrast
+   display face; Outfit is also a display-leaning geometric. Two characterful
+   faces competing meant neither won. Inter is the grounding body the pairing
+   is normally cited with, and it lets Bricolage be the only voice in the room.
+   ========================================= */
+.typo-bold-quirky {
+  --font-heading: "Bricolage Grotesque", var(--stack-sans);
+  --font-body: "Inter", var(--stack-sans);
+  --font-code: "JetBrains Mono", var(--stack-mono);
+  --heading-weight: 800;
+  --heading-letter-spacing: -0.03em;
+  --heading-line-height: 1.05;
+  --body-letter-spacing: 0em;
+  --body-line-height: 1.65;
+}
+
+/* =========================================
+   6. Futuristic — Unbounded + Sora + Fira Code
+   Pairing kept.
+   FIX: heading tracking was -0.01em. Unbounded is a wide, rounded display face
+   whose whole identity is generous width; pulling it tighter fights the design
+   and jams the round terminals together. Set to 0.
+   ========================================= */
+.typo-futuristic {
+  --font-heading: "Unbounded", var(--stack-sans);
+  --font-body: "Sora", var(--stack-sans);
+  --font-code: "Fira Code", var(--stack-mono);
+  --heading-weight: 700;
+  --heading-letter-spacing: 0em;
+  --heading-line-height: 1.2;
+  --body-letter-spacing: 0.01em;
+  --body-line-height: 1.7;
+}
+
+/* =========================================
+   7. Classic Professional — Libre Baskerville + Plus Jakarta Sans
+   Pairing kept.
+   FIX: tracking relaxed from -0.01em to -0.004em. Libre Baskerville was drawn
+   for body text at small sizes — it has a tall x-height and wide counters, and
+   negative tracking at heading sizes makes it look condensed rather than
+   authoritative.
+   ========================================= */
+.typo-classic-pro {
+  --font-heading: "Libre Baskerville", var(--stack-serif);
+  --font-body: "Plus Jakarta Sans", var(--stack-sans);
+  --font-code: "IBM Plex Mono", var(--stack-mono);
+  --heading-weight: 700;
+  --heading-letter-spacing: -0.004em;
+  --heading-line-height: 1.25;
+  --body-letter-spacing: 0.005em;
+  --body-line-height: 1.7;
+}
+
+/* =========================================
+   8. NEW — Long-form Reading — Instrument Sans + Lora + IBM Plex Mono
+   The set had no serif *body*. Every serif was a display face over a sans body,
+   which is the right call for a landing page and the wrong one for a 3,000-word
+   post. Lora is screen-optimised with sturdy, slightly calligraphic strokes
+   that hold up at 16-18px; Instrument Sans keeps the headings crisp so the page
+   does not read as a novel.
+   ========================================= */
+.typo-longform {
+  --font-heading: "Instrument Sans", var(--stack-sans);
+  --font-body: "Lora", var(--stack-serif);
+  --font-code: "IBM Plex Mono", var(--stack-mono);
+  --heading-weight: 600;
+  --heading-letter-spacing: -0.02em;
+  --heading-line-height: 1.2;
+  --body-letter-spacing: 0em;
+  --body-line-height: 1.78;
+}
+
+/* =========================================
+   9. NEW — Data & Authority — Fraunces + Chivo + IBM Plex Mono
+   Fraunces is a variable old-style serif with SOFT and WONK axes; at high
+   weight it carries institutional authority without the fragility of a didone.
+   Chivo is a grotesque that handles dense numeric tables without looking out of
+   place beneath a serif — which matters here, because this admin is full of
+   finance and analytics tables.
+   ========================================= */
+.typo-authority {
+  --font-heading: "Fraunces", var(--stack-serif);
+  --font-body: "Chivo", var(--stack-sans);
+  --font-code: "IBM Plex Mono", var(--stack-mono);
+  --heading-weight: 700;
+  --heading-letter-spacing: -0.01em;
+  --heading-line-height: 1.18;
+  --body-letter-spacing: 0em;
+  --body-line-height: 1.66;
+}
+
+/* =========================================
+   10. NEW — Terminal — JetBrains Mono headings + Inter body
+   You ship theme-terminal, theme-matrix and theme-cyberpunk but had no
+   typography to match them; every CRT theme rendered its headings in a
+   geometric sans.
+   NOTE the POSITIVE heading tracking. Monospace faces are drawn on a fixed
+   advance width and already look tight in caps at display sizes; the negative
+   tracking every other preset uses would jam them. This is the one preset where
+   letter-spacing goes the other way.
+   ========================================= */
+.typo-terminal {
+  --font-heading: "JetBrains Mono", var(--stack-mono);
+  --font-body: "Inter", var(--stack-sans);
+  --font-code: "JetBrains Mono", var(--stack-mono);
+  --heading-weight: 700;
+  --heading-letter-spacing: 0.01em;
+  --heading-line-height: 1.3;
+  --body-letter-spacing: 0em;
+  --body-line-height: 1.65;
+}
+
+/* =========================================
+   11. NEW — System — no webfont at all
+   Zero network cost, zero layout shift, instant first paint, and it looks
+   native on every platform. Worth offering on principle: it is the only preset
+   that costs a visitor nothing, and on a slow connection it is the only one
+   that renders immediately.
+   ========================================= */
+.typo-system {
+  --font-heading: var(--stack-sans);
+  --font-body: var(--stack-sans);
+  --font-code: var(--stack-mono);
+  --heading-weight: 700;
+  --heading-letter-spacing: -0.021em;
+  --heading-line-height: 1.15;
+  --body-letter-spacing: 0em;
+  --body-line-height: 1.6;
+}
+
+/* =============================================================================
+   APPLICATION
+   ============================================================================= */
+
+body {
+  font-family: var(--font-body);
+  letter-spacing: var(--body-letter-spacing);
+  line-height: var(--body-line-height);
+  /* Fraunces, Bricolage Grotesque and Instrument Serif all carry an `opsz`
+     axis. Without this the browser renders a single optical size at every
+     scale, which is most of the point of those families gone to waste. */
+  font-optical-sizing: auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.font-heading {
+  font-family: var(--font-heading);
+  letter-spacing: var(--heading-letter-spacing);
+  line-height: var(--heading-line-height);
+}
+
+/* Preset heading weight, on bare elements only: a font-* utility class always
+   outranks these element selectors, so explicit weights in components still win
+   while presets that ask for a lighter or chunkier default (elegant 400,
+   bold-quirky 800) actually get it. */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: var(--heading-weight);
+}
+
+/* Nav, controls and form fields follow the body face. */
+nav,
+button,
+input,
+textarea,
+select {
+  font-family: var(--font-body);
+  letter-spacing: var(--body-letter-spacing);
+}
+
+/* Code surfaces follow the code face. `code` inside prose is styled further in
+   global.css; this only fixes the family so a preset switch reaches it. */
+code,
+kbd,
+samp,
+pre,
+.font-code {
+  font-family: var(--font-code);
+}
+
+/* --- Ligatures --------------------------------------------------------------
+   On in code blocks, where `=>` and `!==` reading as single glyphs is the point.
+   Off wherever a caret can land between the two characters that form them —
+   an input, a textarea, or the editor — because the caret then sits inside a
+   glyph and cursor position stops matching what the eye sees. */
+pre,
+pre code,
+.font-code {
+  font-variant-ligatures: contextual common-ligatures;
+  font-feature-settings:
+    "calt" 1,
+    "liga" 1;
+}
+
+input,
+textarea,
+[contenteditable="true"],
+.novel-editor .ProseMirror {
+  font-variant-ligatures: none;
+  font-feature-settings:
+    "calt" 0,
+    "liga" 0;
+}
+
+/* --- Numerals ---------------------------------------------------------------
+   Proportional digits are correct in prose and wrong in a column of figures:
+   a "1" is narrower than a "8" in most of these faces, so the decimal points
+   in a transactions table drift out of alignment row to row.
+
+   Applied to table cells and to an opt-in utility for cards and stat blocks.
+   `slashed-zero` is included on code and data surfaces so 0 and O are
+   distinguishable in a serial number or an ID. */
+table td,
+table th,
+.tabular-nums,
+[data-numeric],
+code,
+kbd,
+samp,
+pre {
+  font-variant-numeric: tabular-nums slashed-zero;
+  font-feature-settings:
+    "tnum" 1,
+    "zero" 1;
+}
+
+/* Headings that are themselves numbers — stat grids, impact figures — want
+   tabular alignment and lining figures rather than old-style. Fraunces and
+   Playfair both default to figures that sit below the baseline. */
+.stat-figure,
+.font-numeric {
+  font-variant-numeric: tabular-nums lining-nums;
+  font-feature-settings:
+    "tnum" 1,
+    "lnum" 1;
+}
+
+/* --- Rendering --------------------------------------------------------------
+   Kept minimal on purpose. `text-rendering: optimizeLegibility` is deliberately
+   NOT set: it enables kerning and ligatures at the cost of a documented
+   rendering stall on long pages in Chrome and Safari, and the families here
+   already ship sensible defaults. */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Respect a reader who has asked their OS for larger text: none of the presets
+   set a fixed root size, so rem-based scales follow the browser setting. This
+   is here as a reminder not to add `html { font-size: 14px }` later. */
+
+/* --- Contemporary — Funnel Display over Funnel Sans (2025–26) --------------
+   A designed pair: the display cut is tight and slightly condensed with real
+   character, the text cut is its calm sibling. Geist Mono, which the pair's
+   own specimens use, for code. */
+.typo-contemporary {
+  --font-heading: "Funnel Display", var(--stack-sans);
+  --font-body: "Funnel Sans", var(--stack-sans);
+  --font-code: "Geist Mono", var(--stack-mono);
+  --heading-weight: 700;
+  --heading-letter-spacing: -0.025em;
+  --heading-line-height: 1.05;
+  --body-letter-spacing: 0;
+  --body-line-height: 1.65;
+}
+
+/* --- Modern Editorial — Newsreader over Figtree ---------------------------
+   Newsreader is an optical-size serif drawn for screens: its large sizes get
+   finer, higher-contrast detail automatically. Figtree is a clear, friendly
+   geometric sans that holds at body sizes. */
+.typo-modern-editorial {
+  --font-heading: "Newsreader", var(--stack-serif);
+  --font-body: "Figtree", var(--stack-sans);
+  --font-code: "JetBrains Mono", var(--stack-mono);
+  --heading-weight: 500;
+  --heading-letter-spacing: -0.015em;
+  --heading-line-height: 1.1;
+  --body-letter-spacing: 0;
+  --body-line-height: 1.7;
+}

@@ -1,0 +1,160 @@
+name: Supabase Heartbeat Monitor
+
+on:
+  schedule:
+    # Run every 24 hours (00:00 UTC)
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  health-check:
+    runs-on: ubuntu-latest
+    steps:
+      # 0. Detect mode — skip entirely for static portfolios (no Supabase secret set)
+      - name: Detect mode
+        id: mode
+        env:
+          URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+        run: |
+          if [ -z "$URL" ]; then
+            echo "::notice::Static mode detected (no NEXT_PUBLIC_SUPABASE_URL secret) — skipping heartbeat"
+            echo "enabled=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "enabled=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # 1. Ping Database
+      - name: 💓 Ping Supabase Database
+        id: ping
+        if: steps.mode.outputs.enabled == 'true'
+        env:
+          SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
+        run: |
+          HTTP_STATUS=$(curl -s -w "%{http_code}" -o response.json \
+            -X POST \
+            -H "apikey: $SUPABASE_ANON_KEY" \
+            -H "Authorization: Bearer $SUPABASE_ANON_KEY" \
+            -H "Content-Type: application/json" \
+            "$SUPABASE_URL/rest/v1/rpc/ping")
+
+          echo "HTTP_STATUS=$HTTP_STATUS" >> $GITHUB_ENV
+          RESPONSE_BODY=$(cat response.json)
+          echo "RESPONSE_BODY=$RESPONSE_BODY" >> $GITHUB_ENV
+
+      # 2. Fetch Fun Content (Random rotation)
+      - name: 🎲 Fetch Random Fun Content
+        id: fun_content
+        if: steps.mode.outputs.enabled == 'true'
+        run: |
+          # Generate random number 0-1
+          RAND=$(( $RANDOM % 2 ))
+          
+          if [ $RAND -eq 0 ]; then
+            # Fetch Programming Joke
+            TYPE="👨‍💻 Dev Joke"
+            CONTENT=$(curl -s "https://v2.jokeapi.dev/joke/Programming?blacklistFlags=nsfw,religious,political,racist,sexist&type=single" | jq -r '.joke')
+          
+          else
+            # Fetch Random Fact
+            TYPE="🧠 Did you know?"
+            CONTENT=$(curl -s "https://uselessfacts.jsph.pl/api/v2/facts/random" | jq -r '.text')
+          fi
+
+          # Fallback if API fails or returns null
+          if [ -z "$CONTENT" ] || [ "$CONTENT" == "null" ]; then
+            TYPE="ℹ️ Backup Fact"
+            CONTENT="This workflow keeps your free-tier Supabase project alive by preventing the 7-day inactivity pause."
+          fi
+
+          # Export to Env (Multilines supported for quotes)
+          echo "FUN_TYPE=$TYPE" >> $GITHUB_ENV
+          echo "FUN_CONTENT<<EOF" >> $GITHUB_ENV
+          echo "$CONTENT" >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
+
+      # 3. Send to Discord
+      - name: 📡 Broadcast to Discord
+        if: always() && steps.mode.outputs.enabled == 'true'
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          HTTP_STATUS: ${{ env.HTTP_STATUS }}
+          RESPONSE_BODY: ${{ env.RESPONSE_BODY }}
+          FUN_TYPE: ${{ env.FUN_TYPE }}
+          FUN_CONTENT: ${{ env.FUN_CONTENT }}
+          REPO_NAME: ${{ github.repository }}
+          RUN_URL: "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+        run: |
+          # Guard: skip silently if no webhook secret is configured
+          if [ -z "$DISCORD_WEBHOOK" ]; then
+            echo "::notice::No DISCORD_WEBHOOK_URL secret configured — skipping Discord broadcast"
+            exit 0
+          fi
+
+          if [ "$HTTP_STATUS" == "200" ]; then
+            COLOR=5763719  # Green
+            TITLE="✅ System Nominal"
+            DESC="**Supabase Database is Active.**"
+            FIELD_NAME="Response"
+            FIELD_VALUE="\`$RESPONSE_BODY\`"
+          else
+            COLOR=15548997 # Red
+            TITLE="⚠️ System Alert"
+            DESC="**Supabase Ping Failed!**\nYour database might be paused."
+            FIELD_NAME="Error Code"
+            FIELD_VALUE="\`$HTTP_STATUS\`"
+          fi
+
+          TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%S.000Z")
+
+          # Construct Payload
+          PAYLOAD=$(jq -n \
+            --arg title "$TITLE" \
+            --arg desc "$DESC" \
+            --arg color "$COLOR" \
+            --arg url "$RUN_URL" \
+            --arg f_name "$FIELD_NAME" \
+            --arg f_val "$FIELD_VALUE" \
+            --arg fun_title "$FUN_TYPE" \
+            --arg fun_val "$FUN_CONTENT" \
+            --arg footer "GitHub Actions • $REPO_NAME" \
+            --arg timestamp "$TIMESTAMP" \
+            '{
+              username: "Supabase Monitor",
+              avatar_url: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png",
+              embeds: [{
+                title: $title,
+                description: $desc,
+                url: $url,
+                color: ($color | tonumber),
+                fields: [
+                  {
+                    name: "Latency Check",
+                    value: "Active",
+                    inline: true
+                  },
+                  {
+                    name: $f_name,
+                    value: $f_val,
+                    inline: true
+                  },
+                  {
+                    name: " ",
+                    value: " "
+                  },
+                  {
+                    name: $fun_title,
+                    value: $fun_val
+                  }
+                ],
+                footer: {
+                  text: $footer
+                },
+                timestamp: $timestamp
+              }]
+            }'
+          )
+
+          curl -H "Content-Type: application/json" \
+               -d "$PAYLOAD" \
+               "$DISCORD_WEBHOOK"
