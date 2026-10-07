@@ -75,7 +75,7 @@ export async function launch() {
     { stdio: "ignore" },
   );
   let wsUrl;
-  for (let i = 0; i < 60 && !wsUrl; i += 1) {
+  for (let i = 0; i < 300 && !wsUrl; i += 1) {
     try {
       wsUrl = (
         await (await fetch(`http://127.0.0.1:${port}/json/list`)).json()

@@ -89,13 +89,20 @@ const chrome = spawn(
   { stdio: "ignore" },
 );
 let wsUrl;
-for (let i = 0; i < 60 && !wsUrl; i++) {
+for (let i = 0; i < 300 && !wsUrl; i++) {
   try {
     wsUrl = (
       await (await fetch(`http://127.0.0.1:${port}/json/list`)).json()
     ).find((t) => t.type === "page")?.webSocketDebuggerUrl;
   } catch {}
   await sleep(200);
+}
+// A busy runner can take a while to bring Chrome up; give up with a reason
+// and not with a WebSocket error about an undefined address.
+if (!wsUrl) {
+  console.error("Chrome did not start within a minute.");
+  chrome.kill();
+  process.exit(1);
 }
 const ws = new WebSocket(wsUrl);
 await new Promise((r) => ws.addEventListener("open", r, { once: true }));
