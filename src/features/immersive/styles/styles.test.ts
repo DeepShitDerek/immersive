@@ -186,3 +186,55 @@ describe("styleCss", () => {
     expect(css).not.toContain("<");
   });
 });
+
+describe("status colours in the workspace", () => {
+  // "142 60% 55%" → [r, g, b] in 0–255.
+  const rgbOfHsl = (value: string) => {
+    const [h, s, l] = value
+      .replace(/%/g, "")
+      .split(" ")
+      .map(Number)
+      .map((n, i) => (i === 0 ? n : n / 100));
+    const a = s * Math.min(l, 1 - l);
+    const f = (n: number) => {
+      const k = (n + h / 30) % 12;
+      return (l - a * Math.max(-1, Math.min(k - 3, 9 - k, 1))) * 255;
+    };
+    return [f(0), f(8), f(4)];
+  };
+  const rgbOfHex = (hex: string) =>
+    [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
+  const luminance = (rgb: number[]) => {
+    const [r, g, b] = rgb.map((c) => {
+      const v = c / 255;
+      return v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4;
+    });
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+  };
+  const contrast = (a: number[], b: number[]) => {
+    const [hi, lo] = [luminance(a), luminance(b)].sort((x, y) => y - x);
+    return (hi + 0.05) / (lo + 0.05);
+  };
+  const tint = (colour: number[], ground: number[], amount: number) =>
+    colour.map((c, i) => c * amount + ground[i] * (1 - amount));
+
+  it.each(defs)(
+    "$id: success, warning, info and destructive read on a card and on their own tint",
+    (def) => {
+      // A date chip is the status colour on a 10% tint of itself, on a card.
+      const vars = styleVars(def);
+      const card = rgbOfHex(def.colors.surface);
+      for (const name of ["success", "warning", "info", "destructive"]) {
+        const colour = rgbOfHsl(vars[`--${name}`]);
+        expect(
+          contrast(colour, card),
+          `${name} on card`,
+        ).toBeGreaterThanOrEqual(4.5);
+        expect(
+          contrast(colour, tint(colour, card, 0.1)),
+          `${name} on its tint`,
+        ).toBeGreaterThanOrEqual(4.5);
+      }
+    },
+  );
+});

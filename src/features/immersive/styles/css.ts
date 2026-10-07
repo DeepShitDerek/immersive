@@ -19,11 +19,13 @@ const STATUS: Record<StyleDefinition["scheme"], Record<string, string>> = {
     "--chart-4": "340 70% 68%",
     "--chart-5": "208 75% 65%",
   },
+  // Dark enough for 4.5:1 on a light style's card, and on a chip tinted
+  // with the colour itself.
   light: {
-    "--success": "142.4 71.8% 29.2%",
-    "--warning": "33.1 91.7% 32.9%",
-    "--info": "208.5 66.3% 36.1%",
-    "--destructive": "4.2 76.5% 40%",
+    "--success": "142.4 71.8% 22.5%",
+    "--warning": "33.1 91.7% 26%",
+    "--info": "208.5 66.3% 34%",
+    "--destructive": "4.2 76.5% 37%",
     "--chart-1": "235 58% 50%",
     "--chart-2": "172 60% 33%",
     "--chart-3": "33 90% 40%",
