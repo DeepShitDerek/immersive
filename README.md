@@ -4,12 +4,12 @@ A portfolio site you fill in from one config file, with an optional private work
 
 ## Two ways to run it
 
-| | Static site | With the workspace |
-|---|---|---|
-| Content comes from | `portfolio.config.ts` | Your own Supabase project |
-| You edit it by | Changing the file and rebuilding | Signing in at `/admin` |
-| Needs | Nothing | A free Supabase project |
-| Set up in | A few minutes | About fifteen minutes |
+|                    | Static site                      | With the workspace        |
+| ------------------ | -------------------------------- | ------------------------- |
+| Content comes from | `portfolio.config.ts`         | Your own Supabase project |
+| You edit it by     | Changing the file and rebuilding | Signing in at `/admin`    |
+| Needs              | Nothing                          | A free Supabase project   |
+| Set up in          | A few minutes                    | About fifteen minutes     |
 
 You can start static and add the workspace later. Nothing is thrown away.
 
@@ -21,10 +21,10 @@ You can start static and add the workspace later. Nothing is thrown away.
 
 **The workspace** (only with a database, behind a password and a second factor):
 
-- *The site:* Pages, Blog, Updates, Navigation, Assets, Inbox, Settings
-- *Your work:* Tasks, Notes, Calendar, Habits, Learning, Library, Whiteboard, Maps
-- *Your records:* Money, Inventory, Discover
-- *Overview:* Dashboard, Analytics, Security (backup, restore, lockdown)
+- _The site:_ Pages, Blog, Updates, Navigation, Assets, Inbox, Settings
+- _Your work:_ Tasks, Notes, Calendar, Habits, Learning, Library, Whiteboard, Maps
+- _Your records:_ Money, Inventory, Discover
+- _Overview:_ Dashboard, Analytics, Security (backup, restore, lockdown)
 
 ## Quick start: a static site
 
@@ -67,14 +67,14 @@ Use a custom domain or a user site (`<you>.github.io`). A project site (`<you>.g
 
 ## Commands
 
-| Command | What it does |
-|---|---|
-| `npm run dev` | Development server |
-| `npm run build` | Production build into `out/` |
-| `npm test` | Unit tests |
-| `npm run lint`, `npm run typecheck` | Lint and type checks |
-| `npm run test:db` | Runs `schema.sql` twice against a throwaway Postgres and tests the security policies. Needs Docker |
-| `npm run check:*` | Checks on a finished build: accessibility, prerendered HTML, hydration, bundle size, theme contrast, and more. `package.json` lists them |
+| Command                             | What it does                                                                                                                             |
+| ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `npm run dev`                       | Development server                                                                                                                       |
+| `npm run build`                     | Production build into `out/`                                                                                                             |
+| `npm test`                          | Unit tests                                                                                                                               |
+| `npm run lint`, `npm run typecheck` | Lint and type checks                                                                                                                     |
+| `npm run test:db`                   | Runs `schema.sql` twice against a throwaway Postgres and tests the security policies. Needs Docker                                       |
+| `npm run check:*`                   | Checks on a finished build: accessibility, prerendered HTML, hydration, bundle size, theme contrast, and more. `package.json` lists them |
 
 ## Where things are
 

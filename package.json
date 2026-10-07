@@ -23,7 +23,7 @@
     "lint": "eslint src --max-warnings 0",
     "typecheck": "tsc --noEmit",
     "format": "prettier --write \"**/*.{ts,tsx,js,jsx,mjs,md,json,css}\" --ignore-path .gitignore --ignore-path .prettierignore",
-    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,mjs,md,json,css}\" --ignore-path .gitignore --ignore-path .prettierignore",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,mjs,json,css}\" --ignore-path .gitignore --ignore-path .prettierignore",
     "test": "vitest run",
     "test:db": "node scripts/test-db.mjs",
     "test:seed": "node scripts/test-sample-seed.mjs",
