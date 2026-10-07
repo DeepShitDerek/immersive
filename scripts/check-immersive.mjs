@@ -355,7 +355,9 @@ try {
     );
     await browser.sleep(600);
     const doc = await browser.evaluate(`(() => {
-      const root = document.querySelector("[data-style-root]");
+      // The page wrapper, which paints the style's ground. Not the
+      // [data-style-root] marker: that is a hidden element with no ground.
+      const root = document.querySelector("[data-style-scope]");
       const probe = document.createElement("div");
       probe.style.cssText = "position:fixed;background:hsl(var(--popover));color:hsl(var(--popover-foreground));font-family:var(--font-body)";
       document.body.appendChild(probe);
