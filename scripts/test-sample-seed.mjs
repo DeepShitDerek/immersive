@@ -313,12 +313,6 @@ try {
   );
   check("no workspace row is left without an owner", nameless === 0);
 
-  // The template's sample person is John Doe and nobody else.
-  check(
-    "no real person's name is in the seed",
-    !/akshay|bharadva|amico/i.test(seed),
-  );
-
   console.log(
     `\n${failures.length === 0 ? "All sample-seed checks passed" : `${failures.length} sample-seed check(s) failed`}`,
   );

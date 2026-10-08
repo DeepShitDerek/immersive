@@ -1,9 +1,10 @@
 name: Deploy Next.js site to Pages
 
 # This file has to live in .github/workflows at the repository root: GitHub
-# reads workflows from nowhere else. The app itself is in, so every run
-# step below works there (`defaults.run.working-directory`), and the steps
-# that are actions rather than commands are given paths explicitly.
+# reads workflows from nowhere else. The app is at the repository root too, so
+# every run step below works there (`defaults.run.working-directory`). If you
+# move the app into a subfolder, change that one value and the paths given to
+# the actions.
 
 on:
   push:
@@ -156,8 +157,8 @@ jobs:
           BASE_PATH: ${{ steps.pages.outputs.base_path }}
         run: node scripts/check-bundle-budget.mjs
 
-      # Lighthouse, mobile, 3 runs per page, against lighthouse-budget.json
-      #. Not blocking yet: the budgets come from a local machine, and
+      # Lighthouse, mobile, 3 runs per page, against lighthouse-budget.json.
+      # Not blocking yet: the budgets come from a local machine, and
       # simulated throttling still depends on the host CPU. Once a few CI runs
       # have been read (the report is uploaded), set the budgets from them and
       # remove continue-on-error.
@@ -170,7 +171,7 @@ jobs:
 
       - name: Keep the Lighthouse report
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: lighthouse-report
           path: lighthouse-report.json
@@ -220,8 +221,7 @@ jobs:
       # Step 6 of this check (double-click, type a name) has a known timing
       # race: a new node's title sometimes takes focus late, so one run can
       # fail on a healthy build. Up to three tries; a real break fails all
-      # three. Remove the loop when the race is fixed
-      # (docs/redesign-results.md, "Open, by module", Maps).
+      # three. Remove the loop when the race is fixed.
       - name: Check the Maps editor
         run: |
           for attempt in 1 2 3; do

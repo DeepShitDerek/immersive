@@ -1,4 +1,4 @@
-// Supabase Edge Function (Deno). Deploy: see DEPLOYMENT.md → "Publish site".
+// Supabase Edge Function (Deno). Deploy: see the README, "The Publish site button".
 // The logic lives in logic.ts; this file only wires Deno, Supabase and GitHub.
 import { createClient } from "npm:@supabase/supabase-js@2";
 import { corsHeaders, handlePublish, summariseRun } from "./logic.ts";

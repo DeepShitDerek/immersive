@@ -120,7 +120,7 @@ export function PublishSiteButton() {
     return (
       <p className="text-xs text-muted-foreground">
         Changes go live with the next deploy. A Publish button appears here once
-        the publish-site function is set up (DEPLOYMENT.md).
+        the publish-site function is set up (see the README).
       </p>
     );
   }

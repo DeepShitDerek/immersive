@@ -45,6 +45,6 @@ Never commit a key, a token or a real `.env`. Everything named `NEXT_PUBLIC_*` e
 
 If you find a security problem, please report it privately to the maintainer rather than opening a public issue.
 
-## Background reading
+## Finding your way around
 
-`.ai/` and `docs/` hold the design notes, decisions and audits behind the code. `.ai/ARCHITECTURE.md` is the place to start.
+"Where things are" in the [README](README.md) maps the folders. The reasoning behind a piece of code is in the comments next to it: when something looks odd, the comment above it usually says what went wrong before it was written that way.
