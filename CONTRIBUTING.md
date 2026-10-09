@@ -47,4 +47,4 @@ If you find a security problem, please report it privately to the maintainer rat
 
 ## Finding your way around
 
-"Where things are" in the [README](README.md) maps the folders. The reasoning behind a piece of code is in the comments next to it: when something looks odd, the comment above it usually says what went wrong before it was written that way.
+`.ai/` and `docs/` hold the design notes, decisions and audits behind the code. `.ai/ARCHITECTURE.md` is the place to start.

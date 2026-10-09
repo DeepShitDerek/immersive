@@ -16,7 +16,6 @@ import {
 } from "@/store/api/publicApi";
 import { Band } from "@/components/layout/band";
 import { isInternalUrl, safeLinkUrl } from "@/lib/safe-url";
-import { PRODUCT } from "@/lib/product";
 import { footerLinks } from "./nav-links";
 import { cn } from "@/lib/cn";
 
@@ -209,20 +208,6 @@ export function FooterView({
             <Markdown className="max-w-none text-sm text-muted-foreground [&_a]:text-primary [&_a]:no-underline [&_a]:underline-offset-4 [&_a:hover]:underline [&_p]:m-0">
               {footer_data.copyright_text}
             </Markdown>
-          )}
-          {PRODUCT.show && (
-            <p className="text-xs">
-              Built with{" "}
-              <Link
-                href="/kit"
-                className={cn(
-                  "rounded-sm font-medium text-foreground underline-offset-4 hover:underline",
-                  FOCUS,
-                )}
-              >
-                {PRODUCT.name}
-              </Link>
-            </p>
           )}
         </div>
         <button

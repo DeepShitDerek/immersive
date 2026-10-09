@@ -1,10 +1,13 @@
 name: Deploy Next.js site to Pages
 
 # This file has to live in .github/workflows at the repository root: GitHub
-# reads workflows from nowhere else. The app is at the repository root too, so
-# every run step below works there (`defaults.run.working-directory`). If you
-# move the app into a subfolder, change that one value and the paths given to
-# the actions.
+# reads workflows from nowhere else.
+#
+# It works in any repository the code is pushed to:
+# - GitHub Pages may be off. The site is still built and checked; it is only
+#   published once Pages is turned on (Settings > Pages > Source: GitHub
+#   Actions), and the run says so.
+# - With no secrets set, the build is the static site.
 
 on:
   push:
@@ -29,14 +32,14 @@ concurrency:
   group: ${{ (github.ref == 'refs/heads/main' && github.event_name != 'pull_request') && 'pages' || format('checks-{0}', github.ref) }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
-defaults:
-  run:
-    working-directory: .
-
 jobs:
   build:
     runs-on: ubuntu-latest
     timeout-minutes: 30
+
+    outputs:
+      # "true" when this run built something GitHub Pages can publish.
+      publish: ${{ steps.site.outputs.publish }}
 
     steps:
       - name: Checkout
@@ -49,12 +52,35 @@ jobs:
           cache: npm
           cache-dependency-path: package-lock.json
 
+      # Whether this run publishes: only main, never a pull request, and only
+      # where GitHub Pages is on. A repository that has not turned Pages on
+      # yet (a new fork) still gets the whole build and every check; asking
+      # for the Pages settings there is what used to fail the run.
+      - name: Check where the site is published
+        id: site
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DEPLOYS: ${{ github.event_name != 'pull_request' && github.ref == 'refs/heads/main' }}
+        run: |
+          publish=false
+          if [ "$DEPLOYS" = "true" ]; then
+            source=$(gh api "repos/${{ github.repository }}/pages" --jq .build_type 2>/dev/null || true)
+            if [ "$source" = "workflow" ]; then
+              publish=true
+            elif [ -n "$source" ]; then
+              echo "::warning title=Not published::GitHub Pages is on, but set to publish from a branch. The site was built and checked but not published. Change Settings > Pages > Source to GitHub Actions, then run this workflow again."
+            else
+              echo "::warning title=Not published::GitHub Pages is not turned on for this repository, so the site was built and checked but not published. Turn it on under Settings > Pages > Source: GitHub Actions, then run this workflow again."
+            fi
+          fi
+          echo "publish=$publish" >> "$GITHUB_OUTPUT"
+
       # Reads the Pages settings and writes the site's base path into the Next
       # config (empty for a custom domain or a user site, "/<repo>" for a
-      # project site). Only on the runs that deploy.
+      # project site). Only on the runs that publish.
       - name: Setup Pages
         id: pages
-        if: github.event_name != 'pull_request'
+        if: steps.site.outputs.publish == 'true'
         uses: actions/configure-pages@v6
         with:
           static_site_generator: next
@@ -145,7 +171,8 @@ jobs:
 
       # BASE_PATH: a project site (https://<user>.github.io/<repo>/) is built
       # with that prefix on every asset; these checks take it off again to
-      # find the files. Empty for a custom domain or a user site.
+      # find the files. Empty for a custom domain or a user site, and on a
+      # run that does not publish.
       - name: Check hydration
         env:
           BASE_PATH: ${{ steps.pages.outputs.base_path }}
@@ -178,7 +205,7 @@ jobs:
           if-no-files-found: ignore
 
       - name: Upload artifact
-        if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+        if: steps.site.outputs.publish == 'true'
         uses: actions/upload-pages-artifact@v5
         with:
           path: out
@@ -234,8 +261,8 @@ jobs:
         run: node scripts/check-immersive.mjs
 
   deploy:
-    # Only what is on main goes live.
-    if: github.event_name != 'pull_request' && github.ref == 'refs/heads/main'
+    # Only what is on main goes live, and only where Pages is turned on.
+    if: needs.build.outputs.publish == 'true'
 
     environment:
       name: github-pages

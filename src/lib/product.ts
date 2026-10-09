@@ -5,8 +5,9 @@ import portfolioConfig from "../../portfolio.config";
  *
  * Read from `portfolio.config.ts` at build time — it is the owner's offer, not
  * site content a visitor edits, so it does not live in the database. A site
- * built *with* Foliokit sets `show: false` and loses /kit and the footer
- * credit.
+ * built *with* Foliokit sets `show: false` and loses /kit. The "Built with
+ * Foliokit" line is not part of this: the build adds it to every public page
+ * (scripts/finalize-export.mjs).
  */
 
 export interface ProductPlan {
